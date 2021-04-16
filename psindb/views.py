@@ -27,6 +27,13 @@ def protein(request, protein_id):
         myresult = mycursor.fetchall()
 
         if not myresult:
+            return render(
+                request,
+                "protein.html",
+                {
+                    "protein_id": "NOT FOUND",
+                },
+            )
 
         for x in myresult:
             print(x)

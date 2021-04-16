@@ -16,71 +16,56 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light py-0">
-  <a class="navbar-brand" href="#">Dreadfort</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-		<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> Master data </a>
-	    <ul class="dropdown-menu">
-{#		  <li><a class="dropdown-item" href="#"> Dropdown item 1 </a></li>#}
-		  <li><a class="dropdown-item" href="#"> Delivery &raquo </a>
-		  	 <ul class="submenu dropdown-menu">
-			    <li><a class="dropdown-item" href="/handover/view">Handover</a></li>
-{#			    <li><a class="dropdown-item" href="">Submenu item 2</a></li>#}
-{#			    <li><a class="dropdown-item" href="">Submenu item 3 &raquo </a>#}
-{#			    	<ul class="submenu dropdown-menu">#}
-{#					    <li><a class="dropdown-item" href="">Multi level 1</a></li>#}
-{#					    <li><a class="dropdown-item" href="">Multi level 2</a></li>#}
-{#					</ul>#}
-{#			    </li>#}
-{#			    <li><a class="dropdown-item" href="">Submenu item 4</a></li>#}
-{#			    <li><a class="dropdown-item" href="">Submenu item 5</a></li>#}
-			 </ul>
-		  </li>
-{#		  <li><a class="dropdown-item" href="#"> Dropdown item 3 </a></li>#}
-{#		  <li><a class="dropdown-item" href="#"> Dropdown item 4 </a>#}
-	    </ul>
-	</li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-{#    <span class="navbar-text">#}
-{#        <ul class="navbar-nav mr-auto">#}
-{#            <li class="nav-item active">#}
-{#                {% if user.is_authenticated %}#}
-{#                    <a class="nav-link" href="#">Hi {{ user.first_name }}!</a>#}
-{#                {% else %}#}
-{#                  <span class="navbar-text" style="margin-right: 10px;">You are not logged in</span>#}
-{#                {% endif %}#}
-{#            </li>#}
-{#            <li class="nav-item active">#}
-{#                {% if user.is_authenticated %}#}
-{#                  <a class="btn btn-danger my-2 my-sm-0" href="{% url 'logout' %}">Log Out</a>#}
-{#                {% else %}#}
-{#                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log In</button>#}
-{#                  <a class="btn btn-success my-2 my-sm-0" href="{% url 'login' %}">Log In</a>#}
-{#                {% endif %}#}
-{#            </li>#}
-{#        </ul>#}
-{#    </span>#}
-  </div>
+<body class="d-flex flex-column min-vh-100">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container">
+        <img src="{% static 'images/placeholder.png' %}" alt="Girl in a jacket" width="100" height="100">
+        <button class="navbar-toggler my-2" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse flex-column align-items-start ml-lg-2 ml-0" id="navbarCollapse">
+            <form class="form-inline py-4 mx-auto">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Browse</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Description</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Statistics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Downloads</a>
+                </li>
+            </ul>
+        </div>
+        <img src="{% static 'images/placeholder.png' %}" alt="Girl in a jacket" width="100" height="100">
+    </div>
 </nav>
+<div class="container mt-5 pt-5">
+    <h1>Hi.</h1>
+    <p class="lead">This is a Bootstrap 4 example.</p>
+    <p>Sriracha biodiesel taxidermy organic post-ironic, Intelligentsia salvia mustache 90's code editing brunch. Butcher polaroid VHS art party, hashtag Brooklyn deep v PBR narwhal sustainable mixtape swag wolf squid tote bag. Tote bag cronut semiotics,
+        raw denim deep v taxidermy messenger bag. Tofu YOLO Etsy, direct trade ethical Odd Future jean shorts paleo. Forage Shoreditch tousled aesthetic irony, street art organic Bushwick artisan cliche semiotics ugh synth chillwave meditation. Shabby
+        chic lomo plaid vinyl chambray Vice. Vice sustainable cardigan, Williamsburg master cleanse hella DIY 90's blog.</p>
+
+</div>
+<div class="container mt-1 pt-1">
     <main>
         {% block content %}
         {% endblock %}
     </main>
+</div>
+<div class="wrapper flex-grow-1"></div>
+<footer class="navbar navbar-dark bg-dark mt-4">
+    <div class="container">
+        <div class="footer-text small">Footer content here.</div>
+{#        <div class="w-100 text-right align-self-end">Little baby baby</div>#}
+    </div>
+</footer>
 </body>
 </html>
