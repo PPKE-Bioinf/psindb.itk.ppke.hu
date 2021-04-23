@@ -5,3 +5,19 @@ html body {
 div.footer-text {
     color: #9a9a9a;
 }
+
+.rowTrackBoardSatus {
+    visibility: hidden;
+}
+
+.rcsbElement_compositeBlockSequence rect {
+    /*noinspection CssInvalidPropertyValue*/
+    /*stroke: #9a9a9a0 !important;*/
+    fill-opacity: 1;
+}
+
+.rcsbElement_compositeBlockSequence2 rect {
+    /*noinspection CssInvalidPropertyValue*/
+    /*stroke: #9a9a9a0 !important;*/
+    fill-opacity: 1;
+}

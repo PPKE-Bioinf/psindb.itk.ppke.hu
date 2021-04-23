@@ -3,17 +3,17 @@
 {% block title %}Dreadfort{% endblock %}
 
 {% block content %}
-
-{#<h1>Welcome to Dreadfort</h1>#}
-{##}
-{#<h2>HTML Forms</h2>#}
-{##}
-{#<form action="/action_page.php">#}
-{#  <label for="fname">First name:</label><br>#}
-{#  <input type="text" id="fname" name="fname" value="John"><br>#}
-{#  <label for="lname">Last name:</label><br>#}
-{#  <input type="text" id="lname" name="lname" value="Doe"><br><br>#}
-{#  <input type="submit" value="Submit">#}
-{#</form>#}
-
+    {% if protein_id %}
+        <div>
+            <p>you have searched for {{ protein_id }}</p>
+        </div>
+        <div id="pfv" style="margin-top:50px" ></div>
+        <script type="text/javascript">
+      {% autoescape off %}
+      {{ insert_js }}
+      {% endautoescape %}
+    </script>
+    {% else %}
+        ENTRY SITE CONTENT IF THERE IS NO SEARCH YET
+    {% endif %}
 {% endblock %}
