@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dreadfort{% endblock %}
+
+{% block content %}
+    <h1>Function</h1>
+    <p>{{ uniprot_id }}</p>
+    <p>GO: {{ db_data.go }}</p>
+    <p>g2c: {{ db_data.g2c }}</p>
+    <p>SynGO: {{ db_data.SynGO }}</p>
+    <p>Functions: {{ db_data.Functions }}</p>
+    <h1>Features</h1>
+    <p>Fancy graphics coming soon</p>
+    <h1>Partners with known interacting regions</h1>
+    {% for patner in partners %}
+        {% if patner.2 != "PSD" %}
+            <p>not PSD: {{ patner.0 }}</p>
+        {% else %}
+            <a href="{% url 'entry' uniprot_id=patner.0 %}">{{ patner.0 }}</a>
+        {% endif %}
+    {% endfor %}
+    <h1>Partners (low throughput experiment evidence)</h1>
+    {% for patner in high_tp_evidence %}
+        {% if patner.1 != "PSD" %}
+            <p>not PSD: {{ patner.0 }}</p>
+        {% else %}
+            <a href="{% url 'entry' uniprot_id=patner.0 %}">{{ patner.0 }}</a>
+        {% endif %}
+    {% endfor %}
+    <h1>Partners (high throughput experiment evidence)</h1>
+    {% for patner in low_tp_evidence %}
+        {% if patner.1 != "PSD" %}
+            <p>not PSD: {{ patner.0 }}</p>
+        {% else %}
+            <a href="{% url 'entry' uniprot_id=patner.0 %}">{{ patner.0 }}</a>
+        {% endif %}
+    {% endfor %}
+    <h1>Partners (computational evidence)</h1>
+    {% for patner in comp_evidence %}
+        {% if patner.1 != "PSD" %}
+            <p>not PSD: {{ patner.0 }}</p>
+        {% else %}
+            <a href="{% url 'entry' uniprot_id=patner.0 %}">{{ patner.0 }}</a>
+        {% endif %}
+    {% endfor %}
+    <h1>Isoforms</h1>
+    {% for isoform in isoforms %}
+        <p>{{ isoform }}</p>
+    {% endfor %}
+    <h1>Disease</h1>
+    <table>
+    <tr>
+        <th>Position</th>
+        <th>Amino acid</th>
+        <th>Mutation</th>
+        <th>Disease</th>
+    </tr>
+    {% for disease in diseases %}
+        {% if disease.in_region == "yes" %}
+        <tr class="disease-red">
+        {% else %}
+        <tr>
+        {% endif %}
+
+        <td>{{ disease.position }}</td>
+        <td>{{ disease.original }}</td>
+        <td>{{ disease.mutation }}</td>
+        <td>{{ disease.descr }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    <h1>Phosphorylation</h1>
+    <table>
+    <tr>
+        <th>Position</th>
+    </tr>
+    {% for phos in phospo %}
+        {% if phos.1 == "yes" %}
+        <tr class="disease-red">
+        {% else %}
+        <tr>
+        {% endif %}
+        <td>{{ phos.0 }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    <h1>Linear motifs</h1>
+    <table>
+    <tr>
+        <th>ELM instance</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Start</th>
+        <th>End</th>
+    </tr>
+    {% for linear_motif in linear_motifs %}
+        {% if linear_motif.in_region == "yes" %}
+        <tr class="disease-red">
+        {% else %}
+        <tr>
+        {% endif %}
+
+        <td>{{ linear_motif.instance_ref }}</td>
+        <td>{{ linear_motif.elm_ref }}</td>
+        <td>{{ linear_motif.elm_type }}</td>
+        <td>{{ linear_motif.start_pos }}</td>
+        <td>{{ linear_motif.end_pos }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    <h1>Fingerprint</h1>
+    <h1>Network</h1>
+{% endblock %}

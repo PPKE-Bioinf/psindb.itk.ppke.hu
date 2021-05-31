@@ -9,7 +9,8 @@
         {% for result in results %}
             <div class="search-page-result">
                 <div class="search-result-header">
-                    <div><p>UNIPROT ID: {{ result.protein_id }}</p></div>
+                    <div><p>UNIPROT ID: </p></div>
+                    <div><a href="{% url 'entry' uniprot_id=result.protein_id %}">{{ result.protein_id }}</a></div>
                     <div class="push-flex"><span>Postsynaptic evidence:</span></div>
                     <div class="left-flex"><span>GO</span>
                     {% if result.evidence_go != "no" %}

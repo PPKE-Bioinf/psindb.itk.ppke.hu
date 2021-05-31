@@ -72,6 +72,12 @@ def create_graph_data(protein_id, connectivity):
 
     print(connectivity_data_list)
 
+    # rowTitle: "Interacting regions",
+    # rowTitle: RcsbFvLink = {{
+    #     visibleTex: "VISIBLE TEXT",
+    #     url: "google.com"
+    # }},
+
     js = f"""
     $(document).ready(function(){{
     const connectivity = "{connectivity}";
@@ -79,7 +85,8 @@ def create_graph_data(protein_id, connectivity):
     const boardConfigData = {{
       length: connectivity.length,
       trackWidth: 920,
-      includeAxis: true
+      includeAxis: true,
+      includeTooltip: false
     }};
     
     const rowConfigData = [
@@ -88,9 +95,9 @@ def create_graph_data(protein_id, connectivity):
     trackHeight: 20,
     trackColor: "#F9F9F9",
     displayType: "composite",
+    includeTooltip: false,
     rowTitle: "Interacting regions",
     displayConfig: {connectivity_data_list}
-    
   }}
 ];
 
@@ -176,3 +183,188 @@ def index(request):
                 "search_term": search,
             },
         )
+
+
+def entry(request, uniprot_id):
+    mycursor = mydb.cursor()
+    mycursor.execute(
+        """
+        SELECT protein_id, GO, G2C, SynGO, SynaptomeDB, Functions,
+        Transmembrane, HTP, LLPS, ELM, Phos, PFAM, Coiled_coil, Anchor,
+        Disordered, ELM, interacting, sequence
+        FROM Protein WHERE protein_id=%s;
+        """,
+        (uniprot_id,)
+    )
+
+    sql2 = mycursor.fetchone()
+
+    mycursor = mydb.cursor()
+    mycursor.execute(
+        """
+        SELECT protein_id2, reg_p2, isPSD, evidence
+        FROM Partners
+        WHERE protein_id1=%s AND region='yes';
+        """,
+        (uniprot_id,)
+    )
+
+    sql3 = mycursor.fetchall()
+    # print("###################### sql3 ###########################")
+    # print(sql3)
+    # print("###################### sql3 end #######################")
+
+    mycursor = mydb.cursor()
+    mycursor.execute(
+        """
+        SELECT protein_id2, isPSD
+        FROM Partners WHERE protein_id1=%s AND evidence='LT';
+        """,
+        (uniprot_id,)
+    )
+
+    sql4 = mycursor.fetchall()
+    # print("###################### sql4 ###########################")
+    # print(sql4)
+    # print("###################### sql4 end #######################")
+
+    mycursor = mydb.cursor()
+    mycursor.execute(
+        """
+        SELECT protein_id2, isPSD
+        FROM Partners WHERE protein_id1=%s AND evidence='HT';
+        """,
+        (uniprot_id,)
+    )
+
+    sql5 = mycursor.fetchall()
+
+    mycursor = mydb.cursor()
+    mycursor.execute(
+        """
+        SELECT protein_id2, isPSD
+        FROM Partners WHERE protein_id1=%s AND evidence='Computational';
+        """,
+        (uniprot_id,)
+    )
+
+    sql6 = mycursor.fetchall()
+
+    mycursor = mydb.cursor()
+    mycursor.execute(
+        """
+        SELECT Alignment FROM Splice WHERE protein_id=%s;
+        """,
+        (uniprot_id,)
+    )
+
+    sql7 = mycursor.fetchone()
+    isoforms = sql7[0].split(";")
+    # print("###################### sql7 ###########################")
+    # for isoform in isoforms:
+    #     print(isoform)
+    # print("###################### sql7 end #######################")
+
+    mycursor = mydb.cursor()
+    mycursor.execute(
+        """
+        SELECT posi, original, mutation, descr, in_region
+        FROM Mendeley WHERE protein_id=%s;
+        """,
+        (uniprot_id,)
+    )
+
+    diseases = []
+    disease_sql = mycursor.fetchall()
+    for disease in disease_sql:
+        diseases.append({
+            "position": disease[0],
+            "original": disease[1],
+            "mutation": disease[2],
+            "descr": disease[3],
+            "in_region": disease[4],
+        })
+
+    # print("###################### disease ###########################")
+    # print(diseases)
+    # print("###################### disease end #######################")
+
+    mycursor = mydb.cursor()
+    mycursor.execute(
+        """
+        SELECT posi, in_region FROM Phospho WHERE protein_id=%s;
+        """,
+        (uniprot_id,)
+    )
+
+    phospo = mycursor.fetchall()
+    # print("###################### phospo ###########################")
+    # print(phospo)
+    # print("###################### phospo end #######################")
+
+    mycursor = mydb.cursor()
+    mycursor.execute(
+        """
+        SELECT instance_ref, elm_ref, elm_type, start_pos, end_pos, in_region
+        FROM ELM WHERE protein_id=%s;
+        """,
+        (uniprot_id,)
+    )
+
+    linear_motifs_sql = mycursor.fetchall()
+
+    print("###################### linear_motifs_sql ###########################")
+    print(linear_motifs_sql)
+    print("###################### linear_motifs_sql end #######################")
+
+    linear_motifs = []
+    for motif in linear_motifs_sql:
+        linear_motifs.append({
+            "instance_ref": motif[0],
+            "elm_ref": motif[1],
+            "elm_type": motif[2],
+            "start_pos": motif[3],
+            "end_pos": motif[4],
+            "in_region": motif[5],
+        })
+
+    print("###################### linear_motifs ###########################")
+    print(linear_motifs)
+    print("###################### linear_motifs end #######################")
+
+    db_data = {
+        "go": sql2[1],
+        "g2c": sql2[2],
+        "SynGO": sql2[3],
+        "SynaptomeDB": sql2[4],
+        "Functions": sql2[5],
+    }
+
+    viewer_data = {
+        "Transmembrane": sql2[6],
+        "Transmembrane_link": sql2[7],
+        "LLPS": sql2[8],
+        "ELM": sql2[9],
+        "Phos": sql2[10],
+        "PFAM": sql2[11],
+        "Coiled_coil": sql2[12],
+        "Anchor": sql2[13],
+        "Disordered": sql2[14],
+    }
+
+    return render(
+        request,
+        "entry.html",
+        {
+            "uniprot_id": uniprot_id,
+            "db_data": db_data,
+            "partners": sql3,
+            "low_tp_evidence": sql4,
+            "high_tp_evidence": sql5,
+            "comp_evidence": sql6,
+            "isoforms": isoforms,
+            "diseases": diseases,
+            "phospo": phospo,
+            "linear_motifs": linear_motifs
+        },
+    )

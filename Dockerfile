@@ -43,9 +43,9 @@ ENV PYTHONPATH $PYROOT/lib/python:$PATH
 ENV PYTHONUSERBASE $PYROOT
 
 COPY --from=builder $PYROOT/lib/ $PYROOT/lib/
-COPY . /usr/src/app/dreadfort
+COPY . /usr/src/app/psindb
 
-WORKDIR /usr/src/app/dreadfort
+WORKDIR /usr/src/app/psindb
 
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000", "--noreload"]
 

@@ -42,3 +42,13 @@ div.footer-text {
 .left-flex {
     margin-left: 15px;
 }
+
+.disease-red {
+    background-color: indianred;
+}
+
+td, th {
+  border: 1px solid #343a40;
+  text-align: left;
+  padding: 8px;
+}
