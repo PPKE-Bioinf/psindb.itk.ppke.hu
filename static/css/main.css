@@ -21,3 +21,24 @@ div.footer-text {
     /*stroke: #9a9a9a0 !important;*/
     fill-opacity: 1;
 }
+
+.search-result-header {
+    display: flex;
+    align-items: flex-start;
+}
+
+.search-page-result {
+    border: 2px solid #343a40;
+    padding-bottom: 12px;
+    padding-left: 15px;
+    padding-right: 10px;
+    margin-bottom: 4px;
+}
+
+.push-flex {
+    margin-left: auto;
+}
+
+.left-flex {
+    margin-left: 15px;
+}

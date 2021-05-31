@@ -7,11 +7,11 @@ mydb = mysql.connector.connect(
     host="localhost",
     user="daniel",
     password="password",
-    database="PSDInteractome_v0_09"
+    database="PSDInteractome_v0_10"
 )
 
 
-def create_graph_data(sequence, connectivity):
+def create_graph_data(protein_id, connectivity):
     value_ranges = {
         "1": [],
         "2": [],
@@ -40,11 +40,11 @@ def create_graph_data(sequence, connectivity):
     })
 
     value_colors = {
-        "1": "#76B295",
-        "2": "#4A9470",
-        "3": "#277650",
-        "4": "#0F5935",
-        "5": "#001A13",
+        "1": "#4a2226",
+        "2": "#705080",
+        "3": "#879cac",
+        "4": "#a9d1d5",
+        "5": "#32a481",
     }
 
     value_display_ids = {
@@ -74,41 +74,27 @@ def create_graph_data(sequence, connectivity):
 
     js = f"""
     $(document).ready(function(){{
-    const sequence = "{sequence}";
+    const connectivity = "{connectivity}";
     
     const boardConfigData = {{
-      length: sequence.length,
-      trackWidth: 940,
+      length: connectivity.length,
+      trackWidth: 920,
       includeAxis: true
     }};
     
     const rowConfigData = [
   {{
-    trackId: "sequenceTrack",
-    trackHeight: 20,
-    trackColor: "#F9F9F9",
-    displayType: "sequence",
-    nonEmptyDisplay: true,
-    rowTitle: "SEQUENCE",
-    trackData: [
-      {{
-        begin: 1,
-        value: sequence
-      }}
-    ]
-  }},
-  {{
     trackId: "compositeSequence",
     trackHeight: 20,
     trackColor: "#F9F9F9",
     displayType: "composite",
-    rowTitle: "ZOOM ME",
+    rowTitle: "Interacting regions",
     displayConfig: {connectivity_data_list}
     
   }}
 ];
 
-const elementId = "pfv";
+const elementId = "pfv-{protein_id}";
 const pfv = new RcsbFv.Create({{
             boardConfigData,
             rowConfigData,
@@ -136,15 +122,22 @@ def index(request):
             )
 
         mycursor = mydb.cursor()
-
         mycursor.execute(
-            "SELECT * FROM Protein WHERE protein_id = %s",
-            (search,)
+            """
+            SELECT DISTINCT Protein.GO, Protein.G2C, 
+                Protein.Syngo, Protein.Synaptomedb,
+                Protein.protein_id, Protein.Interactions,
+                Protein.interacting
+            FROM Protein
+            INNER JOIN Alias ON Alias.protein_id=Protein.protein_id
+            WHERE (Alias.protein_alias=%s OR Alias.protein_id=%s);
+            """,
+            (search, search,)
         )
 
-        myresult = mycursor.fetchall()
+        query_results = mycursor.fetchall()
 
-        if not myresult:
+        if not query_results:
             return render(
                 request,
                 "home.html",
@@ -153,26 +146,33 @@ def index(request):
                 },
             )
 
-        for x in myresult:
-            print(x[2])
+        results = []
 
-        my_sequence = x[1]
-        my_interact = x[2]
+        for query_result in query_results:
+            evidence_go = query_result[0]
+            evidence_g2c = query_result[1]
+            evidence_syngo = query_result[2]
+            evidence_synaptomedb = query_result[3]
+            protein_id = query_result[4]
+            num_interactions = query_result[5]
+            connectivity = query_result[6]
+            insert_js = create_graph_data(protein_id, connectivity)
 
-        insert_js = create_graph_data(my_sequence, my_interact)
-
-        search_results = [
-            {
-                "my_sequence": my_sequence,
-                "my_interact": my_interact
-            }
-        ]
+            results.append({
+                "evidence_go": evidence_go,
+                "evidence_g2c": evidence_g2c,
+                "evidence_syngo": evidence_syngo,
+                "evidence_synaptomedb": evidence_synaptomedb,
+                "protein_id": protein_id,
+                "num_interactions": num_interactions,
+                "insert_js": insert_js,
+            })
 
         return render(
             request,
             "home.html",
             {
-                "protein_id": search,
-                "insert_js": insert_js,
+                "results": results,
+                "search_term": search,
             },
         )

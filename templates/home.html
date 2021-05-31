@@ -1,18 +1,51 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Dreadfort{% endblock %}
 
 {% block content %}
-    {% if protein_id %}
-        <div>
-            <p>you have searched for {{ protein_id }}</p>
-        </div>
-        <div id="pfv" style="margin-top:50px" ></div>
-        <script type="text/javascript">
-      {% autoescape off %}
-      {{ insert_js }}
-      {% endautoescape %}
-    </script>
+    {% if results %}
+        <h2>Query results for "{{ search_term }}":</h2>
+        {% for result in results %}
+            <div class="search-page-result">
+                <div class="search-result-header">
+                    <div><p>UNIPROT ID: {{ result.protein_id }}</p></div>
+                    <div class="push-flex"><span>Postsynaptic evidence:</span></div>
+                    <div class="left-flex"><span>GO</span>
+                    {% if result.evidence_go != "no" %}
+                        <img src="{% static 'images/check-circle.svg' %}">
+                    {% else %}
+                        <img src="{% static 'images/circle.svg' %}">
+                    {% endif %}</div>
+                    <div class="left-flex"><span>G2C</span>
+                    {% if result.evidence_g2c != "no" %}
+                        <img src="{% static 'images/check-circle.svg' %}">
+                    {% else %}
+                        <img src="{% static 'images/circle.svg' %}">
+                    {% endif %}</div>
+                    <div class="left-flex"><span>SynGO</span>
+                    {% if result.evidence_syngo != "no" %}
+                        <img src="{% static 'images/check-circle.svg' %}">
+                    {% else %}
+                        <img src="{% static 'images/circle.svg' %}">
+                    {% endif %}</div>
+                    <div class="left-flex"><span>SynaptomeDB</span>
+                    {% if result.evidence_synaptomedb != "no" %}
+                        <img src="{% static 'images/check-circle.svg' %}">
+                    {% else %}
+                        <img src="{% static 'images/circle.svg' %}">
+                    {% endif %}</div>
+                </div>
+                <div><span>Number of interacting partners: {{ result.num_interactions }}</span></div>
+                <div id="pfv-{{ result.protein_id }}" style="margin-top:15px" ></div>
+                <script type="text/javascript">
+                {% autoescape off %}
+                {{ result.insert_js }}
+                {% endautoescape %}
+                </script>
+            </div>
+
+        {% endfor %}
     {% else %}
         ENTRY SITE CONTENT IF THERE IS NO SEARCH YET
     {% endif %}
