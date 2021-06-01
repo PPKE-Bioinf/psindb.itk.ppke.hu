@@ -86,7 +86,7 @@ def create_graph_data(protein_id, connectivity):
       length: connectivity.length,
       trackWidth: 920,
       includeAxis: true,
-      includeTooltip: false
+      disableMenu: true
     }};
     
     const rowConfigData = [
@@ -95,7 +95,6 @@ def create_graph_data(protein_id, connectivity):
     trackHeight: 20,
     trackColor: "#F9F9F9",
     displayType: "composite",
-    includeTooltip: false,
     rowTitle: "Interacting regions",
     displayConfig: {connectivity_data_list}
   }}
