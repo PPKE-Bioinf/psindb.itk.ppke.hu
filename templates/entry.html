@@ -110,5 +110,59 @@
     {% endfor %}
     </table>
     <h1>Fingerprint</h1>
+    <h3>Molecular function</h3>
+    <table>
+    <tr>
+        <th>Term</th>
+        <th>Name</th>
+        <th>Count</th>
+        <th>Level</th>
+    </tr>
+    {% for fp in fp_mol_func %}
+    <tr>
+        <td>{{ fp.term_id }}</td>
+        <td>{{ fp.des }}</td>
+        <td>{{ fp.ontology_number }}</td>
+        <td>{{ fp.ontology_level }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+
+    <h3>Biological process</h3>
+    <table>
+    <tr>
+        <th>Term</th>
+        <th>Name</th>
+        <th>Count</th>
+        <th>Level</th>
+    </tr>
+    {% for fp in fp_biol_proc %}
+    <tr>
+        <td>{{ fp.term_id }}</td>
+        <td>{{ fp.des }}</td>
+        <td>{{ fp.ontology_number }}</td>
+        <td>{{ fp.ontology_level }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    <h3>Disease</h3>
+    <table>
+    <tr>
+        <th>Term</th>
+        <th>Name</th>
+        <th>Count</th>
+        <th>Level</th>
+    </tr>
+    {% for fp in fp_disease %}
+    <tr>
+        <td>{{ fp.term_id }}</td>
+        <td>{{ fp.des }}</td>
+        <td>{{ fp.ontology_number }}</td>
+        <td>{{ fp.ontology_level }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+
     <h1>Network</h1>
+    <interaction-viewer accession="O60941"></interaction-viewer>
 {% endblock %}
