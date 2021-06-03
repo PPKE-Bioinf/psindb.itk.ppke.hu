@@ -26,17 +26,13 @@ FROM python:3.8
 
 ENV LANG=C.UTF-8
 
-# add i386 archutecture (pales dependency) and install software used by CoNSEnsX
-#RUN dpkg --add-architecture i386 \
-#    && apt-get update -q \
-#    && apt-get install -y -q postgresql-client libc6:i386 libncurses5:i386 \
-#                             libstdc++6:i386 libx11-6:i386 python3 python3-setuptools python3-six \
-#    && mkdir -p /usr/src/app \
-#    && tar -C /usr/src/app -zxf progs_consensx.tar.gz \
-#    && rm -rf progs_consensx.tar.gz \
-#    && apt-get autoremove -y \
-#    && apt-get clean -y \
-#    && rm -rf /var/lib/apt/lists/*
+RUN dpkg --add-architecture i386 \
+    && apt-get update -q \
+    && apt-get install -y -q mariadb-server \
+    && mkdir -p /usr/src/app \
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV PYROOT /pyroot
 ENV PYTHONPATH $PYROOT/lib/python:$PATH
@@ -47,6 +43,7 @@ COPY . /usr/src/app/psindb
 
 WORKDIR /usr/src/app/psindb
 
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000", "--noreload"]
+# CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000", "--noreload"]
+CMD ["bash", "entrypoint.sh"]
 
 EXPOSE 8000

@@ -6,7 +6,8 @@ import json
 import mysql.connector
 
 mydb = mysql.connector.connect(
-    host="localhost",
+    host="psindb-db",
+    # host="localhost",
     user="daniel",
     password="password",
     database="PSDInteractome_v0_10"
