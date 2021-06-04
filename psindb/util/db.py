@@ -22,6 +22,11 @@ class DB:
 
     @classmethod
     def execute_sql(cls, sql_string, data=None):
+        try:
+            cls.conn.ping()
+        except mariadb.DatabaseError:
+            cls.conn.reconnect()
+
         with closing(cls.conn.cursor()) as cur:
             for i in range(cls.retries):
                 try:
