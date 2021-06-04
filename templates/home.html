@@ -5,10 +5,15 @@
 
 {% block content %}
     {% if results %}
-        <h2>Query results for "{{ search_term }}":</h2>
+        {% if search_term %}
+            <h2>Search results for "{{ search_term }}":</h2>
+        {% endif %}
+        {% if browse_term %}
+            <h2>Browse results for "{{ browse_term }}":</h2>
+        {% endif %}
         {% for result in results %}
             <div class="search-page-result">
-                <div class="search-result-header">
+                <div class="searctuah-result-header">
                     <div><p>UNIPROT ID: </p></div>
                     <div><a href="{% url 'entry' uniprot_id=result.protein_id %}">{{ result.protein_id }}</a></div>
                     <div class="push-flex"><span>Postsynaptic evidence:</span></div>
@@ -48,6 +53,15 @@
 
         {% endfor %}
     {% else %}
-        ENTRY SITE CONTENT IF THERE IS NO SEARCH YET
+        <ul>
+        <li><a href="/?browse=scaffold">Scaffold</a></li>
+        <li><a href="/?browse=cytoskeletal">Cytoskeletal</a></li>
+        <li><a href="/?browse=membrane">Membrane</a></li>
+        <li><a href="/?browse=cc">Coiled coil</a></li>
+        <li><a href="/?browse=llps">Phase separation</a></li>
+        <li><a href="/?browse=hub">HUB proteins</a></li>
+        <li><a href="/?browse=Structure">With structural evidence</a></li>
+        <li><a href="/?browse=Literature">With literature evidence</a></li>
+        </ul>
     {% endif %}
 {% endblock %}
