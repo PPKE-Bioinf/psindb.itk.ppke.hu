@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 django = "*"
 django-bootstrap4 = "*"
-mysql-connector-python = "*"
+mariadb = "*"
 
 [dev-packages]
 
