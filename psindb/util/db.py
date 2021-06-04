@@ -24,7 +24,7 @@ class DB:
     def execute_sql(cls, sql_string, data=None):
         try:
             cls.conn.ping()
-        except mariadb.DatabaseError:
+        except mariadb.InterfaceError:
             cls.conn.reconnect()
 
         with closing(cls.conn.cursor()) as cur:
