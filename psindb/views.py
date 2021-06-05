@@ -11,3 +11,7 @@ def entry(request, uniprot_id):
 
 def network(request, accession):
     return routes.network(request, accession)
+
+
+def interactions(request):
+    return routes.interactions(request)
