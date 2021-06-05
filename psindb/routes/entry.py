@@ -2,6 +2,187 @@ from django.shortcuts import render
 from psindb.util.db import DB
 
 
+def generate_transmembrane_data_list(transmembrane):
+    print("TRANSMEMBRANE")
+    print(transmembrane)
+
+    transmembrane_value_ranges = {
+        "I": [],
+        "O": [],
+        "M": [],
+        "L": [],
+        "#": [],
+    }
+
+    prev_value = transmembrane[0]
+    value_from = 1
+    i, value = None, None
+
+    for i, value in enumerate(transmembrane[1:]):
+        if value != prev_value:
+            if prev_value not in "IOML":
+                transmembrane_value_ranges["#"].append({
+                    "begin": value_from,
+                    "end": i + 1
+                })
+            else:
+                transmembrane_value_ranges[prev_value].append({
+                    "begin": value_from,
+                    "end": i + 1
+                })
+
+            value_from = i + 2
+
+        prev_value = value
+
+    transmembrane_value_ranges[value].append({
+        "begin": value_from,
+        "end": i + 2
+    })
+
+    value_colors = {
+        "I": "#ff0000",
+        "O": "#0000ff",
+        "M": "#ffff00",
+        "L": "#ffa500",
+        "#": "#808080",
+    }
+
+    value_display_ids = {
+        "I": "1_1",
+        "O": "1_2",
+        "M": "1_3",
+        "L": "1_4",
+        "#": "1_5",
+    }
+
+    transmembrane_data_list = []
+
+    for value in transmembrane_value_ranges:
+        if not transmembrane_value_ranges[value]:
+            continue
+
+        transmembrane_data_list.append(
+            {
+                "displayType": "block",
+                "displayColor": value_colors[value],
+                "displayId": value_display_ids[value],
+                "displayData": transmembrane_value_ranges[value]
+            }
+        )
+
+    return transmembrane_data_list
+
+
+def get_binary_data_list(data):
+    binary_value_ranges = {
+        "0": [],
+        "1": [],
+    }
+
+    prev_value = data[0]
+    value_from = 1
+    i, value = None, None
+
+    for i, value in enumerate(data[1:]):
+        if value != prev_value:
+            binary_value_ranges[prev_value].append({
+                "begin": value_from,
+                "end": i + 1
+            })
+
+            value_from = i + 2
+
+        prev_value = value
+
+    binary_value_ranges[value].append({
+        "begin": value_from,
+        "end": i + 2
+    })
+
+    value_colors = {
+        "1": "#ff0000",
+        "0": "#0000ff",
+    }
+
+    value_display_ids = {
+        "1": "1_1",
+        "0": "1_2",
+    }
+
+    binary_data_list = []
+
+    for value in binary_value_ranges:
+        if not binary_value_ranges[value]:
+            continue
+
+        binary_data_list.append(
+            {
+                "displayType": "block",
+                "displayColor": value_colors[value],
+                "displayId": value_display_ids[value],
+                "displayData": binary_value_ranges[value]
+            }
+        )
+
+    return binary_data_list
+
+
+def create_graph_data(protein_id, transmembrane=None, llps=None, elm=None):
+    transmembrane_data_list = generate_transmembrane_data_list(transmembrane)
+    llps_data_list = get_binary_data_list(llps)
+    elm_data_list = get_binary_data_list(elm)
+
+    js = f"""
+    $(document).ready(function(){{
+    const transmembrane = "{transmembrane}";
+
+    const boardConfigData = {{
+      length: transmembrane.length,
+      trackWidth: 920,
+      includeAxis: true,
+      disableMenu: true
+    }};
+
+    const rowConfigData = [
+  {{
+    trackId: "compositeSequence",
+    trackHeight: 20,
+    trackColor: "#F9F9F9",
+    displayType: "composite",
+    rowTitle: "Transmembrane",
+    displayConfig: {transmembrane_data_list}
+  }},
+  {{
+    trackId: "compositeSequence",
+    trackHeight: 20,
+    trackColor: "#F9F9F9",
+    displayType: "composite",
+    rowTitle: "LLPS",
+    displayConfig: {llps_data_list}
+  }},
+  {{
+    trackId: "compositeSequence",
+    trackHeight: 20,
+    trackColor: "#F9F9F9",
+    displayType: "composite",
+    rowTitle: "ELM",
+    displayConfig: {elm_data_list}
+  }}
+];
+
+const elementId = "pfv-{protein_id}";
+const pfv = new RcsbFv.Create({{
+            boardConfigData,
+            rowConfigData,
+            elementId
+        }});
+    }});
+    """
+
+    return js
+
+
 def entry(request, uniprot_id,):
     query, sql2 = DB.execute_sql(
         """
@@ -22,10 +203,6 @@ def entry(request, uniprot_id,):
         (uniprot_id,)
     )
 
-    # print("###################### sql3 ###########################")
-    # print(sql3)
-    # print("###################### sql3 end #######################")
-
     query, sql4 = DB.execute_sql(
         """
         SELECT protein_id2, isPSD
@@ -42,7 +219,6 @@ def entry(request, uniprot_id,):
         (uniprot_id,)
     )
 
-
     query, sql6 = DB.execute_sql(
         """
         SELECT protein_id2, isPSD
@@ -58,15 +234,10 @@ def entry(request, uniprot_id,):
         (uniprot_id,)
     )
 
-    # print("###################### sql7 ###########################")
-    # print(sql7[0][0])
-    # print("###################### sql7 end #######################")
+    print("SQL7")
+    print(sql7)
 
     isoforms = sql7[0][0].split(";")
-    # print("###################### sql7 ###########################")
-    # for isoform in isoforms:
-    #     print(isoform)
-    # print("###################### sql7 end #######################")
 
     query, disease_sql = DB.execute_sql(
         """
@@ -87,20 +258,12 @@ def entry(request, uniprot_id,):
             "in_region": disease[4],
         })
 
-    # print("###################### disease ###########################")
-    # print(diseases)
-    # print("###################### disease end #######################")
-
     query, phospo = DB.execute_sql(
         """
         SELECT posi, in_region FROM Phospho WHERE protein_id=%s;
         """,
         (uniprot_id,)
     )
-
-    # print("###################### phospo ###########################")
-    # print(phospo)
-    # print("###################### phospo end #######################")
 
     query, linear_motifs_sql = DB.execute_sql(
         """
@@ -109,10 +272,6 @@ def entry(request, uniprot_id,):
         """,
         (uniprot_id,)
     )
-
-    # print("###################### linear_motifs_sql ###########################")
-    # print(linear_motifs_sql)
-    # print("###################### linear_motifs_sql end #######################")
 
     linear_motifs = []
     for motif in linear_motifs_sql:
@@ -124,10 +283,6 @@ def entry(request, uniprot_id,):
             "end_pos": motif[4],
             "in_region": motif[5],
         })
-
-    # print("###################### linear_motifs ###########################")
-    # print(linear_motifs)
-    # print("###################### linear_motifs end #######################")
 
     query, fp_mol_func_sql = DB.execute_sql(
         """
@@ -158,12 +313,6 @@ def entry(request, uniprot_id,):
             "ontology_level": fp[6]
         })
 
-    print(
-        "###################### fp_mol_func ###########################")
-    print(fp_mol_func)
-    print(
-        "###################### fp_mol_func end #######################")
-
     query, fp_biol_proc_sql = DB.execute_sql(
         """
         SELECT Fingerprint.ontology_type, Fingerprint.ontology_number,
@@ -192,12 +341,6 @@ def entry(request, uniprot_id,):
             "des": fp[5],
             "ontology_level": fp[6]
         })
-
-    # print(
-    #     "###################### fp_mol_func ###########################")
-    # print(fp_biol_proc)
-    # print(
-    #     "###################### fp_mol_func end #######################")
 
     query, fp_disease_sql = DB.execute_sql(
         """
@@ -228,11 +371,6 @@ def entry(request, uniprot_id,):
             "ontology_level": fp[6]
         })
 
-    print("###################### sql2 ###########################")
-    print(sql2)
-    print("###################### sql2 end #######################")
-
-
     db_data = {
         "go": sql2[0][1],
         "g2c": sql2[0][2],
@@ -240,6 +378,17 @@ def entry(request, uniprot_id,):
         "SynaptomeDB": sql2[0][4],
         "Functions": sql2[0][5],
     }
+
+    print("ELM")
+    print(sql2[0][9])
+
+    features_graph_js = create_graph_data(
+        uniprot_id,
+        transmembrane=sql2[0][6],
+        llps=sql2[0][8],
+        elm=sql2[0][9],
+    )
+    print(features_graph_js)
 
     viewer_data = {
         "Transmembrane": sql2[0][6],
@@ -270,5 +419,6 @@ def entry(request, uniprot_id,):
             "fp_mol_func": fp_mol_func,
             "fp_biol_proc": fp_biol_proc,
             "fp_disease": fp_disease,
+            "features_graph_js": features_graph_js,
         },
     )

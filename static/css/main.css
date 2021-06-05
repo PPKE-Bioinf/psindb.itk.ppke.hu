@@ -2,6 +2,15 @@ html body {
     background-color: #d1eac9a6;
 }
 
+a {
+    color: #479183;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #326259;
+}
+
 div.footer-text {
     color: #9a9a9a;
 }

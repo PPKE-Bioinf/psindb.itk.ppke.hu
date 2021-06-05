@@ -11,7 +11,12 @@
     <p>SynGO: {{ db_data.SynGO }}</p>
     <p>Functions: {{ db_data.Functions }}</p>
     <h1>Features</h1>
-    <p>Fancy graphics coming soon</p>
+    <div id="pfv-{{ uniprot_id }}" style="margin-top:15px" ></div>
+    <script type="text/javascript">
+    {% autoescape off %}
+    {{ features_graph_js }}
+    {% endautoescape %}
+    </script>
     <h1>Partners with known interacting regions</h1>
     {% for patner in partners %}
         {% if patner.2 != "PSD" %}
