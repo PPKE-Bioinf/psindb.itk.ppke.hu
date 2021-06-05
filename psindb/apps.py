@@ -6,8 +6,7 @@ class PsindbConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'psindb'
     db_args = {
-        # "host": "psindb-db",
-        "host": "localhost",
+        "host": "psindb-db",
         "user": "daniel",
         "passwd": "password",
         "database": "PSDInteractome_v0_10",
