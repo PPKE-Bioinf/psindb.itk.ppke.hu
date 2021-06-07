@@ -101,8 +101,8 @@ def get_binary_data_list(data):
     })
 
     value_colors = {
-        "1": "#ff0000",
-        "0": "#0000ff",
+        "1": "#32a481",
+        "0": "#879cac",
     }
 
     value_display_ids = {
@@ -128,10 +128,91 @@ def get_binary_data_list(data):
     return binary_data_list
 
 
-def create_graph_data(protein_id, transmembrane=None, llps=None, elm=None):
+def generate_connectivity_data_list(connectivity):
+    value_ranges = {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+    }
+
+    prev_value = connectivity[0]
+    value_from = 1
+    i, value = None, None
+
+    for i, value in enumerate(connectivity[1:]):
+        if value != prev_value:
+            value_ranges[prev_value].append({
+                "begin": value_from,
+                "end": i + 1
+            })
+
+            value_from = i + 2
+
+        prev_value = value
+
+    value_ranges[value].append({
+        "begin": value_from,
+        "end": i + 2
+    })
+
+    value_colors = {
+        "1": "#4a2226",
+        "2": "#705080",
+        "3": "#879cac",
+        "4": "#a9d1d5",
+        "5": "#32a481",
+    }
+
+    value_display_ids = {
+        "1": "1_1",
+        "2": "1_2",
+        "3": "1_3",
+        "4": "1_4",
+        "5": "1_5",
+    }
+
+    connectivity_data_list = []
+
+    for value in value_ranges:
+        if not value_ranges[value]:
+            continue
+
+        connectivity_data_list.append(
+            {
+                "displayType": "block",
+                "displayColor": value_colors[value],
+                "displayId": value_display_ids[value],
+                "displayData": value_ranges[value]
+            }
+        )
+
+    return connectivity_data_list
+
+
+def create_graph_data(
+        protein_id,
+        transmembrane=None,
+        llps=None,
+        elm=None,
+        phosphorylation=None,
+        pfam=None,
+        coiled_coil=None,
+        anchor=None,
+        disordered=None,
+        connectivity=None,
+        sequence=None,
+):
     transmembrane_data_list = generate_transmembrane_data_list(transmembrane)
     llps_data_list = get_binary_data_list(llps)
     elm_data_list = get_binary_data_list(elm)
+    phosphorylation_data_list = get_binary_data_list(phosphorylation)
+    pfam_data_list = get_binary_data_list(pfam)
+    coiled_coil_data_list = get_binary_data_list(coiled_coil)
+    anchor_data_list = get_binary_data_list(anchor)
+    disordered_data_list = get_binary_data_list(disordered)
+    connectivity_data_list = generate_connectivity_data_list(connectivity)
 
     js = f"""
     $(document).ready(function(){{
@@ -168,6 +249,68 @@ def create_graph_data(protein_id, transmembrane=None, llps=None, elm=None):
     displayType: "composite",
     rowTitle: "ELM",
     displayConfig: {elm_data_list}
+  }},
+  {{
+    trackId: "compositeSequence",
+    trackHeight: 20,
+    trackColor: "#F9F9F9",
+    displayType: "composite",
+    rowTitle: "Phosphorylation",
+    displayConfig: {phosphorylation_data_list}
+  }},
+  {{
+    trackId: "compositeSequence",
+    trackHeight: 20,
+    trackColor: "#F9F9F9",
+    displayType: "composite",
+    rowTitle: "PFAM",
+    displayConfig: {pfam_data_list}
+  }},
+  {{
+    trackId: "compositeSequence",
+    trackHeight: 20,
+    trackColor: "#F9F9F9",
+    displayType: "composite",
+    rowTitle: "Coiled coil",
+    displayConfig: {coiled_coil_data_list}
+  }},
+  {{
+    trackId: "compositeSequence",
+    trackHeight: 20,
+    trackColor: "#F9F9F9",
+    displayType: "composite",
+    rowTitle: "Anchor",
+    displayConfig: {anchor_data_list}
+  }},
+  {{
+    trackId: "compositeSequence",
+    trackHeight: 20,
+    trackColor: "#F9F9F9",
+    displayType: "composite",
+    rowTitle: "Disordered",
+    displayConfig: {disordered_data_list}
+  }},
+  {{
+    trackId: "compositeSequence",
+    trackHeight: 20,
+    trackColor: "#F9F9F9",
+    displayType: "composite",
+    rowTitle: "Interacting regions",
+    displayConfig: {connectivity_data_list}
+  }},
+  {{
+    trackId: "sequenceTrack",
+    trackHeight: 20,
+    trackColor: "#F9F9F9",
+    displayType: "sequence",
+    nonEmptyDisplay: true,
+    rowTitle: "Sequence",
+    trackData: [
+      {{
+        begin: 1,
+        value: "{sequence}"
+      }}
+    ]
   }}
 ];
 
@@ -181,6 +324,66 @@ const pfv = new RcsbFv.Create({{
     """
 
     return js
+
+
+def create_partner_data(partners):
+    partner_data_list = []
+    for partner in partners:
+        partner_name = partner[0]
+        partner_connectivity = partner[1]
+        partner_is_psd = True if partner[2] == "PSD" else False
+
+        connectivity_data_list = generate_connectivity_data_list(
+            partner_connectivity
+        )
+
+        partner_row_title = f"\"{partner_name}\""
+
+        if partner_is_psd:
+            partner_row_title = f"""
+            RcsbFvLink = {{
+                visibleTex: "{partner_name}",
+                url: "/entry/{partner_name}"
+            }}
+            """
+
+        partner_js = f"""
+            $(document).ready(function(){{
+            const partner_connectivity = "{partner_connectivity}";
+
+            const boardConfigData = {{
+              length: partner_connectivity.length,
+              trackWidth: 920,
+              includeAxis: true,
+              disableMenu: true
+            }};
+
+            const rowConfigData = [
+          {{
+            trackId: "compositeSequence",
+            trackHeight: 20,
+            trackColor: "#F9F9F9",
+            displayType: "composite",
+            rowTitle: {partner_row_title},
+            displayConfig: {connectivity_data_list}
+          }}
+        ];
+
+        const elementId = "pfv-{partner_name}";
+        const pfv = new RcsbFv.Create({{
+                    boardConfigData,
+                    rowConfigData,
+                    elementId
+                }});
+            }});
+            """
+
+        partner_data_list.append({
+            "name": partner_name,
+            "connectivity_js": partner_js,
+        })
+
+    return partner_data_list
 
 
 def entry(request, uniprot_id,):
@@ -379,28 +582,27 @@ def entry(request, uniprot_id,):
         "Functions": sql2[0][5],
     }
 
-    print("ELM")
-    print(sql2[0][9])
-
     features_graph_js = create_graph_data(
         uniprot_id,
         transmembrane=sql2[0][6],
         llps=sql2[0][8],
         elm=sql2[0][9],
+        phosphorylation=sql2[0][10],
+        pfam=sql2[0][11],
+        coiled_coil=sql2[0][12],
+        anchor=sql2[0][13],
+        disordered=sql2[0][14],
+        connectivity=sql2[0][16],
+        sequence=sql2[0][17],
     )
-    print(features_graph_js)
 
-    viewer_data = {
-        "Transmembrane": sql2[0][6],
-        "Transmembrane_link": sql2[0][7],
-        "LLPS": sql2[0][8],
-        "ELM": sql2[0][9],
-        "Phos": sql2[0][10],
-        "PFAM": sql2[0][11],
-        "Coiled_coil": sql2[0][12],
-        "Anchor": sql2[0][13],
-        "Disordered": sql2[0][14],
-    }
+    # print(features_graph_js)
+    # print("INTERACTING ---------------------------")
+    # print(sql2[0][16])
+
+    partner_data = create_partner_data(sql3)
+    print("PARTNER DATA")
+    print(partner_data)
 
     return render(
         request,
@@ -408,13 +610,13 @@ def entry(request, uniprot_id,):
         {
             "uniprot_id": uniprot_id,
             "db_data": db_data,
-            "partners": sql3,
+            "partners": partner_data,
             "low_tp_evidence": sql4,
             "high_tp_evidence": sql5,
             "comp_evidence": sql6,
             "isoforms": isoforms,
             "diseases": diseases,
-            "phospo": phospo,
+            # "phospo": phospo,
             "linear_motifs": linear_motifs,
             "fp_mol_func": fp_mol_func,
             "fp_biol_proc": fp_biol_proc,

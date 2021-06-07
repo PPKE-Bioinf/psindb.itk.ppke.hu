@@ -4,7 +4,7 @@ html body {
 
 a {
     color: #479183;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 
 a:hover {

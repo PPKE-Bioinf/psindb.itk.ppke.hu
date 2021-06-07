@@ -17,14 +17,25 @@
     {{ features_graph_js }}
     {% endautoescape %}
     </script>
+
+
+
     <h1>Partners with known interacting regions</h1>
-    {% for patner in partners %}
-        {% if patner.2 != "PSD" %}
-            <p>not PSD: {{ patner.0 }}</p>
-        {% else %}
-            <a href="{% url 'entry' uniprot_id=patner.0 %}">{{ patner.0 }}</a>
-        {% endif %}
+    {% for partner in partners %}
+        <div id="pfv-{{ partner.name }}" style="margin-top:15px" ></div>
+        <script type="text/javascript">
+        {% autoescape off %}
+        {{ partner.connectivity_js }}
+        {% endautoescape %}
+        </script>
     {% endfor %}
+
+
+
+
+
+
+
     <h1>Partners (low throughput experiment evidence)</h1>
     {% for patner in high_tp_evidence %}
         {% if patner.1 != "PSD" %}
@@ -75,21 +86,21 @@
     </tr>
     {% endfor %}
     </table>
-    <h1>Phosphorylation</h1>
-    <table>
-    <tr>
-        <th>Position</th>
-    </tr>
-    {% for phos in phospo %}
-        {% if phos.1 == "yes" %}
-        <tr class="disease-red">
-        {% else %}
-        <tr>
-        {% endif %}
-        <td>{{ phos.0 }}</td>
-    </tr>
-    {% endfor %}
-    </table>
+{#    <h1>Phosphorylation</h1>#}
+{#    <table>#}
+{#    <tr>#}
+{#        <th>Position</th>#}
+{#    </tr>#}
+{#    {% for phos in phospo %}#}
+{#        {% if phos.1 == "yes" %}#}
+{#        <tr class="disease-red">#}
+{#        {% else %}#}
+{#        <tr>#}
+{#        {% endif %}#}
+{#        <td>{{ phos.0 }}</td>#}
+{#    </tr>#}
+{#    {% endfor %}#}
+{#    </table>#}
     <h1>Linear motifs</h1>
     <table>
     <tr>
