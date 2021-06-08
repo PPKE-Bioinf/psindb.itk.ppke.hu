@@ -1,0 +1,1 @@
+[{"accession":"LIME1_HUMAN","name":"LIME1_HUMAN","interactions":[{"accession1":"LIME1_HUMAN","accession2":"GRB2_HUMAN","experiments":10}]},{"accession":"GRB2_HUMAN","name":"GRB2_HUMAN","interactions":[{"accession1":"GRB2_HUMAN","accession2":"LIME1_HUMAN","experiments":10},{"accession1":"GRB2_HUMAN","accession2":"GRB2_HUMAN","experiments":10}]}]

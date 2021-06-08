@@ -1,0 +1,1 @@
+[{"accession":"AKAP2_HUMAN","name":"AKAP2_HUMAN","interactions":[{"accession1":"AKAP2_HUMAN","accession2":"KAP2_HUMAN","experiments":10}]},{"accession":"KAP2_HUMAN","name":"KAP2_HUMAN","interactions":[{"accession1":"KAP2_HUMAN","accession2":"AKAP2_HUMAN","experiments":10},{"accession1":"KAP2_HUMAN","accession2":"KAP2_HUMAN","experiments":10}]}]

@@ -1,0 +1,1 @@
+[{"accession":"ARI3B_HUMAN","name":"ARI3B_HUMAN","interactions":[{"accession1":"ARI3B_HUMAN","accession2":"RB_HUMAN","experiments":10}]},{"accession":"RB_HUMAN","name":"RB_HUMAN","interactions":[{"accession1":"RB_HUMAN","accession2":"ARI3B_HUMAN","experiments":10}]}]

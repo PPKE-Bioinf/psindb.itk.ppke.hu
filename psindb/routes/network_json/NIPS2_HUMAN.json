@@ -1,0 +1,1 @@
+[{"accession":"NIPS2_HUMAN","name":"NIPS2_HUMAN","interactions":[{"accession1":"NIPS2_HUMAN","accession2":"AT5F1_HUMAN","experiments":10}]},{"accession":"AT5F1_HUMAN","name":"AT5F1_HUMAN","interactions":[{"accession1":"AT5F1_HUMAN","accession2":"NIPS2_HUMAN","experiments":10}]}]

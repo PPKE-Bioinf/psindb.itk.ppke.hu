@@ -1,0 +1,1 @@
+[{"accession":"PNKD_HUMAN","name":"PNKD_HUMAN","interactions":[{"accession1":"PNKD_HUMAN","accession2":"MK03_HUMAN","experiments":10}]},{"accession":"MK03_HUMAN","name":"MK03_HUMAN","interactions":[{"accession1":"MK03_HUMAN","accession2":"PNKD_HUMAN","experiments":10},{"accession1":"MK03_HUMAN","accession2":"MK03_HUMAN","experiments":10}]}]

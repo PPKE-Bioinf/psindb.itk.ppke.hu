@@ -1,0 +1,1 @@
+[{"accession":"SNG1_HUMAN","name":"SNG1_HUMAN","interactions":[{"accession1":"SNG1_HUMAN","accession2":"BCL2_HUMAN","experiments":7}]},{"accession":"BCL2_HUMAN","name":"BCL2_HUMAN","interactions":[{"accession1":"BCL2_HUMAN","accession2":"SNG1_HUMAN","experiments":7}]}]

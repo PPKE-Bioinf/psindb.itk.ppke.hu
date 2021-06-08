@@ -1,0 +1,1 @@
+[{"accession":"CPNE6_HUMAN","name":"CPNE6_HUMAN","interactions":[{"accession1":"CPNE6_HUMAN","accession2":"OS9_HUMAN","experiments":7}]},{"accession":"OS9_HUMAN","name":"OS9_HUMAN","interactions":[{"accession1":"OS9_HUMAN","accession2":"CPNE6_HUMAN","experiments":7}]}]

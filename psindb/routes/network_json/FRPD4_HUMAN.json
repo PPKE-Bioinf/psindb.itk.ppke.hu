@@ -1,0 +1,1 @@
+[{"accession":"FRPD4_HUMAN","name":"FRPD4_HUMAN","interactions":[{"accession1":"FRPD4_HUMAN","accession2":"GPSM2_HUMAN","experiments":10}]},{"accession":"GPSM2_HUMAN","name":"GPSM2_HUMAN","interactions":[{"accession1":"GPSM2_HUMAN","accession2":"FRPD4_HUMAN","experiments":10}]}]

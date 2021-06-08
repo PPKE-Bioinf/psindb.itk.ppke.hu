@@ -1,0 +1,1 @@
+[{"accession":"ADPPT_HUMAN","name":"ADPPT_HUMAN","interactions":[{"accession1":"ADPPT_HUMAN","accession2":"FAS_HUMAN","experiments":10}]},{"accession":"FAS_HUMAN","name":"FAS_HUMAN","interactions":[{"accession1":"FAS_HUMAN","accession2":"ADPPT_HUMAN","experiments":10},{"accession1":"FAS_HUMAN","accession2":"FAS_HUMAN","experiments":10}]}]

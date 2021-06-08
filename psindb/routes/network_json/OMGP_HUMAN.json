@@ -1,0 +1,1 @@
+[{"accession":"OMGP_HUMAN","name":"OMGP_HUMAN","interactions":[{"accession1":"OMGP_HUMAN","accession2":"RTN4R_HUMAN","experiments":10}]},{"accession":"RTN4R_HUMAN","name":"RTN4R_HUMAN","interactions":[{"accession1":"RTN4R_HUMAN","accession2":"OMGP_HUMAN","experiments":10}]}]

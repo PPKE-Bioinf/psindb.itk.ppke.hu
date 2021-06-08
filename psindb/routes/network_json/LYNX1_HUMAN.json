@@ -1,0 +1,1 @@
+[{"accession":"LYNX1_HUMAN","name":"LYNX1_HUMAN","interactions":[{"accession1":"LYNX1_HUMAN","accession2":"ACHA7_HUMAN","experiments":10}]},{"accession":"ACHA7_HUMAN","name":"ACHA7_HUMAN","interactions":[{"accession1":"ACHA7_HUMAN","accession2":"LYNX1_HUMAN","experiments":10},{"accession1":"ACHA7_HUMAN","accession2":"ACHA7_HUMAN","experiments":7}]}]

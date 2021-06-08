@@ -1,0 +1,1 @@
+[{"accession":"SFXN1_HUMAN","name":"SFXN1_HUMAN","interactions":[{"accession1":"SFXN1_HUMAN","accession2":"THIL_HUMAN","experiments":10}]},{"accession":"THIL_HUMAN","name":"THIL_HUMAN","interactions":[{"accession1":"THIL_HUMAN","accession2":"SFXN1_HUMAN","experiments":10},{"accession1":"THIL_HUMAN","accession2":"THIL_HUMAN","experiments":10}]}]

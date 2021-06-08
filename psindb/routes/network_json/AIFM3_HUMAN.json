@@ -1,0 +1,1 @@
+[{"accession":"AIFM3_HUMAN","name":"AIFM3_HUMAN","interactions":[{"accession1":"AIFM3_HUMAN","accession2":"NMT1_HUMAN","experiments":10}]},{"accession":"NMT1_HUMAN","name":"NMT1_HUMAN","interactions":[{"accession1":"NMT1_HUMAN","accession2":"AIFM3_HUMAN","experiments":10}]}]

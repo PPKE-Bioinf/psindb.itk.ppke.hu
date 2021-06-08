@@ -1,0 +1,1 @@
+[{"accession":"HPLN1_HUMAN","name":"HPLN1_HUMAN","interactions":[{"accession1":"HPLN1_HUMAN","accession2":"CSPG2_HUMAN","experiments":10}]},{"accession":"CSPG2_HUMAN","name":"CSPG2_HUMAN","interactions":[{"accession1":"CSPG2_HUMAN","accession2":"HPLN1_HUMAN","experiments":10}]}]

@@ -1,0 +1,1 @@
+[{"accession":"MOT4_HUMAN","name":"MOT4_HUMAN","interactions":[{"accession1":"MOT4_HUMAN","accession2":"CD44_HUMAN","experiments":10}]},{"accession":"CD44_HUMAN","name":"CD44_HUMAN","interactions":[{"accession1":"CD44_HUMAN","accession2":"MOT4_HUMAN","experiments":10}]}]

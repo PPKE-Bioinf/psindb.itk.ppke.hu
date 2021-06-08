@@ -1,0 +1,1 @@
+[{"accession":"ABCF3_HUMAN","name":"ABCF3_HUMAN","interactions":[{"accession1":"ABCF3_HUMAN","accession2":"CDC5L_HUMAN","experiments":10}]},{"accession":"CDC5L_HUMAN","name":"CDC5L_HUMAN","interactions":[{"accession1":"CDC5L_HUMAN","accession2":"ABCF3_HUMAN","experiments":10}]}]

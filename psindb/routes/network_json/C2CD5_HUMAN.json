@@ -1,0 +1,1 @@
+[{"accession":"C2CD5_HUMAN","name":"C2CD5_HUMAN","interactions":[{"accession1":"C2CD5_HUMAN","accession2":"FIBP_HUMAN","experiments":10}]},{"accession":"FIBP_HUMAN","name":"FIBP_HUMAN","interactions":[{"accession1":"FIBP_HUMAN","accession2":"C2CD5_HUMAN","experiments":10}]}]

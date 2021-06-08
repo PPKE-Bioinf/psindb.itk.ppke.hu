@@ -1,0 +1,1 @@
+[{"accession":"CSTN3_HUMAN","name":"CSTN3_HUMAN","interactions":[{"accession1":"CSTN3_HUMAN","accession2":"APOE_HUMAN","experiments":10}]},{"accession":"APOE_HUMAN","name":"APOE_HUMAN","interactions":[{"accession1":"APOE_HUMAN","accession2":"CSTN3_HUMAN","experiments":10},{"accession1":"APOE_HUMAN","accession2":"APOE_HUMAN","experiments":10}]}]

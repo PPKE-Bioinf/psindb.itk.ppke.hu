@@ -1,0 +1,1 @@
+[{"accession":"GDE_HUMAN","name":"GDE_HUMAN","interactions":[{"accession1":"GDE_HUMAN","accession2":"NHLC1_HUMAN","experiments":10}]},{"accession":"NHLC1_HUMAN","name":"NHLC1_HUMAN","interactions":[{"accession1":"NHLC1_HUMAN","accession2":"GDE_HUMAN","experiments":10}]}]

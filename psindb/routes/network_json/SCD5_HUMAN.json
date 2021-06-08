@@ -1,0 +1,1 @@
+[{"accession":"SCD5_HUMAN","name":"SCD5_HUMAN","interactions":[{"accession1":"SCD5_HUMAN","accession2":"2AAA_HUMAN","experiments":10}]},{"accession":"2AAA_HUMAN","name":"2AAA_HUMAN","interactions":[{"accession1":"2AAA_HUMAN","accession2":"SCD5_HUMAN","experiments":10},{"accession1":"2AAA_HUMAN","accession2":"2AAA_HUMAN","experiments":10}]}]

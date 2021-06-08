@@ -1,0 +1,1 @@
+[{"accession":"GOG7B_HUMAN","name":"GOG7B_HUMAN","interactions":[{"accession1":"GOG7B_HUMAN","accession2":"ZDHC5_HUMAN","experiments":10}]},{"accession":"ZDHC5_HUMAN","name":"ZDHC5_HUMAN","interactions":[{"accession1":"ZDHC5_HUMAN","accession2":"GOG7B_HUMAN","experiments":10}]}]

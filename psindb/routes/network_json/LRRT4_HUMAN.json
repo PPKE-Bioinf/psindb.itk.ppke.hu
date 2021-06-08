@@ -1,0 +1,1 @@
+[{"accession":"LRRT4_HUMAN","name":"LRRT4_HUMAN","interactions":[{"accession1":"LRRT4_HUMAN","accession2":"PTPRS_HUMAN","experiments":10}]},{"accession":"PTPRS_HUMAN","name":"PTPRS_HUMAN","interactions":[{"accession1":"PTPRS_HUMAN","accession2":"LRRT4_HUMAN","experiments":10},{"accession1":"PTPRS_HUMAN","accession2":"PTPRS_HUMAN","experiments":10}]}]

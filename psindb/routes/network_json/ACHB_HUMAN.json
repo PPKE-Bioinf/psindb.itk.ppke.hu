@@ -1,0 +1,1 @@
+[{"accession":"ACHB_HUMAN","name":"ACHB_HUMAN","interactions":[{"accession1":"ACHB_HUMAN","accession2":"CALX_HUMAN","experiments":7}]},{"accession":"CALX_HUMAN","name":"CALX_HUMAN","interactions":[{"accession1":"CALX_HUMAN","accession2":"ACHB_HUMAN","experiments":7},{"accession1":"CALX_HUMAN","accession2":"CALX_HUMAN","experiments":10}]}]

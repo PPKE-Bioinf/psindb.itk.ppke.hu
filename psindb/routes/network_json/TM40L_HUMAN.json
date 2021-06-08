@@ -1,0 +1,1 @@
+[{"accession":"TM40L_HUMAN","name":"TM40L_HUMAN","interactions":[{"accession1":"TM40L_HUMAN","accession2":"TOM22_HUMAN","experiments":10}]},{"accession":"TOM22_HUMAN","name":"TOM22_HUMAN","interactions":[{"accession1":"TOM22_HUMAN","accession2":"TM40L_HUMAN","experiments":10}]}]

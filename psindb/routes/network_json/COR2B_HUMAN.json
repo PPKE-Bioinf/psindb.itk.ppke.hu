@@ -1,0 +1,1 @@
+[{"accession":"COR2B_HUMAN","name":"COR2B_HUMAN","interactions":[{"accession1":"COR2B_HUMAN","accession2":"VINC_HUMAN","experiments":10}]},{"accession":"VINC_HUMAN","name":"VINC_HUMAN","interactions":[{"accession1":"VINC_HUMAN","accession2":"COR2B_HUMAN","experiments":10},{"accession1":"VINC_HUMAN","accession2":"VINC_HUMAN","experiments":10}]}]

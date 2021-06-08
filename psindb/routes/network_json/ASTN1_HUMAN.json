@@ -1,0 +1,1 @@
+[{"accession":"ASTN1_HUMAN","name":"ASTN1_HUMAN","interactions":[{"accession1":"ASTN1_HUMAN","accession2":"KEAP1_HUMAN","experiments":10}]},{"accession":"KEAP1_HUMAN","name":"KEAP1_HUMAN","interactions":[{"accession1":"KEAP1_HUMAN","accession2":"ASTN1_HUMAN","experiments":10}]}]

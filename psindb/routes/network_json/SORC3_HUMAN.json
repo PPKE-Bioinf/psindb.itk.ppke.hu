@@ -1,0 +1,1 @@
+[{"accession":"SORC3_HUMAN","name":"SORC3_HUMAN","interactions":[{"accession1":"SORC3_HUMAN","accession2":"NGF_HUMAN","experiments":10}]},{"accession":"NGF_HUMAN","name":"NGF_HUMAN","interactions":[{"accession1":"NGF_HUMAN","accession2":"SORC3_HUMAN","experiments":10}]}]

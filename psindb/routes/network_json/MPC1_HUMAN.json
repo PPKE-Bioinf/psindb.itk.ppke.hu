@@ -1,0 +1,1 @@
+[{"accession":"MPC1_HUMAN","name":"MPC1_HUMAN","interactions":[{"accession1":"MPC1_HUMAN","accession2":"MPC2_HUMAN","experiments":10}]},{"accession":"MPC2_HUMAN","name":"MPC2_HUMAN","interactions":[{"accession1":"MPC2_HUMAN","accession2":"MPC1_HUMAN","experiments":10}]}]

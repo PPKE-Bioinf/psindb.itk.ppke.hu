@@ -1,0 +1,1 @@
+[{"accession":"KBRS1_HUMAN","name":"KBRS1_HUMAN","interactions":[{"accession1":"KBRS1_HUMAN","accession2":"IKBB_HUMAN","experiments":10}]},{"accession":"IKBB_HUMAN","name":"IKBB_HUMAN","interactions":[{"accession1":"IKBB_HUMAN","accession2":"KBRS1_HUMAN","experiments":10}]}]

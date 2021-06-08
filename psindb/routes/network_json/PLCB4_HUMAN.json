@@ -1,0 +1,1 @@
+[{"accession":"PLCB4_HUMAN","name":"PLCB4_HUMAN","interactions":[{"accession1":"PLCB4_HUMAN","accession2":"NMDZ1_HUMAN","experiments":10}]},{"accession":"NMDZ1_HUMAN","name":"NMDZ1_HUMAN","interactions":[{"accession1":"NMDZ1_HUMAN","accession2":"PLCB4_HUMAN","experiments":10},{"accession1":"NMDZ1_HUMAN","accession2":"NMDZ1_HUMAN","experiments":10}]}]

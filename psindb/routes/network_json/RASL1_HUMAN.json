@@ -1,0 +1,1 @@
+[{"accession":"RASL1_HUMAN","name":"RASL1_HUMAN","interactions":[{"accession1":"RASL1_HUMAN","accession2":"SYGP1_HUMAN","experiments":10}]},{"accession":"SYGP1_HUMAN","name":"SYGP1_HUMAN","interactions":[{"accession1":"SYGP1_HUMAN","accession2":"RASL1_HUMAN","experiments":10},{"accession1":"SYGP1_HUMAN","accession2":"SYGP1_HUMAN","experiments":7}]}]

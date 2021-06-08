@@ -1,0 +1,1 @@
+[{"accession":"ENTP1_HUMAN","name":"ENTP1_HUMAN","interactions":[{"accession1":"ENTP1_HUMAN","accession2":"RANB9_HUMAN","experiments":10}]},{"accession":"RANB9_HUMAN","name":"RANB9_HUMAN","interactions":[{"accession1":"RANB9_HUMAN","accession2":"ENTP1_HUMAN","experiments":10},{"accession1":"RANB9_HUMAN","accession2":"RANB9_HUMAN","experiments":10}]}]

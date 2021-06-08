@@ -1,0 +1,1 @@
+[{"accession":"PRIC2_HUMAN","name":"PRIC2_HUMAN","interactions":[{"accession1":"PRIC2_HUMAN","accession2":"DVL1_HUMAN","experiments":7}]},{"accession":"DVL1_HUMAN","name":"DVL1_HUMAN","interactions":[{"accession1":"DVL1_HUMAN","accession2":"PRIC2_HUMAN","experiments":7},{"accession1":"DVL1_HUMAN","accession2":"DVL1_HUMAN","experiments":10}]}]

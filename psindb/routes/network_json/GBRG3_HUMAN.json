@@ -1,0 +1,1 @@
+[{"accession":"GBRG3_HUMAN","name":"GBRG3_HUMAN","interactions":[{"accession1":"GBRG3_HUMAN","accession2":"GBRA1_HUMAN","experiments":10}]},{"accession":"GBRA1_HUMAN","name":"GBRA1_HUMAN","interactions":[{"accession1":"GBRA1_HUMAN","accession2":"GBRG3_HUMAN","experiments":10}]}]

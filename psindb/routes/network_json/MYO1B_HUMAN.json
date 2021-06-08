@@ -1,0 +1,1 @@
+[{"accession":"MYO1B_HUMAN","name":"MYO1B_HUMAN","interactions":[{"accession1":"MYO1B_HUMAN","accession2":"CALM1_HUMAN","experiments":7}]},{"accession":"CALM1_HUMAN","name":"CALM1_HUMAN","interactions":[{"accession1":"CALM1_HUMAN","accession2":"MYO1B_HUMAN","experiments":7},{"accession1":"CALM1_HUMAN","accession2":"CALM1_HUMAN","experiments":10}]}]

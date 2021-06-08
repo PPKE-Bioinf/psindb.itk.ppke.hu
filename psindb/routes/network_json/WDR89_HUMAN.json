@@ -1,0 +1,1 @@
+[{"accession":"WDR89_HUMAN","name":"WDR89_HUMAN","interactions":[{"accession1":"WDR89_HUMAN","accession2":"NOL8_HUMAN","experiments":10}]},{"accession":"NOL8_HUMAN","name":"NOL8_HUMAN","interactions":[{"accession1":"NOL8_HUMAN","accession2":"WDR89_HUMAN","experiments":10}]}]

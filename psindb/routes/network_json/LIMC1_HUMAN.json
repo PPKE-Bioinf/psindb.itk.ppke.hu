@@ -1,0 +1,1 @@
+[{"accession":"LIMC1_HUMAN","name":"LIMC1_HUMAN","interactions":[{"accession1":"LIMC1_HUMAN","accession2":"HUWE1_HUMAN","experiments":10}]},{"accession":"HUWE1_HUMAN","name":"HUWE1_HUMAN","interactions":[{"accession1":"HUWE1_HUMAN","accession2":"LIMC1_HUMAN","experiments":10}]}]

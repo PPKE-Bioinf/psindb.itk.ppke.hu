@@ -1,0 +1,1 @@
+[{"accession":"CADH9_HUMAN","name":"CADH9_HUMAN","interactions":[{"accession1":"CADH9_HUMAN","accession2":"CTNB1_HUMAN","experiments":10}]},{"accession":"CTNB1_HUMAN","name":"CTNB1_HUMAN","interactions":[{"accession1":"CTNB1_HUMAN","accession2":"CADH9_HUMAN","experiments":10},{"accession1":"CTNB1_HUMAN","accession2":"CTNB1_HUMAN","experiments":10}]}]

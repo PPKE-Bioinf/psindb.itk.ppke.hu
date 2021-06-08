@@ -1,0 +1,1 @@
+[{"accession":"RL36A_HUMAN","name":"RL36A_HUMAN","interactions":[{"accession1":"RL36A_HUMAN","accession2":"HDAC6_HUMAN","experiments":10}]},{"accession":"HDAC6_HUMAN","name":"HDAC6_HUMAN","interactions":[{"accession1":"HDAC6_HUMAN","accession2":"RL36A_HUMAN","experiments":10}]}]

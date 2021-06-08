@@ -1,0 +1,1 @@
+[{"accession":"FBX41_HUMAN","name":"FBX41_HUMAN","interactions":[{"accession1":"FBX41_HUMAN","accession2":"SKP1_HUMAN","experiments":10}]},{"accession":"SKP1_HUMAN","name":"SKP1_HUMAN","interactions":[{"accession1":"SKP1_HUMAN","accession2":"FBX41_HUMAN","experiments":10}]}]

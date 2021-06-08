@@ -1,0 +1,1 @@
+[{"accession":"CPEB4_HUMAN","name":"CPEB4_HUMAN","interactions":[{"accession1":"CPEB4_HUMAN","accession2":"TOB1_HUMAN","experiments":10}]},{"accession":"TOB1_HUMAN","name":"TOB1_HUMAN","interactions":[{"accession1":"TOB1_HUMAN","accession2":"CPEB4_HUMAN","experiments":10}]}]

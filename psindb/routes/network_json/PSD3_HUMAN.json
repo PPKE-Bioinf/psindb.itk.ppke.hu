@@ -1,0 +1,1 @@
+[{"accession":"PSD3_HUMAN","name":"PSD3_HUMAN","interactions":[{"accession1":"PSD3_HUMAN","accession2":"ARAP1_HUMAN","experiments":10}]},{"accession":"ARAP1_HUMAN","name":"ARAP1_HUMAN","interactions":[{"accession1":"ARAP1_HUMAN","accession2":"PSD3_HUMAN","experiments":10}]}]

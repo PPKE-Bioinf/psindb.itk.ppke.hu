@@ -1,0 +1,1 @@
+[{"accession":"MLF2_HUMAN","name":"MLF2_HUMAN","interactions":[{"accession1":"MLF2_HUMAN","accession2":"SEGN_HUMAN","experiments":10}]},{"accession":"SEGN_HUMAN","name":"SEGN_HUMAN","interactions":[{"accession1":"SEGN_HUMAN","accession2":"MLF2_HUMAN","experiments":10}]}]

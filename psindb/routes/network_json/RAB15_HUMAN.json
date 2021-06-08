@@ -1,0 +1,1 @@
+[{"accession":"RAB15_HUMAN","name":"RAB15_HUMAN","interactions":[{"accession1":"RAB15_HUMAN","accession2":"MSS4_HUMAN","experiments":10}]},{"accession":"MSS4_HUMAN","name":"MSS4_HUMAN","interactions":[{"accession1":"MSS4_HUMAN","accession2":"RAB15_HUMAN","experiments":10}]}]

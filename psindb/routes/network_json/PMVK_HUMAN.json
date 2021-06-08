@@ -1,0 +1,1 @@
+[{"accession":"PMVK_HUMAN","name":"PMVK_HUMAN","interactions":[{"accession1":"PMVK_HUMAN","accession2":"FPPS_HUMAN","experiments":10}]},{"accession":"FPPS_HUMAN","name":"FPPS_HUMAN","interactions":[{"accession1":"FPPS_HUMAN","accession2":"PMVK_HUMAN","experiments":10},{"accession1":"FPPS_HUMAN","accession2":"FPPS_HUMAN","experiments":10}]}]

@@ -1,0 +1,1 @@
+[{"accession":"DIP2B_HUMAN","name":"DIP2B_HUMAN","interactions":[{"accession1":"DIP2B_HUMAN","accession2":"CNKR3_HUMAN","experiments":10}]},{"accession":"CNKR3_HUMAN","name":"CNKR3_HUMAN","interactions":[{"accession1":"CNKR3_HUMAN","accession2":"DIP2B_HUMAN","experiments":10}]}]

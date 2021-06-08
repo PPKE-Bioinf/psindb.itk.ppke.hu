@@ -1,0 +1,1 @@
+[{"accession":"ICA69_HUMAN","name":"ICA69_HUMAN","interactions":[{"accession1":"ICA69_HUMAN","accession2":"PICK1_HUMAN","experiments":10}]},{"accession":"PICK1_HUMAN","name":"PICK1_HUMAN","interactions":[{"accession1":"PICK1_HUMAN","accession2":"ICA69_HUMAN","experiments":10},{"accession1":"PICK1_HUMAN","accession2":"PICK1_HUMAN","experiments":10}]}]

@@ -1,0 +1,1 @@
+[{"accession":"RBGPR_HUMAN","name":"RBGPR_HUMAN","interactions":[{"accession1":"RBGPR_HUMAN","accession2":"RB3GP_HUMAN","experiments":10}]},{"accession":"RB3GP_HUMAN","name":"RB3GP_HUMAN","interactions":[{"accession1":"RB3GP_HUMAN","accession2":"RBGPR_HUMAN","experiments":10}]}]

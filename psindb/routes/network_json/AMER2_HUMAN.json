@@ -1,0 +1,1 @@
+[{"accession":"AMER2_HUMAN","name":"AMER2_HUMAN","interactions":[{"accession1":"AMER2_HUMAN","accession2":"APC_HUMAN","experiments":10}]},{"accession":"APC_HUMAN","name":"APC_HUMAN","interactions":[{"accession1":"APC_HUMAN","accession2":"AMER2_HUMAN","experiments":10},{"accession1":"APC_HUMAN","accession2":"APC_HUMAN","experiments":10}]}]

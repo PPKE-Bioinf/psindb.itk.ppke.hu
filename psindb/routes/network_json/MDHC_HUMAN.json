@@ -1,0 +1,1 @@
+[{"accession":"MDHC_HUMAN","name":"MDHC_HUMAN","interactions":[{"accession1":"MDHC_HUMAN","accession2":"P53_HUMAN","experiments":10}]},{"accession":"P53_HUMAN","name":"P53_HUMAN","interactions":[{"accession1":"P53_HUMAN","accession2":"MDHC_HUMAN","experiments":10}]}]

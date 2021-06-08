@@ -1,0 +1,1 @@
+[{"accession":"NPTX2_HUMAN","name":"NPTX2_HUMAN","interactions":[{"accession1":"NPTX2_HUMAN","accession2":"FZD6_HUMAN","experiments":10}]},{"accession":"FZD6_HUMAN","name":"FZD6_HUMAN","interactions":[{"accession1":"FZD6_HUMAN","accession2":"NPTX2_HUMAN","experiments":10}]}]

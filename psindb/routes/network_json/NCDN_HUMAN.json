@@ -1,0 +1,1 @@
+[{"accession":"NCDN_HUMAN","name":"NCDN_HUMAN","interactions":[{"accession1":"NCDN_HUMAN","accession2":"PREX1_HUMAN","experiments":10}]},{"accession":"PREX1_HUMAN","name":"PREX1_HUMAN","interactions":[{"accession1":"PREX1_HUMAN","accession2":"NCDN_HUMAN","experiments":10},{"accession1":"PREX1_HUMAN","accession2":"PREX1_HUMAN","experiments":10}]}]

@@ -1,0 +1,1 @@
+[{"accession":"DVLP1_HUMAN","name":"DVLP1_HUMAN","interactions":[{"accession1":"DVLP1_HUMAN","accession2":"APC_HUMAN","experiments":10}]},{"accession":"APC_HUMAN","name":"APC_HUMAN","interactions":[{"accession1":"APC_HUMAN","accession2":"DVLP1_HUMAN","experiments":10},{"accession1":"APC_HUMAN","accession2":"APC_HUMAN","experiments":10}]}]

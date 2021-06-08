@@ -1,0 +1,1 @@
+[{"accession":"SPA2L_HUMAN","name":"SPA2L_HUMAN","interactions":[{"accession1":"SPA2L_HUMAN","accession2":"CYLD_HUMAN","experiments":10}]},{"accession":"CYLD_HUMAN","name":"CYLD_HUMAN","interactions":[{"accession1":"CYLD_HUMAN","accession2":"SPA2L_HUMAN","experiments":10},{"accession1":"CYLD_HUMAN","accession2":"CYLD_HUMAN","experiments":10}]}]

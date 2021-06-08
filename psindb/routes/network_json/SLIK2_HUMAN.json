@@ -1,0 +1,1 @@
+[{"accession":"SLIK2_HUMAN","name":"SLIK2_HUMAN","interactions":[{"accession1":"SLIK2_HUMAN","accession2":"PTPRD_HUMAN","experiments":10}]},{"accession":"PTPRD_HUMAN","name":"PTPRD_HUMAN","interactions":[{"accession1":"PTPRD_HUMAN","accession2":"SLIK2_HUMAN","experiments":10},{"accession1":"PTPRD_HUMAN","accession2":"PTPRD_HUMAN","experiments":10}]}]

@@ -1,0 +1,1 @@
+[{"accession":"PHYIP_HUMAN","name":"PHYIP_HUMAN","interactions":[{"accession1":"PHYIP_HUMAN","accession2":"AGRB1_HUMAN","experiments":7}]},{"accession":"AGRB1_HUMAN","name":"AGRB1_HUMAN","interactions":[{"accession1":"AGRB1_HUMAN","accession2":"PHYIP_HUMAN","experiments":7},{"accession1":"AGRB1_HUMAN","accession2":"AGRB1_HUMAN","experiments":10}]}]

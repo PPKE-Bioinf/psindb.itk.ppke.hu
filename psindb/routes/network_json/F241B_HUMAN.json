@@ -1,0 +1,1 @@
+[{"accession":"F241B_HUMAN","name":"F241B_HUMAN","interactions":[{"accession1":"F241B_HUMAN","accession2":"WLS_HUMAN","experiments":10}]},{"accession":"WLS_HUMAN","name":"WLS_HUMAN","interactions":[{"accession1":"WLS_HUMAN","accession2":"F241B_HUMAN","experiments":10}]}]

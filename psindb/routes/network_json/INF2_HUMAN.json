@@ -1,0 +1,1 @@
+[{"accession":"INF2_HUMAN","name":"INF2_HUMAN","interactions":[{"accession1":"INF2_HUMAN","accession2":"SPOP_HUMAN","experiments":10}]},{"accession":"SPOP_HUMAN","name":"SPOP_HUMAN","interactions":[{"accession1":"SPOP_HUMAN","accession2":"INF2_HUMAN","experiments":10}]}]

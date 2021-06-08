@@ -1,0 +1,1 @@
+[{"accession":"FMNL2_HUMAN","name":"FMNL2_HUMAN","interactions":[{"accession1":"FMNL2_HUMAN","accession2":"CDC42_HUMAN","experiments":10}]},{"accession":"CDC42_HUMAN","name":"CDC42_HUMAN","interactions":[{"accession1":"CDC42_HUMAN","accession2":"FMNL2_HUMAN","experiments":10},{"accession1":"CDC42_HUMAN","accession2":"CDC42_HUMAN","experiments":10}]}]

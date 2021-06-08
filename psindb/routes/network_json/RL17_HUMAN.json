@@ -1,0 +1,1 @@
+[{"accession":"RL17_HUMAN","name":"RL17_HUMAN","interactions":[{"accession1":"RL17_HUMAN","accession2":"NAA10_HUMAN","experiments":10}]},{"accession":"NAA10_HUMAN","name":"NAA10_HUMAN","interactions":[{"accession1":"NAA10_HUMAN","accession2":"RL17_HUMAN","experiments":10}]}]

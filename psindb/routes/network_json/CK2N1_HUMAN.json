@@ -1,0 +1,1 @@
+[{"accession":"CK2N1_HUMAN","name":"CK2N1_HUMAN","interactions":[{"accession1":"CK2N1_HUMAN","accession2":"GBRR1_HUMAN","experiments":7}]},{"accession":"GBRR1_HUMAN","name":"GBRR1_HUMAN","interactions":[{"accession1":"GBRR1_HUMAN","accession2":"CK2N1_HUMAN","experiments":7},{"accession1":"GBRR1_HUMAN","accession2":"GBRR1_HUMAN","experiments":10}]}]

@@ -1,0 +1,1 @@
+[{"accession":"GPDM_HUMAN","name":"GPDM_HUMAN","interactions":[{"accession1":"GPDM_HUMAN","accession2":"COX2_HUMAN","experiments":10}]},{"accession":"COX2_HUMAN","name":"COX2_HUMAN","interactions":[{"accession1":"COX2_HUMAN","accession2":"GPDM_HUMAN","experiments":10}]}]

@@ -1,0 +1,1 @@
+[{"accession":"SKT_HUMAN","name":"SKT_HUMAN","interactions":[{"accession1":"SKT_HUMAN","accession2":"MARE1_HUMAN","experiments":10}]},{"accession":"MARE1_HUMAN","name":"MARE1_HUMAN","interactions":[{"accession1":"MARE1_HUMAN","accession2":"SKT_HUMAN","experiments":10},{"accession1":"MARE1_HUMAN","accession2":"MARE1_HUMAN","experiments":10}]}]

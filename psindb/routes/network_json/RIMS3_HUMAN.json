@@ -1,0 +1,1 @@
+[{"accession":"RIMS3_HUMAN","name":"RIMS3_HUMAN","interactions":[{"accession1":"RIMS3_HUMAN","accession2":"CACB4_HUMAN","experiments":7}]},{"accession":"CACB4_HUMAN","name":"CACB4_HUMAN","interactions":[{"accession1":"CACB4_HUMAN","accession2":"RIMS3_HUMAN","experiments":7}]}]

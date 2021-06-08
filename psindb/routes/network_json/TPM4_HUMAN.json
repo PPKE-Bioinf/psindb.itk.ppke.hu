@@ -1,0 +1,1 @@
+[{"accession":"TPM4_HUMAN","name":"TPM4_HUMAN","interactions":[{"accession1":"TPM4_HUMAN","accession2":"TRIP6_HUMAN","experiments":10}]},{"accession":"TRIP6_HUMAN","name":"TRIP6_HUMAN","interactions":[{"accession1":"TRIP6_HUMAN","accession2":"TPM4_HUMAN","experiments":10}]}]

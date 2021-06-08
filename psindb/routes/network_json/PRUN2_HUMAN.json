@@ -1,0 +1,1 @@
+[{"accession":"PRUN2_HUMAN","name":"PRUN2_HUMAN","interactions":[{"accession1":"PRUN2_HUMAN","accession2":"FYN_HUMAN","experiments":10}]},{"accession":"FYN_HUMAN","name":"FYN_HUMAN","interactions":[{"accession1":"FYN_HUMAN","accession2":"PRUN2_HUMAN","experiments":10},{"accession1":"FYN_HUMAN","accession2":"FYN_HUMAN","experiments":10}]}]

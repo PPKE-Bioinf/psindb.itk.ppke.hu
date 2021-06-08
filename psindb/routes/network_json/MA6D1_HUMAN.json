@@ -1,0 +1,1 @@
+[{"accession":"MA6D1_HUMAN","name":"MA6D1_HUMAN","interactions":[{"accession1":"MA6D1_HUMAN","accession2":"CALM2_HUMAN","experiments":7}]},{"accession":"CALM2_HUMAN","name":"CALM2_HUMAN","interactions":[{"accession1":"CALM2_HUMAN","accession2":"MA6D1_HUMAN","experiments":7}]}]

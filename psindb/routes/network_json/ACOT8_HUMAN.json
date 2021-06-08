@@ -1,0 +1,1 @@
+[{"accession":"ACOT8_HUMAN","name":"ACOT8_HUMAN","interactions":[{"accession1":"ACOT8_HUMAN","accession2":"CATA_HUMAN","experiments":10}]},{"accession":"CATA_HUMAN","name":"CATA_HUMAN","interactions":[{"accession1":"CATA_HUMAN","accession2":"ACOT8_HUMAN","experiments":10},{"accession1":"CATA_HUMAN","accession2":"CATA_HUMAN","experiments":10}]}]

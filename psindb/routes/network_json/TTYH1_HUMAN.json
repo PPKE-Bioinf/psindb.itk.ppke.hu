@@ -1,0 +1,1 @@
+[{"accession":"TTYH1_HUMAN","name":"TTYH1_HUMAN","interactions":[{"accession1":"TTYH1_HUMAN","accession2":"GPR37_HUMAN","experiments":10}]},{"accession":"GPR37_HUMAN","name":"GPR37_HUMAN","interactions":[{"accession1":"GPR37_HUMAN","accession2":"TTYH1_HUMAN","experiments":10}]}]

@@ -1,0 +1,1 @@
+[{"accession":"SMOX_HUMAN","name":"SMOX_HUMAN","interactions":[{"accession1":"SMOX_HUMAN","accession2":"AL1A3_HUMAN","experiments":10}]},{"accession":"AL1A3_HUMAN","name":"AL1A3_HUMAN","interactions":[{"accession1":"AL1A3_HUMAN","accession2":"SMOX_HUMAN","experiments":10}]}]

@@ -1,0 +1,1 @@
+[{"accession":"MTMRD_HUMAN","name":"MTMRD_HUMAN","interactions":[{"accession1":"MTMRD_HUMAN","accession2":"MTMR2_HUMAN","experiments":10}]},{"accession":"MTMR2_HUMAN","name":"MTMR2_HUMAN","interactions":[{"accession1":"MTMR2_HUMAN","accession2":"MTMRD_HUMAN","experiments":10},{"accession1":"MTMR2_HUMAN","accession2":"MTMR2_HUMAN","experiments":10}]}]

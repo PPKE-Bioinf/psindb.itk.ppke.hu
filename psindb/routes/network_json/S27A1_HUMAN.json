@@ -1,0 +1,1 @@
+[{"accession":"S27A1_HUMAN","name":"S27A1_HUMAN","interactions":[{"accession1":"S27A1_HUMAN","accession2":"RPE65_HUMAN","experiments":10}]},{"accession":"RPE65_HUMAN","name":"RPE65_HUMAN","interactions":[{"accession1":"RPE65_HUMAN","accession2":"S27A1_HUMAN","experiments":10}]}]
