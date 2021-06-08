@@ -326,7 +326,7 @@ const pfv = new RcsbFv.Create({{
     return js
 
 
-def create_partner_data(partners):
+def create_partner_data(uniprot_id, partners):
     partner_data_list = []
     for partner in partners:
         partner_name = partner[0]
@@ -343,7 +343,7 @@ def create_partner_data(partners):
             partner_row_title = f"""
             RcsbFvLink = {{
                 visibleTex: "{partner_name}",
-                url: "/entry/{partner_name}"
+                url: "/interactions?id1={uniprot_id}&id2={partner_name}"
             }}
             """
 
@@ -600,7 +600,7 @@ def entry(request, uniprot_id,):
     # print("INTERACTING ---------------------------")
     # print(sql2[0][16])
 
-    partner_data = create_partner_data(sql3)
+    partner_data = create_partner_data(uniprot_id, sql3)
     print("PARTNER DATA")
     print(partner_data)
 
