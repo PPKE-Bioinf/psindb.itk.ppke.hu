@@ -36,30 +36,56 @@
 
 
 
-    <h1>Partners (low throughput experiment evidence)</h1>
-    {% for patner in high_tp_evidence %}
-        {% if patner.1 != "PSD" %}
-            <p>not PSD: {{ patner.0 }}</p>
+    <h1>Partners</h1>
+    <table>
+    <tr>
+        <th>Uniprot ID</th>
+        <th>Details</th>
+        <th>Highest evidence</th>
+        <th>Is PSD</th>
+    </tr>
+    {% for partner in partners_list %}
+        <tr>
+        <td>{{ partner.name }}</td>
+        {% if partner.is_psd %}
+            <td>
+                <a href="{{ partner.entry_link }}">[entry]</a>
+                <a href="{{ partner.interaction_link }}">[interactions]</a>
+            </td>
         {% else %}
-            <a href="{% url 'entry' uniprot_id=patner.0 %}">{{ patner.0 }}</a>
+            <td></td>
         {% endif %}
-    {% endfor %}
-    <h1>Partners (high throughput experiment evidence)</h1>
-    {% for patner in low_tp_evidence %}
-        {% if patner.1 != "PSD" %}
-            <p>not PSD: {{ patner.0 }}</p>
+        <td>{{ partner.highest_evidence }}</td>
+        {% if partner.is_psd %}
+            <td>
+                yes
+            </td>
         {% else %}
-            <a href="{% url 'entry' uniprot_id=patner.0 %}">{{ patner.0 }}</a>
+            <td>no</td>
         {% endif %}
+        </tr>
     {% endfor %}
-    <h1>Partners (computational evidence)</h1>
-    {% for patner in comp_evidence %}
-        {% if patner.1 != "PSD" %}
-            <p>not PSD: {{ patner.0 }}</p>
-        {% else %}
-            <a href="{% url 'entry' uniprot_id=patner.0 %}">{{ patner.0 }}</a>
-        {% endif %}
-    {% endfor %}
+    </table>
+
+
+
+
+{#    <h1>Partners (high throughput experiment evidence)</h1>#}
+{#    {% for patner in low_tp_evidence %}#}
+{#        {% if patner.1 != "PSD" %}#}
+{#            <p>not PSD: {{ patner.0 }}</p>#}
+{#        {% else %}#}
+{#            <a href="{% url 'entry' uniprot_id=patner.0 %}">{{ patner.0 }}</a>#}
+{#        {% endif %}#}
+{#    {% endfor %}#}
+{#    <h1>Partners (computational evidence)</h1>#}
+{#    {% for patner in comp_evidence %}#}
+{#        {% if patner.1 != "PSD" %}#}
+{#            <p>not PSD: {{ patner.0 }}</p>#}
+{#        {% else %}#}
+{#            <a href="{% url 'entry' uniprot_id=patner.0 %}">{{ patner.0 }}</a>#}
+{#        {% endif %}#}
+{#    {% endfor %}#}
     <h1>Isoforms</h1>
     {% for isoform in isoforms %}
         <p>{{ isoform }}</p>

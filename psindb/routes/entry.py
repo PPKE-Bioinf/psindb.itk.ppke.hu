@@ -406,29 +406,54 @@ def entry(request, uniprot_id,):
         (uniprot_id,)
     )
 
-    query, sql4 = DB.execute_sql(
+    query, all_partners_list = DB.execute_sql(
         """
-        SELECT protein_id2, isPSD
-        FROM Partners WHERE protein_id1=%s AND evidence='LT';
+        SELECT protein_id2, evidence, isPSD 
+        FROM Partners
+        WHERE protein_id1=%s 
+        ORDER BY evidence DESC;
         """,
         (uniprot_id,)
     )
 
-    query, sql5 = DB.execute_sql(
-        """
-        SELECT protein_id2, isPSD
-        FROM Partners WHERE protein_id1=%s AND evidence='HT';
-        """,
-        (uniprot_id,)
-    )
+    partners_list = []
 
-    query, sql6 = DB.execute_sql(
-        """
-        SELECT protein_id2, isPSD
-        FROM Partners WHERE protein_id1=%s AND evidence='Computational';
-        """,
-        (uniprot_id,)
-    )
+    for partner in all_partners_list:
+        name = partner[0]
+        highest_evidence = partner[1]
+        entry_link = None
+        interaction_link = None
+        is_psd = True if partner[2] == "PSD" else False
+
+        if is_psd:
+            entry_link = f"/entry/{name}"
+            interaction_link = f"/interactions?id1={uniprot_id}&id2={name}"
+
+        partners_list.append({
+            "name": name,
+            "entry_link": entry_link,
+            "interaction_link": interaction_link,
+            "highest_evidence": highest_evidence,
+            "is_psd": is_psd,
+        })
+
+    print(partners_list)
+
+    # query, sql5 = DB.execute_sql(
+    #     """
+    #     SELECT protein_id2, isPSD
+    #     FROM Partners WHERE protein_id1=%s AND evidence='HT';
+    #     """,
+    #     (uniprot_id,)
+    # )
+    #
+    # query, sql6 = DB.execute_sql(
+    #     """
+    #     SELECT protein_id2, isPSD
+    #     FROM Partners WHERE protein_id1=%s AND evidence='Computational';
+    #     """,
+    #     (uniprot_id,)
+    # )
 
     query, sql7 = DB.execute_sql(
         """
@@ -437,10 +462,10 @@ def entry(request, uniprot_id,):
         (uniprot_id,)
     )
 
-    print("SQL7")
-    print(sql7)
-
-    isoforms = sql7[0][0].split(";")
+    try:
+        isoforms = sql7[0][0].split(";")
+    except IndexError:
+        isoforms = None
 
     query, disease_sql = DB.execute_sql(
         """
@@ -611,9 +636,9 @@ def entry(request, uniprot_id,):
             "uniprot_id": uniprot_id,
             "db_data": db_data,
             "partners": partner_data,
-            "low_tp_evidence": sql4,
-            "high_tp_evidence": sql5,
-            "comp_evidence": sql6,
+            "partners_list": partners_list,
+            # "high_tp_evidence": sql5,
+            # "comp_evidence": sql6,
             "isoforms": isoforms,
             "diseases": diseases,
             # "phospo": phospo,
