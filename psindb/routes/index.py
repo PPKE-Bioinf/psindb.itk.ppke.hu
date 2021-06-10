@@ -107,7 +107,7 @@ def index(request):
                 request,
                 "home.html",
                 {
-                    "protein_id": None,
+                    "show_browse_list": True,
                 },
             )
 
@@ -130,7 +130,7 @@ def index(request):
                     request,
                     "home.html",
                     {
-                        "protein_id": "NOT FOUND",
+                        "error": f'"{search}" NOT FOUND',
                     },
                 )
 
@@ -186,7 +186,7 @@ def index(request):
                     request,
                     "home.html",
                     {
-                        "protein_id": "NOT FOUND",
+                        "error": "NOT FOUND",
                     },
                 )
 

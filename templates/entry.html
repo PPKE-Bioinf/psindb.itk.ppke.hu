@@ -4,8 +4,7 @@
 {% block title %}PSINDB{% endblock %}
 
 {% block content %}
-    <h1>Function</h1>
-    <p>{{ uniprot_id }}</p>
+    <h1>{{ uniprot_id }}</h1>
     <p>GO: {{ db_data.go }}</p>
     <p>g2c: {{ db_data.g2c }}</p>
     <p>SynGO: {{ db_data.SynGO }}</p>
@@ -65,29 +64,11 @@
     {% endfor %}
     </table>
 
-
-
-
-{#    <h1>Partners (high throughput experiment evidence)</h1>#}
-{#    {% for patner in low_tp_evidence %}#}
-{#        {% if patner.1 != "PSD" %}#}
-{#            <p>not PSD: {{ patner.0 }}</p>#}
-{#        {% else %}#}
-{#            <a href="{% url 'entry' uniprot_id=patner.0 %}">{{ patner.0 }}</a>#}
-{#        {% endif %}#}
-{#    {% endfor %}#}
-{#    <h1>Partners (computational evidence)</h1>#}
-{#    {% for patner in comp_evidence %}#}
-{#        {% if patner.1 != "PSD" %}#}
-{#            <p>not PSD: {{ patner.0 }}</p>#}
-{#        {% else %}#}
-{#            <a href="{% url 'entry' uniprot_id=patner.0 %}">{{ patner.0 }}</a>#}
-{#        {% endif %}#}
-{#    {% endfor %}#}
     <h1>Isoforms</h1>
     {% for isoform in isoforms %}
         <p>{{ isoform }}</p>
     {% endfor %}
+
     <h1>Disease</h1>
     <table>
     <tr>

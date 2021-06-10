@@ -3,9 +3,6 @@ from psindb.util.db import DB
 
 
 def generate_transmembrane_data_list(transmembrane):
-    print("TRANSMEMBRANE")
-    print(transmembrane)
-
     transmembrane_value_ranges = {
         "I": [],
         "O": [],
@@ -437,24 +434,6 @@ def entry(request, uniprot_id,):
             "is_psd": is_psd,
         })
 
-    print(partners_list)
-
-    # query, sql5 = DB.execute_sql(
-    #     """
-    #     SELECT protein_id2, isPSD
-    #     FROM Partners WHERE protein_id1=%s AND evidence='HT';
-    #     """,
-    #     (uniprot_id,)
-    # )
-    #
-    # query, sql6 = DB.execute_sql(
-    #     """
-    #     SELECT protein_id2, isPSD
-    #     FROM Partners WHERE protein_id1=%s AND evidence='Computational';
-    #     """,
-    #     (uniprot_id,)
-    # )
-
     query, sql7 = DB.execute_sql(
         """
         SELECT Alignment FROM Splice WHERE protein_id=%s;
@@ -621,13 +600,7 @@ def entry(request, uniprot_id,):
         sequence=sql2[0][17],
     )
 
-    # print(features_graph_js)
-    # print("INTERACTING ---------------------------")
-    # print(sql2[0][16])
-
     partner_data = create_partner_data(uniprot_id, sql3)
-    print("PARTNER DATA")
-    print(partner_data)
 
     return render(
         request,

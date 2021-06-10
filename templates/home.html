@@ -6,7 +6,7 @@
 {% block content %}
     {% if results %}
         {% if search_term %}
-            <h2>Search results for "{{ search_term }}":</h2>
+            <h2 class="lonely">Search results for "{{ search_term }}":</h2>
         {% endif %}
         {% if browse_term %}
             <h2>Browse results for "{{ browse_term }}":</h2>
@@ -14,28 +14,28 @@
         {% for result in results %}
             <div class="search-page-result">
                 <div class="search-result-header">
-                    <div><p>UNIPROT ID: </p></div>
-                    <div><a href="{% url 'entry' uniprot_id=result.protein_id %}">{{ result.protein_id }}</a></div>
+{#                    <div><p>UNIPROT ID: </p></div>#}
+                    <div><a class="big-entry-link" href="{% url 'entry' uniprot_id=result.protein_id %}">{{ result.protein_id }}</a></div>
                     <div class="push-flex"><span>Postsynaptic evidence:</span></div>
-                    <div class="left-flex"><span>GO</span>
+                    <div class="left-flex"><span class="evidence">GO</span>
                     {% if result.evidence_go != "no" %}
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
                         <img src="{% static 'images/circle.svg' %}">
                     {% endif %}</div>
-                    <div class="left-flex"><span>G2C</span>
+                    <div class="left-flex"><span class="evidence">G2C</span>
                     {% if result.evidence_g2c != "no" %}
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
                         <img src="{% static 'images/circle.svg' %}">
                     {% endif %}</div>
-                    <div class="left-flex"><span>SynGO</span>
+                    <div class="left-flex"><span class="evidence">SynGO</span>
                     {% if result.evidence_syngo != "no" %}
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
                         <img src="{% static 'images/circle.svg' %}">
                     {% endif %}</div>
-                    <div class="left-flex"><span>SynaptomeDB</span>
+                    <div class="left-flex"><span class="evidence">SynaptomeDB</span>
                     {% if result.evidence_synaptomedb != "no" %}
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
@@ -52,16 +52,24 @@
             </div>
 
         {% endfor %}
-    {% else %}
-        <ul>
-        <li><a href="/?browse=scaffold">Scaffold</a></li>
-        <li><a href="/?browse=cytoskeletal">Cytoskeletal</a></li>
-        <li><a href="/?browse=membrane">Membrane</a></li>
-        <li><a href="/?browse=cc">Coiled coil</a></li>
-        <li><a href="/?browse=llps">Phase separation</a></li>
-        <li><a href="/?browse=hub">HUB proteins</a></li>
-        <li><a href="/?browse=Structure">With structural evidence</a></li>
-        <li><a href="/?browse=Literature">With literature evidence</a></li>
+    {% endif %}
+
+    {% if show_browse_list %}
+        <h1 class="lonely">Select a category to browse:</h1>
+        <ul class="browse-list">
+            <li><a href="/?browse=scaffold">Scaffold</a></li>
+            <li><a href="/?browse=cytoskeletal">Cytoskeletal</a></li>
+            <li><a href="/?browse=membrane">Membrane</a></li>
+            <li><a href="/?browse=cc">Coiled coil</a></li>
+            <li><a href="/?browse=llps">Phase separation</a></li>
+            <li><a href="/?browse=hub">HUB proteins</a></li>
+            <li><a href="/?browse=Structure">With structural evidence</a></li>
+            <li><a href="/?browse=Literature">With literature evidence</a></li>
         </ul>
     {% endif %}
+
+    {% if error %}
+        <h1 class="lonely">{{ error }}</h1>
+    {% endif %}
+
 {% endblock %}

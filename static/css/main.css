@@ -1,5 +1,6 @@
 html body {
     background-color: #d1eac9a6;
+    color: #343a40;
 }
 
 a {
@@ -37,7 +38,7 @@ div.footer-text {
 }
 
 .search-page-result {
-    border: 2px solid #343a40;
+    border: 1px solid #343a40;
     padding-bottom: 12px;
     padding-left: 15px;
     padding-right: 10px;
@@ -60,4 +61,32 @@ td, th {
   border: 1px solid #343a40;
   text-align: left;
   padding: 8px;
+}
+
+ul.browse-list {
+    list-style-type: square;
+    font-size: 180%;
+}
+
+h1.lonely {
+    margin-top: 25px;
+}
+
+h2.lonely {
+    margin-bottom: 15px;
+    margin-top: 20px;
+    color: #343a40;
+}
+
+a.big-entry-link {
+    font-size: 220%;
+    color: #326259;
+}
+
+a.big-entry-link:visited {
+    color: #326259;
+}
+
+span.evidence {
+    font-weight: 700;
 }
