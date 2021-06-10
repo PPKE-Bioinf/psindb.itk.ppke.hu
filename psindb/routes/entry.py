@@ -422,12 +422,12 @@ def entry(request, uniprot_id,):
         name = partner[0]
         highest_evidence = partner[1]
         entry_link = None
-        interaction_link = None
+        interaction_link = f"/interactions?id1={uniprot_id}&id2={name}"
         is_psd = True if partner[2] == "PSD" else False
 
         if is_psd:
             entry_link = f"/entry/{name}"
-            interaction_link = f"/interactions?id1={uniprot_id}&id2={name}"
+
 
         partners_list.append({
             "name": name,
