@@ -35,34 +35,7 @@
 
 
 
-    <h1>Partners</h1>
-    <table>
-    <tr>
-        <th>Uniprot ID</th>
-        <th>Details</th>
-        <th>Highest evidence</th>
-        <th>Is PSD</th>
-    </tr>
-    {% for partner in partners_list %}
-        <tr>
-        <td>{{ partner.name }}</td>
-        <td>
-            {% if partner.is_psd %}
-            <a href="{{ partner.entry_link }}">[entry]</a>
-            {% endif %}
-            <a href="{{ partner.interaction_link }}">[interactions]</a>
-        </td>
-        <td>{{ partner.highest_evidence }}</td>
-        {% if partner.is_psd %}
-            <td>
-                yes
-            </td>
-        {% else %}
-            <td>no</td>
-        {% endif %}
-        </tr>
-    {% endfor %}
-    </table>
+
 
     <h1>Isoforms</h1>
     {% for isoform in isoforms %}
@@ -186,4 +159,33 @@
 
     <h1>Network</h1>
     <interaction-viewer accession="{{ uniprot_id }}"></interaction-viewer>
+
+    <h1>Partners</h1>
+    <table>
+    <tr>
+        <th>Uniprot ID</th>
+        <th>Details</th>
+        <th>Highest evidence</th>
+        <th>Is PSD</th>
+    </tr>
+    {% for partner in partners_list %}
+        <tr>
+        <td>{{ partner.name }}</td>
+        <td>
+            {% if partner.is_psd %}
+            <a href="{{ partner.entry_link }}">[entry]</a>
+            {% endif %}
+            <a href="{{ partner.interaction_link }}">[interactions]</a>
+        </td>
+        <td>{{ partner.highest_evidence }}</td>
+        {% if partner.is_psd %}
+            <td>
+                yes
+            </td>
+        {% else %}
+            <td>no</td>
+        {% endif %}
+        </tr>
+    {% endfor %}
+    </table>
 {% endblock %}
