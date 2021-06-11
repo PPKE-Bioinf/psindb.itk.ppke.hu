@@ -2,6 +2,11 @@ from django.shortcuts import render
 from psindb.util.db import DB
 
 
+def chunks(l, n):
+    n = max(1, n)
+    return (l[i:i + n] for i in range(0, len(l), n))
+
+
 def generate_transmembrane_data_list(transmembrane):
     transmembrane_value_ranges = {
         "I": [],
@@ -276,7 +281,7 @@ def create_graph_data(
     trackHeight: 20,
     trackColor: "#F9F9F9",
     displayType: "composite",
-    rowTitle: "Anchor",
+    rowTitle: "Disordered binding regions",
     displayConfig: {anchor_data_list}
   }},
   {{
@@ -312,6 +317,107 @@ def create_graph_data(
 ];
 
 const elementId = "pfv-{protein_id}";
+const pfv = new RcsbFv.Create({{
+            boardConfigData,
+            rowConfigData,
+            elementId
+        }});
+    }});
+    """
+
+    return js
+
+
+def create_connectivity_data(connectivity, row_title=""):
+    if not row_title:
+        row_title = "Canonical"
+
+    value_ranges = {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+    }
+
+    prev_value = connectivity[0]
+    value_from = 1
+    i, value = None, None
+
+    for i, value in enumerate(connectivity[1:]):
+        # TODO check
+        if value == "-":
+            value = "1"
+
+        if value != prev_value:
+            value_ranges[prev_value].append({
+                "begin": value_from,
+                "end": i + 1
+            })
+
+            value_from = i + 2
+
+        prev_value = value
+
+    value_ranges[value].append({
+        "begin": value_from,
+        "end": i + 2
+    })
+
+    value_colors = {
+        "1": "#4a2226",
+        "2": "#705080",
+        "3": "#879cac",
+        "4": "#a9d1d5",
+        "5": "#32a481",
+    }
+
+    value_display_ids = {
+        "1": "1_1",
+        "2": "1_2",
+        "3": "1_3",
+        "4": "1_4",
+        "5": "1_5",
+    }
+
+    connectivity_data_list = []
+
+    for value in value_ranges:
+        if not value_ranges[value]:
+            continue
+
+        connectivity_data_list.append(
+            {
+                "displayType": "block",
+                "displayColor": value_colors[value],
+                "displayId": value_display_ids[value],
+                "displayData": value_ranges[value]
+            }
+        )
+
+    js = f"""
+    $(document).ready(function(){{
+    const connectivity = "{connectivity}";
+
+    const boardConfigData = {{
+      length: connectivity.length,
+      trackWidth: 920,
+      includeAxis: true,
+      disableMenu: true
+    }};
+
+    const rowConfigData = [
+  {{
+    trackId: "compositeSequence",
+    trackHeight: 20,
+    trackColor: "#F9F9F9",
+    displayType: "composite",
+    rowTitle: "{row_title}",
+    displayConfig: {connectivity_data_list}
+  }}
+];
+
+const elementId = "pfv-isoform";
 const pfv = new RcsbFv.Create({{
             boardConfigData,
             rowConfigData,
@@ -421,6 +527,10 @@ def entry(request, uniprot_id,):
         if is_psd:
             entry_link = f"/entry/{name}"
 
+        if highest_evidence == "LT":
+            highest_evidence = "Low throughput"
+        elif highest_evidence == "HT":
+            highest_evidence = "High throughput"
 
         partners_list.append({
             "name": name,
@@ -438,9 +548,32 @@ def entry(request, uniprot_id,):
     )
 
     try:
-        isoforms = sql7[0][0].split(";")
+        isoforms_sql = sql7[0][0].split(";")
+        canonical_name = isoforms_sql[0]
+        connectivity_data = isoforms_sql[1]
+        canonical_seq = list(chunks(isoforms_sql[2], 100))
+        isoforms = []
+
+        for pair in chunks(isoforms_sql[3:], 2):
+            isoform_name = pair[0]
+            isoform_full_seq = pair[1]
+            isoform_seqs = list(chunks(isoform_full_seq, 100))
+            print(isoform_seqs)
+            isoforms.append([isoform_name, isoform_seqs])
+
+        isoforms_data = {
+            "canonical_name": canonical_name,
+            "canonical_seq": canonical_seq,
+            "connectivity": create_connectivity_data(
+                connectivity_data,
+                row_title="Interacting regions"
+            ),
+            "isoforms": isoforms,
+        }
+
     except IndexError:
-        isoforms = None
+        isoforms_data = None
+
 
     query, disease_sql = DB.execute_sql(
         """
@@ -460,13 +593,6 @@ def entry(request, uniprot_id,):
             "descr": disease[3],
             "in_region": disease[4],
         })
-
-    query, phospo = DB.execute_sql(
-        """
-        SELECT posi, in_region FROM Phospho WHERE protein_id=%s;
-        """,
-        (uniprot_id,)
-    )
 
     query, linear_motifs_sql = DB.execute_sql(
         """
@@ -606,7 +732,7 @@ def entry(request, uniprot_id,):
             "db_data": db_data,
             "partners": partner_data,
             "partners_list": partners_list,
-            "isoforms": isoforms,
+            "isoforms": isoforms_data,
             "diseases": diseases,
             "linear_motifs": linear_motifs,
             "fp_mol_func": fp_mol_func,

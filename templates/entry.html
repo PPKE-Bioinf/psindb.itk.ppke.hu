@@ -9,7 +9,7 @@
     <p>g2c: {{ db_data.g2c }}</p>
     <p>SynGO: {{ db_data.SynGO }}</p>
     <p>Functions: {{ db_data.Functions }}</p>
-    <h1>Features</h1>
+    <h3 class="entry-category">Protein features</h3>
     <div id="pfv-{{ uniprot_id }}" style="margin-top:15px" ></div>
     <script type="text/javascript">
     {% autoescape off %}
@@ -17,9 +17,7 @@
     {% endautoescape %}
     </script>
 
-
-
-    <h1>Partners with known interacting regions</h1>
+    <h3 class="entry-category">Partners with known interacting regions</h3>
     {% for partner in partners %}
         <div id="pfv-{{ partner.name }}" style="margin-top:15px" ></div>
         <script type="text/javascript">
@@ -33,17 +31,49 @@
 
 
 
+    <h3 class="entry-category">Isoforms</h3>
 
+    <div id="pfv-isoform" style="margin-top:15px" ></div>
+    <script type="text/javascript">
+    {% autoescape off %}
+    {{ isoforms.connectivity }}
+    {% endautoescape %}
+    </script>
 
+    <table class="isoform-table">
+    <tr>
+        <td>Canonical [{{ isoforms.canonical_name }}]</td>
+        <td>
+            {% for line in isoforms.canonical_seq %}
+            <p class="isoform-p">{{ line }}</p>
+            {% endfor %}
+        </td>
+    </tr>
 
-
-    <h1>Isoforms</h1>
-    {% for isoform in isoforms %}
-        <p>{{ isoform }}</p>
+    {% for isoform in isoforms.isoforms %}
+        <tr>
+        <td>Isoform [{{ isoform.0 }}]</td>
+        <td>
+            {% for line in isoform.1 %}
+            <p class="isoform-p">{{ line }}</p>
+            {% endfor %}
+        </td>
+    </tr>
     {% endfor %}
 
-    <h1>Disease</h1>
-    <table>
+    </table>
+
+
+
+
+
+
+
+
+
+
+    <h3 class="entry-category">Disease</h3>
+    <table class="interaction-data">
     <tr>
         <th>Position</th>
         <th>Amino acid</th>
@@ -64,23 +94,9 @@
     </tr>
     {% endfor %}
     </table>
-{#    <h1>Phosphorylation</h1>#}
-{#    <table>#}
-{#    <tr>#}
-{#        <th>Position</th>#}
-{#    </tr>#}
-{#    {% for phos in phospo %}#}
-{#        {% if phos.1 == "yes" %}#}
-{#        <tr class="disease-red">#}
-{#        {% else %}#}
-{#        <tr>#}
-{#        {% endif %}#}
-{#        <td>{{ phos.0 }}</td>#}
-{#    </tr>#}
-{#    {% endfor %}#}
-{#    </table>#}
-    <h1>Linear motifs</h1>
-    <table>
+
+    <h3 class="entry-category">Linear motifs</h3>
+    <table class="interaction-data">
     <tr>
         <th>ELM instance</th>
         <th>Name</th>
@@ -103,9 +119,10 @@
     </tr>
     {% endfor %}
     </table>
-    <h1>Fingerprint</h1>
-    <h3>Molecular function</h3>
-    <table>
+
+    <h3 class="entry-category">Fingerprint</h3>
+    <h4>Molecular function</h4>
+    <table class="interaction-data">
     <tr>
         <th>Term</th>
         <th>Name</th>
@@ -122,8 +139,8 @@
     {% endfor %}
     </table>
 
-    <h3>Biological process</h3>
-    <table>
+    <h4>Biological process</h4>
+    <table class="interaction-data">
     <tr>
         <th>Term</th>
         <th>Name</th>
@@ -139,8 +156,8 @@
     </tr>
     {% endfor %}
     </table>
-    <h3>Disease</h3>
-    <table>
+    <h4>Disease</h4>
+    <table class="interaction-data">
     <tr>
         <th>Term</th>
         <th>Name</th>
@@ -157,25 +174,25 @@
     {% endfor %}
     </table>
 
-    <h1>Network</h1>
+    <h3 class="entry-category">Network</h3>
     <interaction-viewer accession="{{ uniprot_id }}"></interaction-viewer>
 
-    <h1>Partners</h1>
-    <table>
+    <h3 class="entry-category">Partners</h3>
+    <table class="interaction-data">
     <tr>
         <th>Uniprot ID</th>
         <th>Details</th>
         <th>Highest evidence</th>
-        <th>Is PSD</th>
+        <th>Localizing into PSD</th>
     </tr>
     {% for partner in partners_list %}
         <tr>
         <td>{{ partner.name }}</td>
         <td>
             {% if partner.is_psd %}
-            <a href="{{ partner.entry_link }}">[entry]</a>
+            <a href="{{ partner.entry_link }}">[view entry]</a>
             {% endif %}
-            <a href="{{ partner.interaction_link }}">[interactions]</a>
+            <a href="{{ partner.interaction_link }}">[view interactions]</a>
         </td>
         <td>{{ partner.highest_evidence }}</td>
         {% if partner.is_psd %}

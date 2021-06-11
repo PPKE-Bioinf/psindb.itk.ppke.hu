@@ -103,13 +103,14 @@ table.interaction-data {
 table.interaction-data td,
 table.interaction-data th {
     border: 0;
-    padding: 1px;
-}
-
-table.interaction-data td {
-    padding-left: 8px;
+    padding: 1px 8px 1px 1px;
     font-size: small;
 }
+
+/*table.interaction-data td {*/
+/*    padding-left: 8px;*/
+/*    font-size: small;*/
+/*}*/
 
 /*prevent cell collapse*/
 td:empty::after{
@@ -118,4 +119,18 @@ td:empty::after{
 
 .interactions-header {
     margin-bottom: 30px;
+}
+
+h3.entry-category {
+    margin-top: 40px;
+}
+
+table.isoform-table {
+    margin-top: 15px;
+}
+
+p.isoform-p {
+    font-family: monospace;
+    font-size: 13px;
+    margin-bottom: 1px;
 }
