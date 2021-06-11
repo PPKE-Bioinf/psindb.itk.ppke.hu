@@ -140,7 +140,11 @@
                     <tr>
                         <td>Source:</td>
                         <td>
-                            {% if result.crossreference %}
+                            {% if result.source == "STRING" %}
+                                STRING
+                                <a href="https://string-db.org/cgi/network?identifiers={{ result.id_1 }}">[{{ result.id_1 }}]</a>
+                                <a href="https://string-db.org/cgi/network?identifiers={{ result.id_2 }}">[{{ result.id_2 }}]</a>
+                            {% elif result.crossreference %}
                                 <a href="{{ result.crossreference }}">{{ result.source }}</a>
                             {% else %}
                                 {{ result.source }}
