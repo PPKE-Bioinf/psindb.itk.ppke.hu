@@ -133,11 +133,22 @@ def interactions(request):
 
         id1_db = {
             "id": id1,
-            "go": db_1_results[0][0],
-            "g2c": db_1_results[0][1],
-            "syngo": db_1_results[0][2],
-            "synaptomedb": db_1_results[0][3],
+            "go": "no",
+            "g2c": "no",
+            "syngo": "no",
+            "synaptomedb": "no",
         }
+
+        try:
+            id1_db = {
+                "id": id1,
+                "go": db_1_results[0][0],
+                "g2c": db_1_results[0][1],
+                "syngo": db_1_results[0][2],
+                "synaptomedb": db_1_results[0][3],
+            }
+        except IndexError:
+            pass
 
         query, db_2_results = DB.execute_sql(
             """
@@ -156,11 +167,22 @@ def interactions(request):
 
         id2_db = {
             "id": id2,
-            "go": db_2_results[0][0],
-            "g2c": db_2_results[0][1],
-            "syngo": db_2_results[0][2],
-            "synaptomedb": db_2_results[0][3],
+            "go": "no",
+            "g2c": "no",
+            "syngo": "no",
+            "synaptomedb": "no",
         }
+
+        try:
+            id2_db = {
+                "id": id2,
+                "go": db_2_results[0][0],
+                "g2c": db_2_results[0][1],
+                "syngo": db_2_results[0][2],
+                "synaptomedb": db_2_results[0][3],
+            }
+        except IndexError:
+            pass
 
         query, query_results = DB.execute_sql(
             """

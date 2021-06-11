@@ -328,21 +328,17 @@ def create_partner_data(uniprot_id, partners):
     for partner in partners:
         partner_name = partner[0]
         partner_connectivity = partner[1]
-        partner_is_psd = True if partner[2] == "PSD" else False
 
         connectivity_data_list = generate_connectivity_data_list(
             partner_connectivity
         )
 
-        partner_row_title = f"\"{partner_name}\""
-
-        if partner_is_psd:
-            partner_row_title = f"""
-            RcsbFvLink = {{
-                visibleTex: "{partner_name}",
-                url: "/interactions?id1={uniprot_id}&id2={partner_name}"
-            }}
-            """
+        partner_row_title = f"""
+        RcsbFvLink = {{
+            visibleTex: "{partner_name}",
+            url: "/interactions?id1={uniprot_id}&id2={partner_name}"
+        }}
+        """
 
         partner_js = f"""
             $(document).ready(function(){{
@@ -610,11 +606,8 @@ def entry(request, uniprot_id,):
             "db_data": db_data,
             "partners": partner_data,
             "partners_list": partners_list,
-            # "high_tp_evidence": sql5,
-            # "comp_evidence": sql6,
             "isoforms": isoforms,
             "diseases": diseases,
-            # "phospo": phospo,
             "linear_motifs": linear_motifs,
             "fp_mol_func": fp_mol_func,
             "fp_biol_proc": fp_biol_proc,
