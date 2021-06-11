@@ -53,6 +53,10 @@ div.footer-text {
     margin-left: 15px;
 }
 
+.right-flex {
+    margin-right: 15px;
+}
+
 .disease-red {
     background-color: indianred;
 }
@@ -79,7 +83,7 @@ h2.lonely {
 }
 
 a.big-entry-link {
-    font-size: 220%;
+    font-size: 200%;
     color: #326259;
 }
 
@@ -89,4 +93,29 @@ a.big-entry-link:visited {
 
 span.evidence {
     font-weight: 700;
+}
+
+table.interaction-data {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+table.interaction-data td,
+table.interaction-data th {
+    border: 0;
+    padding: 1px;
+}
+
+table.interaction-data td {
+    padding-left: 8px;
+    font-size: small;
+}
+
+/*prevent cell collapse*/
+td:empty::after{
+    content: "\00a0";
+}
+
+.interactions-header {
+    margin-bottom: 30px;
 }

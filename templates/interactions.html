@@ -5,142 +5,200 @@
 
 {% block content %}
     {% if results %}
-        <h4>DB evidence {{ id1_db.id }}</h4>
-        <div class="left-flex"><span>GO</span>
-        {% if id1_db.go != "no" %}
-            <img src="{% static 'images/check-circle.svg' %}">
-        {% else %}
-            <img src="{% static 'images/circle.svg' %}">
-        {% endif %}</div>
-        <div class="left-flex"><span>G2C</span>
-        {% if id1_db.g2c != "no" %}
-            <img src="{% static 'images/check-circle.svg' %}">
-        {% else %}
-            <img src="{% static 'images/circle.svg' %}">
-        {% endif %}</div>
-        <div class="left-flex"><span>SynGO</span>
-        {% if id1_db.syngo != "no" %}
-            <img src="{% static 'images/check-circle.svg' %}">
-        {% else %}
-            <img src="{% static 'images/circle.svg' %}">
-        {% endif %}</div>
-        <div class="left-flex"><span>SynaptomeDB</span>
-        {% if id1_db.synaptomedb != "no" %}
-            <img src="{% static 'images/check-circle.svg' %}">
-        {% else %}
-            <img src="{% static 'images/circle.svg' %}">
-        {% endif %}</div>
+        <div class="container interactions-header">
+            <div class="row">
+                <div class="col-sm">
+                    <a class="big-entry-link" href="{% url 'entry' uniprot_id=id1_db.id %}">{{ id1_db.id }}</a>
+                </div>
+                <div class="col-sm">
+                    <a class="big-entry-link" href="{% url 'entry' uniprot_id=id2_db.id %}">{{ id2_db.id }}</a>
+                </div>
+            </div>
 
-        <h4>DB evidence {{ id2_db.id }}</h4>
-        <div class="left-flex"><span>GO</span>
-        {% if id2_db.go != "no" %}
-            <img src="{% static 'images/check-circle.svg' %}">
-        {% else %}
-            <img src="{% static 'images/circle.svg' %}">
-        {% endif %}</div>
-        <div class="left-flex"><span>G2C</span>
-        {% if id2_db.g2c != "no" %}
-            <img src="{% static 'images/check-circle.svg' %}">
-        {% else %}
-            <img src="{% static 'images/circle.svg' %}">
-        {% endif %}</div>
-        <div class="left-flex"><span>SynGO</span>
-        {% if id2_db.syngo != "no" %}
-            <img src="{% static 'images/check-circle.svg' %}">
-        {% else %}
-            <img src="{% static 'images/circle.svg' %}">
-        {% endif %}</div>
-        <div class="left-flex"><span>SynaptomeDB</span>
-        {% if id2_db.synaptomedb != "no" %}
-            <img src="{% static 'images/check-circle.svg' %}">
-        {% else %}
-            <img src="{% static 'images/circle.svg' %}">
-        {% endif %}</div>
+
+            <div class="row">
+
+            <div class="col-sm search-result-header">
+
+            <div class="right-flex"><span>GO</span>
+            {% if id1_db.go != "no" %}
+                <img src="{% static 'images/check-circle.svg' %}">
+            {% else %}
+                <img src="{% static 'images/circle.svg' %}">
+            {% endif %}</div>
+            <div class="right-flex"><span>G2C</span>
+            {% if id1_db.g2c != "no" %}
+                <img src="{% static 'images/check-circle.svg' %}">
+            {% else %}
+                <img src="{% static 'images/circle.svg' %}">
+            {% endif %}</div>
+            <div class="right-flex"><span>SynGO</span>
+            {% if id1_db.syngo != "no" %}
+                <img src="{% static 'images/check-circle.svg' %}">
+            {% else %}
+                <img src="{% static 'images/circle.svg' %}">
+            {% endif %}</div>
+            <div class="right-flex"><span>SynaptomeDB</span>
+            {% if id1_db.synaptomedb != "no" %}
+                <img src="{% static 'images/check-circle.svg' %}">
+            {% else %}
+                <img src="{% static 'images/circle.svg' %}">
+            {% endif %}</div>
+
+            </div>
+
+            <div class="col-sm search-result-header">
+
+
+            <div class="right-flex"><span>GO</span>
+            {% if id2_db.go != "no" %}
+                <img src="{% static 'images/check-circle.svg' %}">
+            {% else %}
+                <img src="{% static 'images/circle.svg' %}">
+            {% endif %}</div>
+            <div class="right-flex"><span>G2C</span>
+            {% if id2_db.g2c != "no" %}
+                <img src="{% static 'images/check-circle.svg' %}">
+            {% else %}
+                <img src="{% static 'images/circle.svg' %}">
+            {% endif %}</div>
+            <div class="right-flex"><span>SynGO</span>
+            {% if id2_db.syngo != "no" %}
+                <img src="{% static 'images/check-circle.svg' %}">
+            {% else %}
+                <img src="{% static 'images/circle.svg' %}">
+            {% endif %}</div>
+            <div class="right-flex"><span>SynaptomeDB</span>
+            {% if id2_db.synaptomedb != "no" %}
+                <img src="{% static 'images/check-circle.svg' %}">
+            {% else %}
+                <img src="{% static 'images/circle.svg' %}">
+            {% endif %}</div>
+
+            </div>
+
+            </div>
+        </div>
 
     {% for result in results %}
 
-        <div id="pfv-{{ result.id_1 }}" style="margin-top:15px" ></div>
+        <div id="pfv-{{ result.id_1 }}-{{ result.number }}" style="margin-top:15px" ></div>
         <script type="text/javascript">
         {% autoescape off %}
         {{ result.connectivity_1 }}
         {% endautoescape %}
         </script>
 
-        <div id="pfv-{{ result.id_2 }}" style="margin-top:15px" ></div>
+        <div id="pfv-{{ result.id_2 }}-{{ result.number }}" style="margin-top:15px" ></div>
         <script type="text/javascript">
         {% autoescape off %}
         {{ result.connectivity_2 }}
         {% endautoescape %}
         </script>
 
-        <table>
-        <tr>
-            <td>Inferred:</td>
-            <td>{{ result.inferred }}</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Original protein 1:</td>
-            <td>{{ result.original_protein_1 }}</td>
-            <td>Original protein 2:</td>
-            <td>{{ result.original_protein_2 }}</td>
-        </tr>
-        <tr>
-            <td>Taxonomy:</td>
-            <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.tax_link_1 }}">{{ result.tax_1 }}</a></td>
-            <td>Taxonomy:</td>
-            <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.tax_link_2 }}">{{ result.tax_2 }}</a></td>
-        </tr>
-        <tr>
-            <td>Experimental role:</td>
-            <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.experimental_role_region1_link }}">{{ result.experimental_role_region1 }}</a></td>
-            <td>Experimental role:</td>
-            <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.experimental_role_region2_link }}">{{ result.experimental_role_region2 }}</a></td>
-        </tr>
-        <tr>
-            <td>Biological role participant:</td>
-            <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.biological_role_region1_link }}">{{ result.biological_role_region1 }}</a></td>
-            <td>Biological role participant:</td>
-            <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.biological_role_region2_link }}">{{ result.biological_role_region2 }}</a></td>
-        </tr>
-        <tr>
-            <td>Participant detection method:</td>
-            <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.participant_detection_link_1 }}">{{ result.participant_detection_method_1 }}</a></td>
-            <td>Participant detection method:</td>
-            <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.participant_detection_link_2 }}">{{ result.participant_detection_method_2 }}</a></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Host:</td>
-            <td>{{ result.host }}</td>
-            <td>PMID:</td>
-            <td><a href="https://pubmed.ncbi.nlm.nih.gov/{{ result.pmid }}">{{ result.pmid }}</a></td>
-        </tr>
-        <tr>
-            <td>Interaction detection method:</td>
-            <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.interaction_detection_link }}">{{ result.interaction_detection_method }}</a></td>
-            <td>Interaction type:</td>
-            <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.interaction_type_link }}">{{ result.interaction_type }}</a></td>
-        </tr>
-        <tr>
-            <td>Source:</td>
-            <td>
-                {% if result.crossreference %}
-                    <a href="{{ result.crossreference }}">{{ result.source }}</a>
-                {% else %}
-                    {{ result.source }}
-                {% endif %}
-            </td>
-            <td>Evidence:</td>
-            <td>{{ result.evidence }}</td>
-        </tr>
-        </table>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+
+                    <table class="interaction-data">
+                    <tr>
+                        <td>Inferred:</td>
+                        <td>{{ result.inferred }}</td>
+                    </tr>
+                    <tr>
+                        <td>Original protein 1:</td>
+                        <td>{{ result.original_protein_1 }}</td>
+                    </tr>
+                    <tr>
+                        <td>Taxonomy:</td>
+                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.tax_link_1 }}">{{ result.tax_1 }}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Experimental role:</td>
+                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.experimental_role_region1_link }}">{{ result.experimental_role_region1 }}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Biological role participant:</td>
+                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.biological_role_region1_link }}">{{ result.biological_role_region1 }}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Participant detection method:</td>
+                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.participant_detection_link_1 }}">{{ result.participant_detection_method_1 }}</a></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Host:</td>
+                        <td>{{ result.host }}</td>
+                    </tr>
+                    <tr>
+                        <td>Interaction detection method:</td>
+                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.interaction_detection_link }}">{{ result.interaction_detection_method }}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Source:</td>
+                        <td>
+                            {% if result.crossreference %}
+                                <a href="{{ result.crossreference }}">{{ result.source }}</a>
+                            {% else %}
+                                {{ result.source }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    </table>
+
+                </div>
+
+                <div class="col-sm">
+
+                    <table class="interaction-data">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Original protein 2:</td>
+                        <td>{{ result.original_protein_2 }}</td>
+                    </tr>
+                    <tr>
+                        <td>Taxonomy:</td>
+                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.tax_link_2 }}">{{ result.tax_2 }}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Experimental role:</td>
+                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.experimental_role_region2_link }}">{{ result.experimental_role_region2 }}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Biological role participant:</td>
+                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.biological_role_region2_link }}">{{ result.biological_role_region2 }}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Participant detection method:</td>
+                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.participant_detection_link_2 }}">{{ result.participant_detection_method_2 }}</a></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>PMID:</td>
+                        <td><a href="https://pubmed.ncbi.nlm.nih.gov/{{ result.pmid }}">{{ result.pmid }}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Interaction type:</td>
+                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.interaction_type_link }}">{{ result.interaction_type }}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Evidence:</td>
+                        <td>{{ result.evidence }}</td>
+                    </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
 
     {% endfor %}
     {% endif %}

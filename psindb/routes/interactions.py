@@ -2,7 +2,7 @@ from django.shortcuts import render
 from psindb.util.db import DB
 
 
-def create_graph_data(protein_id, connectivity, row_title=""):
+def create_graph_data(protein_id, num, connectivity, row_title=""):
     if not row_title:
         row_title = protein_id
 
@@ -87,7 +87,7 @@ def create_graph_data(protein_id, connectivity, row_title=""):
   }}
 ];
 
-const elementId = "pfv-{protein_id}";
+const elementId = "pfv-{protein_id}-{num}";
 const pfv = new RcsbFv.Create({{
             boardConfigData,
             rowConfigData,
@@ -225,7 +225,7 @@ def interactions(request):
 
         json_results = []
 
-        for result in query_results:
+        for i, result in enumerate(query_results):
             print(result)
 
             crossreference_link = ""
@@ -242,8 +242,9 @@ def interactions(request):
             json_results.append({
                 "id_1": result[0],
                 "id_2": result[1],
-                "connectivity_1": create_graph_data(result[0], result[2]),
-                "connectivity_2": create_graph_data(result[1], result[3]),
+                "number": i,
+                "connectivity_1": create_graph_data(result[0], i, result[2]),
+                "connectivity_2": create_graph_data(result[1], i, result[3]),
                 "inferred": result[4],
                 "original_protein_1": result[5],
                 "original_protein_2": result[6],
