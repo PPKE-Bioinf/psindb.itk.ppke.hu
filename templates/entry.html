@@ -3,13 +3,28 @@
 
 {% block title %}PSINDB{% endblock %}
 
+{% block sidenav %}
+<div class="sidenav">
+{#    <a href="#function">Function</a>#}
+    <a href="#features">Features</a>
+    <a href="#interacitons">Interactions</a>
+    <a href="#isoform">Isoform</a>
+    <a href="#disease">Disease</a>
+    <a href="#linear-motifs">Linear motifs</a>
+    <a href="#fingerprint">Fingerprint</a>
+    <a href="#network">Network</a>
+    <a href="#interacting-partners">Partners</a>
+</div>
+{% endblock %}
+
 {% block content %}
     <h1>{{ uniprot_id }}</h1>
     <p>GO: {{ db_data.go }}</p>
     <p>g2c: {{ db_data.g2c }}</p>
     <p>SynGO: {{ db_data.SynGO }}</p>
     <p>Functions: {{ db_data.Functions }}</p>
-    <h3 class="entry-category">Protein features</h3>
+
+    <h3 id="features" class="entry-category">Protein features</h3>
     <div id="pfv-{{ uniprot_id }}" style="margin-top:15px" ></div>
     <script type="text/javascript">
     {% autoescape off %}
@@ -17,7 +32,7 @@
     {% endautoescape %}
     </script>
 
-    <h3 class="entry-category">Partners with known interacting regions</h3>
+    <h3 id="interacitons" class="entry-category">Partners with known interacting regions</h3>
     {% for partner in partners %}
         <div id="pfv-{{ partner.name }}" style="margin-top:15px" ></div>
         <script type="text/javascript">
@@ -28,10 +43,7 @@
     {% endfor %}
 
 
-
-
-
-    <h3 class="entry-category">Isoforms</h3>
+    <h3 id="isoform" class="entry-category">Isoforms</h3>
 
     <div id="pfv-isoform" style="margin-top:15px" ></div>
     <script type="text/javascript">
@@ -40,39 +52,8 @@
     {% endautoescape %}
     </script>
 
-    <table class="isoform-table">
-    <tr>
-        <td>Canonical [{{ isoforms.canonical_name }}]</td>
-        <td>
-            {% for line in isoforms.canonical_seq %}
-            <p class="isoform-p">{{ line }}</p>
-            {% endfor %}
-        </td>
-    </tr>
 
-    {% for isoform in isoforms.isoforms %}
-        <tr>
-        <td>Isoform [{{ isoform.0 }}]</td>
-        <td>
-            {% for line in isoform.1 %}
-            <p class="isoform-p">{{ line }}</p>
-            {% endfor %}
-        </td>
-    </tr>
-    {% endfor %}
-
-    </table>
-
-
-
-
-
-
-
-
-
-
-    <h3 class="entry-category">Disease</h3>
+    <h3 id="disease" class="entry-category">Disease</h3>
     <table class="interaction-data">
     <tr>
         <th>Position</th>
@@ -95,7 +76,7 @@
     {% endfor %}
     </table>
 
-    <h3 class="entry-category">Linear motifs</h3>
+    <h3 id="linear-motifs" class="entry-category">Linear motifs</h3>
     <table class="interaction-data">
     <tr>
         <th>ELM instance</th>
@@ -120,15 +101,19 @@
     {% endfor %}
     </table>
 
-    <h3 class="entry-category">Fingerprint</h3>
-    <h4>Molecular function</h4>
-    <table class="interaction-data">
-    <tr>
-        <th>Term</th>
-        <th>Name</th>
-        <th>Count</th>
-        <th>Level</th>
-    </tr>
+
+    <h3 id="fingerprint" class="entry-category">Fingerprint</h3>
+    <h4 class="fingerprint-category">Molecular function</h4>
+    <table id="dataTable-fp-mol" class="interaction-data">
+    <thead>
+        <tr>
+            <th>Term</th>
+            <th>Name</th>
+            <th>Count</th>
+            <th>Level</th>
+        </tr>
+    </thead>
+    <tbody>
     {% for fp in fp_mol_func %}
     <tr>
         <td>{{ fp.term_id }}</td>
@@ -137,33 +122,42 @@
         <td>{{ fp.ontology_level }}</td>
     </tr>
     {% endfor %}
+    </tbody>
     </table>
 
-    <h4>Biological process</h4>
-    <table class="interaction-data">
-    <tr>
-        <th>Term</th>
-        <th>Name</th>
-        <th>Count</th>
-        <th>Level</th>
-    </tr>
-    {% for fp in fp_biol_proc %}
-    <tr>
-        <td>{{ fp.term_id }}</td>
-        <td>{{ fp.des }}</td>
-        <td>{{ fp.ontology_number }}</td>
-        <td>{{ fp.ontology_level }}</td>
-    </tr>
-    {% endfor %}
+    <h4 class="fingerprint-category">Biological process</h4>
+    <table id="dataTable-fp-bio" class="interaction-data">
+    <thead>
+        <tr>
+            <th>Term</th>
+            <th>Name</th>
+            <th>Count</th>
+            <th>Level</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fp in fp_biol_proc %}
+        <tr>
+            <td>{{ fp.term_id }}</td>
+            <td>{{ fp.des }}</td>
+            <td>{{ fp.ontology_number }}</td>
+            <td>{{ fp.ontology_level }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
     </table>
-    <h4>Disease</h4>
-    <table class="interaction-data">
-    <tr>
-        <th>Term</th>
-        <th>Name</th>
-        <th>Count</th>
-        <th>Level</th>
-    </tr>
+
+    <h4 class="fingerprint-category">Disease</h4>
+    <table id="dataTable-fp-disease" class="interaction-data">
+    <thead>
+        <tr>
+            <th>Term</th>
+            <th>Name</th>
+            <th>Count</th>
+            <th>Level</th>
+        </tr>
+    </thead>
+    <tbody>
     {% for fp in fp_disease %}
     <tr>
         <td>{{ fp.term_id }}</td>
@@ -172,37 +166,60 @@
         <td>{{ fp.ontology_level }}</td>
     </tr>
     {% endfor %}
+    </tbody>
     </table>
 
-    <h3 class="entry-category">Network</h3>
+
+    <h3 id="network" class="entry-category">Network</h3>
     <interaction-viewer accession="{{ uniprot_id }}"></interaction-viewer>
 
-    <h3 class="entry-category">Partners</h3>
-    <table class="interaction-data">
-    <tr>
-        <th>Uniprot ID</th>
-        <th>Details</th>
-        <th>Highest evidence</th>
-        <th>Localizing into PSD</th>
-    </tr>
-    {% for partner in partners_list %}
+
+    <h3 id="interacting-partners" class="entry-category">Partners</h3>
+    <table id="dataTable-partners" class="interaction-data">
+    <thead>
         <tr>
-        <td>{{ partner.name }}</td>
-        <td>
-            {% if partner.is_psd %}
-            <a href="{{ partner.entry_link }}">[view entry]</a>
-            {% endif %}
-            <a href="{{ partner.interaction_link }}">[view interactions]</a>
-        </td>
-        <td>{{ partner.highest_evidence }}</td>
-        {% if partner.is_psd %}
-            <td>
-                yes
-            </td>
-        {% else %}
-            <td>no</td>
-        {% endif %}
+            <th>Uniprot ID</th>
+            <th>Details</th>
+            <th>Highest evidence</th>
+            <th>Localizing into PSD</th>
         </tr>
-    {% endfor %}
+    </thead>
+    <tbody>
+        {% for partner in partners_list %}
+            <tr>
+            <td>{{ partner.name }}</td>
+            <td>
+                {% if partner.is_psd %}
+                <a href="{{ partner.entry_link }}">[view entry]</a>
+                {% endif %}
+                <a href="{{ partner.interaction_link }}">[view interactions]</a>
+            </td>
+            <td>{{ partner.highest_evidence }}</td>
+            {% if partner.is_psd %}
+                <td>
+                    yes
+                </td>
+            {% else %}
+                <td>no</td>
+            {% endif %}
+            </tr>
+        {% endfor %}
+    </tbody>
     </table>
+    <script>
+        $(document).ready(function () {
+            $('#dataTable-partners').DataTable({
+                "pageLength": 25
+            });
+            $('#dataTable-fp-mol').DataTable({
+                "pageLength": 25
+            });
+            $('#dataTable-fp-bio').DataTable({
+                "pageLength": 25
+            });
+            $('#dataTable-fp-disease').DataTable({
+                "pageLength": 25
+            });
+        });
+    </script>
 {% endblock %}

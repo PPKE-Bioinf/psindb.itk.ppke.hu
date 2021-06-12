@@ -118,11 +118,11 @@ def index(request):
                     Protein.Syngo, Protein.Synaptomedb,
                     Protein.protein_id, Protein.Interactions,
                     Protein.interacting
-                FROM Protein
-                INNER JOIN Alias ON Alias.protein_id=Protein.protein_id
-                WHERE (Alias.protein_alias=%s OR Alias.protein_id=%s);
+                FROM Protein INNER JOIN Alias 
+                ON Alias.protein_id=Protein.protein_id AND 
+                (Alias.protein_alias LIKE %s OR Alias.protein_id LIKE %s);
                 """,
-                (search, search,)
+                ("%" + search + "%", "%" + search + "%",)
             )
 
             if not query_results:

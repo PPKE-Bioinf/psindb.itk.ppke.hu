@@ -42,7 +42,7 @@ div.footer-text {
     padding-bottom: 12px;
     padding-left: 15px;
     padding-right: 10px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 }
 
 .push-flex {
@@ -123,6 +123,7 @@ td:empty::after{
 
 h3.entry-category {
     margin-top: 40px;
+    border-bottom: 2px solid #479183;
 }
 
 table.isoform-table {
@@ -133,4 +134,44 @@ p.isoform-p {
     font-family: monospace;
     font-size: 13px;
     margin-bottom: 1px;
+}
+
+.sidenav {
+    width: 130px;
+    position: fixed;
+    z-index: 1;
+    top: 142px;
+    left: 90px;
+    /*background: #343a40;*/
+    overflow-x: hidden;
+    padding: 8px 0;
+    border: 4px solid #343a40;
+}
+
+.sidenav {
+  height: 100%;
+  width: 130px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #343a40;
+  overflow-x: hidden;
+  padding-top: 137px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+h4.fingerprint-category {
+    margin-top: 18px;
 }

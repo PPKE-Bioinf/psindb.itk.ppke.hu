@@ -328,10 +328,9 @@ const pfv = new RcsbFv.Create({{
     return js
 
 
-def create_connectivity_data(connectivity, row_title=""):
-    if not row_title:
-        row_title = "Canonical"
-
+def create_isoform_data(
+        canonical_name, canonical_seq, connectivity, isoforms
+):
     value_ranges = {
         "1": [],
         "2": [],
@@ -340,7 +339,7 @@ def create_connectivity_data(connectivity, row_title=""):
         "5": [],
     }
 
-    prev_value = connectivity[0]
+    prev_value = "1" if connectivity[0] == "-" else connectivity[0]
     value_from = 1
     i, value = None, None
 
@@ -395,6 +394,37 @@ def create_connectivity_data(connectivity, row_title=""):
             }
         )
 
+    isoform_tracks = ""
+
+    for isoform in isoforms:
+        isoform_name = isoform[0]
+        isoform_seq = isoform[1]
+
+        isoform_tracks += f"""
+        ,{{
+        trackId: "compositeSequence_mini_{isoform_name}",
+        trackHeight: 10,
+        trackColor: "#F9F9F9",
+        displayType: "composite",
+        rowTitle: "",
+        displayConfig: {connectivity_data_list}
+        }},
+        {{
+            trackId: "sequenceTrack_{isoform_name}",
+            trackHeight: 20,
+            trackColor: "#F9F9F9",
+            displayType: "sequence",
+            nonEmptyDisplay: true,
+            rowTitle: "Isoform [{isoform_name}]",
+            trackData: [
+                {{
+                    begin: 1,
+                    value: "{isoform_seq}"
+                }}
+            ]
+        }}"""
+
+
     js = f"""
     $(document).ready(function(){{
     const connectivity = "{connectivity}";
@@ -412,9 +442,24 @@ def create_connectivity_data(connectivity, row_title=""):
     trackHeight: 20,
     trackColor: "#F9F9F9",
     displayType: "composite",
-    rowTitle: "{row_title}",
+    rowTitle: "Interacting regions",
     displayConfig: {connectivity_data_list}
+  }},
+  {{
+    trackId: "sequenceTrack",
+    trackHeight: 20,
+    trackColor: "#F9F9F9",
+    displayType: "sequence",
+    nonEmptyDisplay: true,
+    rowTitle: "Canonical [{canonical_name}]",
+    trackData: [
+        {{
+            begin: 1,
+            value: "{canonical_seq}"
+        }}
+    ]
   }}
+  {isoform_tracks}
 ];
 
 const elementId = "pfv-isoform";
@@ -551,24 +596,22 @@ def entry(request, uniprot_id,):
         isoforms_sql = sql7[0][0].split(";")
         canonical_name = isoforms_sql[0]
         connectivity_data = isoforms_sql[1]
-        canonical_seq = list(chunks(isoforms_sql[2], 100))
+        canonical_seq = isoforms_sql[2]
         isoforms = []
 
         for pair in chunks(isoforms_sql[3:], 2):
             isoform_name = pair[0]
             isoform_full_seq = pair[1]
-            isoform_seqs = list(chunks(isoform_full_seq, 100))
-            print(isoform_seqs)
-            isoforms.append([isoform_name, isoform_seqs])
+            isoforms.append([isoform_name, isoform_full_seq])
 
         isoforms_data = {
-            "canonical_name": canonical_name,
-            "canonical_seq": canonical_seq,
-            "connectivity": create_connectivity_data(
+            "connectivity": create_isoform_data(
+                canonical_name,
+                canonical_seq,
                 connectivity_data,
-                row_title="Interacting regions"
-            ),
-            "isoforms": isoforms,
+                isoforms
+
+            )
         }
 
     except IndexError:
