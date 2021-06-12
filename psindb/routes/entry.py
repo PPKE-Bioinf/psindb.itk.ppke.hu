@@ -668,7 +668,6 @@ def entry(request, uniprot_id,):
                     NOT Fingerprint.ontology_level=1 AND
                     Fingerprint.ontology_type='molecular function'
         ORDER BY Fingerprint.ontology_number DESC
-        LIMIT 10;
         """,
         (uniprot_id,)
     )
@@ -697,7 +696,6 @@ def entry(request, uniprot_id,):
                     NOT Fingerprint.ontology_level=1 AND
                     Fingerprint.ontology_type='biological process'
         ORDER BY Fingerprint.ontology_number DESC
-        LIMIT 10;
         """,
         (uniprot_id,)
     )
@@ -726,7 +724,6 @@ def entry(request, uniprot_id,):
                                    NOT Fingerprint.ontology_level=1 AND
                                    Fingerprint.ontology_type='disease'
         ORDER BY Fingerprint.ontology_number DESC
-        LIMIT 10;
                 """,
         (uniprot_id,)
     )
@@ -766,6 +763,9 @@ def entry(request, uniprot_id,):
     )
 
     partner_data = create_partner_data(uniprot_id, sql3)
+
+    print("FP DISEASES")
+    print(fp_disease)
 
     return render(
         request,

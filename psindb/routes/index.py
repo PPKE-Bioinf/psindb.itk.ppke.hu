@@ -144,7 +144,7 @@ def index(request):
                 protein_id = query_result[4]
                 num_interactions = query_result[5]
                 connectivity = query_result[6]
-                insert_js = create_graph_data(protein_id, connectivity)
+                # insert_js = create_graph_data(protein_id, connectivity)
 
                 results.append({
                     "evidence_go": evidence_go,
@@ -153,7 +153,7 @@ def index(request):
                     "evidence_synaptomedb": evidence_synaptomedb,
                     "protein_id": protein_id,
                     "num_interactions": num_interactions,
-                    "insert_js": insert_js,
+                    # "insert_js": insert_js,
                 })
 
             return render(
@@ -200,7 +200,7 @@ def index(request):
                 protein_id = query_result[4]
                 num_interactions = query_result[5]
                 connectivity = query_result[6]
-                insert_js = create_graph_data(protein_id, connectivity)
+                # insert_js = create_graph_data(protein_id, connectivity)
 
                 results.append({
                     "evidence_go": evidence_go,
@@ -209,7 +209,7 @@ def index(request):
                     "evidence_synaptomedb": evidence_synaptomedb,
                     "protein_id": protein_id,
                     "num_interactions": num_interactions,
-                    "insert_js": insert_js,
+                    # "insert_js": insert_js,
                 })
 
             return render(

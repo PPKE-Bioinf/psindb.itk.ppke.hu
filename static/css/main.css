@@ -38,19 +38,21 @@ div.footer-text {
 }
 
 .search-page-result {
-    border: 1px solid #343a40;
-    padding-bottom: 12px;
+    /*border: 1px solid #343a40;*/
+    /*padding-bottom: 12px;*/
     padding-left: 15px;
     padding-right: 10px;
-    margin-bottom: 8px;
+    /*margin-bottom: 8px;*/
 }
 
 .push-flex {
     margin-left: auto;
+    margin-top: 3px;
 }
 
 .left-flex {
     margin-left: 15px;
+    margin-top: 3px;
 }
 
 .right-flex {
@@ -83,7 +85,7 @@ h2.lonely {
 }
 
 a.big-entry-link {
-    font-size: 200%;
+    font-size: 120%;
     color: #326259;
 }
 
@@ -174,4 +176,8 @@ p.isoform-p {
 
 h4.fingerprint-category {
     margin-top: 18px;
+}
+
+tr.partner-psd-row td {
+    background-color: #bbd7ce;
 }

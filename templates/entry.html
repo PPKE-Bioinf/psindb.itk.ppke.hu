@@ -5,7 +5,6 @@
 
 {% block sidenav %}
 <div class="sidenav">
-{#    <a href="#function">Function</a>#}
     <a href="#features">Features</a>
     <a href="#interacitons">Interactions</a>
     <a href="#isoform">Isoform</a>
@@ -54,6 +53,8 @@
 
 
     <h3 id="disease" class="entry-category">Disease</h3>
+    {% if diseases %}
+
     <table class="interaction-data">
     <tr>
         <th>Position</th>
@@ -75,8 +76,13 @@
     </tr>
     {% endfor %}
     </table>
+    {% else %}
+        <p>No data found.</p>
+    {% endif %}
 
     <h3 id="linear-motifs" class="entry-category">Linear motifs</h3>
+
+    {% if linear_motifs %}
     <table class="interaction-data">
     <tr>
         <th>ELM instance</th>
@@ -100,10 +106,13 @@
     </tr>
     {% endfor %}
     </table>
-
+    {% else %}
+        <p>No data found.</p>
+    {% endif %}
 
     <h3 id="fingerprint" class="entry-category">Fingerprint</h3>
     <h4 class="fingerprint-category">Molecular function</h4>
+    {% if fp_mol_func %}
     <table id="dataTable-fp-mol" class="interaction-data">
     <thead>
         <tr>
@@ -124,8 +133,12 @@
     {% endfor %}
     </tbody>
     </table>
+    {% else %}
+        <p>No data found.</p>
+    {% endif %}
 
     <h4 class="fingerprint-category">Biological process</h4>
+    {% if fp_biol_proc %}
     <table id="dataTable-fp-bio" class="interaction-data">
     <thead>
         <tr>
@@ -146,8 +159,12 @@
         {% endfor %}
     </tbody>
     </table>
+    {% else %}
+        <p>No data found.</p>
+    {% endif %}
 
     <h4 class="fingerprint-category">Disease</h4>
+    {% if fp_disease %}
     <table id="dataTable-fp-disease" class="interaction-data">
     <thead>
         <tr>
@@ -168,6 +185,9 @@
     {% endfor %}
     </tbody>
     </table>
+    {% else %}
+        <p>No data found.</p>
+    {% endif %}
 
 
     <h3 id="network" class="entry-category">Network</h3>
@@ -186,7 +206,11 @@
     </thead>
     <tbody>
         {% for partner in partners_list %}
+            {% if partner.is_psd %}
+            <tr class="partner-psd-row">
+            {% else %}
             <tr>
+            {% endif %}
             <td>{{ partner.name }}</td>
             <td>
                 {% if partner.is_psd %}

@@ -16,7 +16,8 @@
                 <div class="search-result-header">
 {#                    <div><p>UNIPROT ID: </p></div>#}
                     <div><a class="big-entry-link" href="{% url 'entry' uniprot_id=result.protein_id %}">{{ result.protein_id }}</a></div>
-                    <div class="push-flex"><span>Postsynaptic evidence:</span></div>
+                    <div class="push-flex"><span>Number of interacting partners: {{ result.num_interactions }}</span></div>
+                    <div class="left-flex"><span>Postsynaptic evidence:</span></div>
                     <div class="left-flex"><span class="evidence">GO</span>
                     {% if result.evidence_go != "no" %}
                         <img src="{% static 'images/check-circle.svg' %}">
@@ -42,13 +43,13 @@
                         <img src="{% static 'images/circle.svg' %}">
                     {% endif %}</div>
                 </div>
-                <div><span>Number of interacting partners: {{ result.num_interactions }}</span></div>
+{#                <div><span>Number of interacting partners: {{ result.num_interactions }}</span></div>#}
                 <div id="pfv-{{ result.protein_id }}" style="margin-top:15px" ></div>
-                <script type="text/javascript">
-                {% autoescape off %}
-                {{ result.insert_js }}
-                {% endautoescape %}
-                </script>
+{#                <script type="text/javascript">#}
+{#                {% autoescape off %}#}
+{#                {{ result.insert_js }}#}
+{#                {% endautoescape %}#}
+{#                </script>#}
             </div>
 
         {% endfor %}
