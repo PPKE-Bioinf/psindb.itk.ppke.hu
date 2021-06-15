@@ -186,27 +186,31 @@ def interactions(request):
 
         query, query_results = DB.execute_sql(
             """
-            SELECT I.protein_id1, I.protein_id2, I.reg_p1, I.reg_p2, I.inferred,
-            I.orig_p1, I.orig_p2, I.tax1, P1.link, I.tax2, P2.link, I.host_id, P3.link,
-            I.participant_detection1, P4.link, I.participant_detection2, P5.link,
-            I.interaction_detection, P6.link, I.interaction_type, P7.link,
-            I.experimental_role_region1, P8.link, I.biological_role_region1, P9.link,
-            I.experimental_role_region2, P10.link, I.biological_role_region2, P11.link,
-            I.source, I.crossreference, I.evidence, I.pmid
-            FROM Interaction as I
-                INNER JOIN PSI as P1 ON P1.term_id=I.tax1
-                INNER JOIN PSI as P2 ON P2.term_id=I.tax2
-                INNER JOIN PSI as P3 ON P3.term_id=I.host_id
-                INNER JOIN PSI as P4 ON P4.term_id=I.participant_detection1
-                INNER JOIN PSI as P5 ON P5.term_id=I.participant_detection2
-                INNER JOIN PSI as P6 ON P6.term_id=I.interaction_detection
-                INNER JOIN PSI as P7 ON P7.term_id=I.interaction_type
-                INNER JOIN PSI as P8 ON P8.term_id=I.experimental_role_region1
-                INNER JOIN PSI as P9 ON P9.term_id=I.biological_role_region1
-                INNER JOIN PSI as P10 ON P10.term_id=I.experimental_role_region2
-                INNER JOIN PSI as P11 ON P11.term_id=I.biological_role_region2
+            SELECT I.protein_id1, I.protein_id2, I.reg_p1, I.reg_p2,
+            I.inferred, I.orig_p1, I.orig_p2, I.tax1, P1.link, I.tax2,
+            P2.link, I.host_id, P3.link, I.participant_detection1,
+            P4.link, I.participant_detection2, P5.link,
+            I.interaction_detection, P6.link, I.interaction_type,
+            P7.link, I.experimental_role_region1, P8.link,
+            I.biological_role_region1, P9.link,
+            I.experimental_role_region2, P10.link,
+            I.biological_role_region2, P11.link, I.source,
+            I.crossreference, I.evidence, I.pmid 
+            FROM Interaction as I 
+            INNER JOIN PSI as P1 ON P1.term_id=I.tax1 
+            INNER JOIN PSI as P2 ON P2.term_id=I.tax2 
+            INNER JOIN PSI as P3 ON P3.term_id=I.host_id 
+            INNER JOIN PSI as P4 ON P4.term_id=I.participant_detection1 
+            INNER JOIN PSI as P5 ON P5.term_id=I.participant_detection2 
+            INNER JOIN PSI as P6 ON P6.term_id=I.interaction_detection 
+            INNER JOIN PSI as P7 ON P7.term_id=I.interaction_type 
+            INNER JOIN PSI as P8 ON P8.term_id=I.experimental_role_region1 
+            INNER JOIN PSI as P9 ON P9.term_id=I.biological_role_region1 
+            INNER JOIN PSI as P10 ON P10.term_id=I.experimental_role_region2 
+            INNER JOIN PSI as P11 ON P11.term_id=I.biological_role_region2 
             WHERE (I.protein_id1=%s AND I.protein_id2=%s)
-               OR (I.protein_id1=%s AND I.protein_id2=%s);
+            OR (I.protein_id1=%s AND I.protein_id2=%s);
+
             """,
             (id1, id2, id2, id1)
         )

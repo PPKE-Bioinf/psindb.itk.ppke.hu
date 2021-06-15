@@ -114,13 +114,13 @@ def index(request):
         if search:
             query, query_results = DB.execute_sql(
                 """
-                SELECT DISTINCT Protein.GO, Protein.G2C, 
-                    Protein.Syngo, Protein.Synaptomedb,
-                    Protein.protein_id, Protein.Interactions,
-                    Protein.interacting
-                FROM Protein INNER JOIN Alias 
-                ON Alias.protein_id=Protein.protein_id AND 
-                (Alias.protein_alias LIKE %s OR Alias.protein_id LIKE %s);
+                SELECT DISTINCT Protein.protein_id, Protein.go, 
+                Protein.synaptomedb, Protein.syngo, Protein.g2c,
+                Protein.interactions
+                FROM Protein INNER JOIN Alias ON 
+                Alias.protein_id = Protein.protein_id AND 
+                (Alias.protein_alias LIKE %s OR Alias.protein_id LIKE %s)
+                ORDER BY Protein.interactions;
                 """,
                 ("%" + search + "%", "%" + search + "%",)
             )
@@ -137,13 +137,13 @@ def index(request):
             results = []
 
             for query_result in query_results:
-                evidence_go = query_result[0]
-                evidence_g2c = query_result[1]
-                evidence_syngo = query_result[2]
-                evidence_synaptomedb = query_result[3]
-                protein_id = query_result[4]
+                protein_id = query_result[0]
+                evidence_go = query_result[1]
+                evidence_synaptomedb = query_result[2]
+                evidence_syngo = query_result[3]
+                evidence_g2c = query_result[4]
                 num_interactions = query_result[5]
-                connectivity = query_result[6]
+                # connectivity = query_result[6]
                 # insert_js = create_graph_data(protein_id, connectivity)
 
                 results.append({
@@ -177,6 +177,19 @@ def index(request):
                 FROM Protein INNER JOIN Sets
                     ON Sets.protein_id=Protein.protein_id
                     AND Sets.set_name=%s;
+                """,
+                (browse,)
+            )
+
+            query, query_results = DB.execute_sql(
+                """
+                SELECT Protein.go, Protein.g2c, Protein.syngo,
+                Protein.synaptomedb, Protein.protein_id,
+                Protein.interactions 
+                FROM Protein INNER JOIN Sets 
+                ON Sets.protein_id=Protein.protein_id AND 
+                Sets.set_name=%s 
+                ORDER BY Protein.interactions;
                 """,
                 (browse,)
             )

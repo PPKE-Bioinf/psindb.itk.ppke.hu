@@ -125,7 +125,7 @@
     <tbody>
     {% for fp in fp_mol_func %}
     <tr>
-        <td>{{ fp.term_id }}</td>
+        <td><a href="http://amigo.geneontology.org/amigo/term/{{ fp.term_id }}">{{ fp.term_id }}</a></td>
         <td>{{ fp.des }}</td>
         <td>{{ fp.ontology_number }}</td>
         <td>{{ fp.ontology_level }}</td>
