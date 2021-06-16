@@ -18,10 +18,52 @@
 
 {% block content %}
     <h1>{{ uniprot_id }}</h1>
-    <p>GO: {{ db_data.go }}</p>
-    <p>g2c: {{ db_data.g2c }}</p>
-    <p>SynGO: {{ db_data.SynGO }}</p>
-    <p>Functions: {{ db_data.Functions }}</p>
+
+
+    <h3 id="evidences" class="entry-category">Evidences for PSD localization</h3>
+    <div class="container">
+        <div class="row">
+            <div class="right-flex"><span>GO</span>
+            {% if db_data.go != "no" %}
+                <img src="{% static 'images/check-circle.svg' %}">
+            {% else %}
+                <img src="{% static 'images/circle.svg' %}">
+            {% endif %}</div>
+            <div class="right-flex">
+
+            {% if db_data.g2c != "no" %}
+                <a href="https://www.genes2cognition.org/db/Search?text=SQL2/column3">G2C</a>
+                <img src="{% static 'images/check-circle.svg' %}">
+            {% else %}
+                <span>G2C</span>
+                <img src="{% static 'images/circle.svg' %}">
+            {% endif %}</div>
+
+            <div class="right-flex">
+            {% if db_data.SynGO != "no" %}
+                <a href="https://syngoportal.org/gene.html?HGNC:{{ db_data.SynGO }}">SynGO</a>
+                <img src="{% static 'images/check-circle.svg' %}">
+            {% else %}
+                <span>SynGO</span>
+                <img src="{% static 'images/circle.svg' %}">
+            {% endif %}</div>
+
+            <div class="right-flex">
+            {% if db_data.SynaptomeDB != "no" %}
+                <a href="http://metamoodics.org/SynaptomeDB/synmain/synaptome_all_view.php?editid1={{ db_data.SynaptomeDB }}">SynaptomeDB</a>
+                <img src="{% static 'images/check-circle.svg' %}">
+            {% else %}
+                <span>SynaptomeDB</span>
+                <img src="{% static 'images/circle.svg' %}">
+            {% endif %}</div>
+        </div>
+    </div>
+
+
+    <h3 id="functions" class="entry-category">Functions</h3>
+    <p>{{ db_data.Functions }}</p>
+
+
 
     <h3 id="features" class="entry-category">Protein features</h3>
     <div id="pfv-{{ uniprot_id }}" style="margin-top:15px" ></div>

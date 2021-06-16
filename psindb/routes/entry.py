@@ -748,6 +748,9 @@ def entry(request, uniprot_id,):
         "Functions": sql2[0][5],
     }
 
+    print("DB data")
+    print(db_data)
+
     features_graph_js = create_graph_data(
         uniprot_id,
         transmembrane=sql2[0][6],
