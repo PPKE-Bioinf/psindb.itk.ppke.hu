@@ -534,7 +534,7 @@ def entry(request, uniprot_id,):
     query, sql2 = DB.execute_sql(
         """
         SELECT protein_id, GO, G2C, SynGO, SynaptomeDB, Functions,
-        Transmembrane, HTP, LLPS, ELM, Phos, PFAM, Coiled_coil, Anchor,
+        topology, HTP, LLPS, ELM, phosphorylation, PFAM, coiledcoil, Anchor,
         Disordered, ELM, interacting, sequence
         FROM Protein WHERE protein_id=%s;
         """,
@@ -658,16 +658,18 @@ def entry(request, uniprot_id,):
 
     query, fp_mol_func_sql = DB.execute_sql(
         """
-        SELECT Fingerprint.ontology_type, Fingerprint.ontology_number,
-               Fingerprint.ontology_total1, Fingerprint.ontology_total2,
-               Fingerprint.term_id, Ontology.des, Fingerprint.ontology_level
-        FROM Fingerprint
-            INNER JOIN Ontology ON Fingerprint.protein_id=%s AND
-                    Ontology.term_id=Fingerprint.term_id AND
-                    NOT Fingerprint.ontology_level=0 AND
-                    NOT Fingerprint.ontology_level=1 AND
-                    Fingerprint.ontology_type='molecular function'
-        ORDER BY Fingerprint.ontology_number DESC
+        SELECT Fingerprint.term_id, Ontology.descr, 
+        Fingerprint.ontology_number, Fingerprint.ontology_level 
+        FROM Fingerprint INNER JOIN Ontology ON 
+        Fingerprint.protein_id=%s AND 
+        Ontology.term_id=Fingerprint.term_id AND
+        NOT Fingerprint.ontology_level=0 AND 
+        NOT Fingerprint.ontology_level=1 AND 
+        Fingerprint.ontology_type='molecular function' AND 
+        Fingerprint.ontology_level>3 AND 
+        Fingerprint.ontology_number>1 
+        ORDER BY cast(Fingerprint.ontology_number as SIGNED)
+        DESC;
         """,
         (uniprot_id,)
     )
@@ -675,27 +677,26 @@ def entry(request, uniprot_id,):
     fp_mol_func = []
     for fp in fp_mol_func_sql:
         fp_mol_func.append({
-            "ontology_type": fp[0],
-            "ontology_number": fp[1],
-            "ontology_total1": fp[2],
-            "ontology_total2": fp[3],
-            "term_id": fp[4],
-            "des": fp[5],
-            "ontology_level": fp[6]
+            "term_id": fp[0],
+            "des": fp[1],
+            "ontology_number": fp[2],
+            "ontology_level": fp[3]
         })
 
     query, fp_biol_proc_sql = DB.execute_sql(
         """
-        SELECT Fingerprint.ontology_type, Fingerprint.ontology_number,
-               Fingerprint.ontology_total1, Fingerprint.ontology_total2,
-               Fingerprint.term_id, Ontology.des, Fingerprint.ontology_level
-        FROM Fingerprint
-            INNER JOIN Ontology ON Fingerprint.protein_id=%s AND
-                    Ontology.term_id=Fingerprint.term_id AND
-                    NOT Fingerprint.ontology_level=0 AND
-                    NOT Fingerprint.ontology_level=1 AND
-                    Fingerprint.ontology_type='biological process'
-        ORDER BY Fingerprint.ontology_number DESC
+        SELECT Fingerprint.term_id, Ontology.descr, 
+        Fingerprint.ontology_number, Fingerprint.ontology_level
+        FROM Fingerprint INNER JOIN Ontology ON 
+        Fingerprint.protein_id=%s AND 
+        Ontology.term_id=Fingerprint.term_id AND 
+        NOT Fingerprint.ontology_level=0 AND 
+        NOT Fingerprint.ontology_level=1 AND 
+        Fingerprint.ontology_type='biological process' AND 
+        Fingerprint.ontology_level>3 AND 
+        Fingerprint.ontology_number>1 
+        ORDER BY cast(Fingerprint.ontology_number as SIGNED) 
+        DESC;
         """,
         (uniprot_id,)
     )
@@ -703,27 +704,26 @@ def entry(request, uniprot_id,):
     fp_biol_proc = []
     for fp in fp_biol_proc_sql:
         fp_biol_proc.append({
-            "ontology_type": fp[0],
-            "ontology_number": fp[1],
-            "ontology_total1": fp[2],
-            "ontology_total2": fp[3],
-            "term_id": fp[4],
-            "des": fp[5],
-            "ontology_level": fp[6]
+            "term_id": fp[0],
+            "des": fp[1],
+            "ontology_number": fp[2],
+            "ontology_level": fp[3]
         })
 
     query, fp_disease_sql = DB.execute_sql(
         """
-        SELECT Fingerprint.ontology_type, Fingerprint.ontology_number,
-               Fingerprint.ontology_total1, Fingerprint.ontology_total2,
-               Fingerprint. term_id, Ontology.des, Fingerprint.ontology_level
-        FROM Fingerprint
-            INNER JOIN Ontology ON Fingerprint.protein_id=%s AND
-                                   Ontology.term_id=Fingerprint.term_id AND
-                                   NOT Fingerprint.ontology_level=0 AND
-                                   NOT Fingerprint.ontology_level=1 AND
-                                   Fingerprint.ontology_type='disease'
-        ORDER BY Fingerprint.ontology_number DESC
+        SELECT Fingerprint.term_id, Ontology.descr,
+        Fingerprint.ontology_number, Fingerprint.ontology_level
+        FROM Fingerprint INNER JOIN Ontology 
+        ON Fingerprint.protein_id=%s AND 
+        Ontology.term_id=Fingerprint.term_id AND 
+        NOT Fingerprint.ontology_level=0 AND 
+        NOT Fingerprint.ontology_level=1 AND 
+        Fingerprint.ontology_type='disease' AND 
+        Fingerprint.ontology_level>2 AND 
+        Fingerprint.ontology_number>1 
+        ORDER BY cast(Fingerprint.ontology_number as SIGNED)
+        DESC;
                 """,
         (uniprot_id,)
     )
@@ -731,13 +731,10 @@ def entry(request, uniprot_id,):
     fp_disease = []
     for fp in fp_disease_sql:
         fp_disease.append({
-            "ontology_type": fp[0],
-            "ontology_number": fp[1],
-            "ontology_total1": fp[2],
-            "ontology_total2": fp[3],
-            "term_id": fp[4],
-            "des": fp[5],
-            "ontology_level": fp[6]
+            "term_id": fp[0],
+            "des": fp[1],
+            "ontology_number": fp[2],
+            "ontology_level": fp[3]
         })
 
     db_data = {

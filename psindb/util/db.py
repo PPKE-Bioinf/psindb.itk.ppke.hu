@@ -49,6 +49,9 @@ class DB:
                     print(
                         f"DB connection lost. Reconnecting ({i})...")
 
+                    print("ERROR")
+                    print(e)
+
                     time.sleep(cls.retry_wait)
 
                     try:
@@ -60,6 +63,9 @@ class DB:
                         print(
                             "Can't establish DB connection, waiting for retry"
                         )
+
+                        print("ERROR")
+                        print(e)
 
                         time.sleep(30)
 
