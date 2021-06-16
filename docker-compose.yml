@@ -9,6 +9,7 @@ services:
       - psindb-db
     links:
       - psindb-db
+    restart: unless-stopped
 
   psindb-db:
     image: mariadb:10.3
