@@ -32,7 +32,7 @@
             <div class="right-flex">
 
             {% if db_data.g2c != "no" %}
-                <a href="https://www.genes2cognition.org/db/Search?text=SQL2/column3">G2C</a>
+                <a href="https://www.genes2cognition.org/db/Search?text={{ db_data.g2c }}">G2C</a>
                 <img src="{% static 'images/check-circle.svg' %}">
             {% else %}
                 <span>G2C</span>
@@ -61,8 +61,9 @@
 
 
     <h3 id="functions" class="entry-category">Functions</h3>
+    {% autoescape off %}
     <p>{{ db_data.Functions }}</p>
-
+    {% endautoescape %}
 
 
     <h3 id="features" class="entry-category">Protein features</h3>

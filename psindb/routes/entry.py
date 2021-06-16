@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from psindb.util.db import DB
+import re
 
 
 def chunks(l, n):
@@ -737,12 +738,19 @@ def entry(request, uniprot_id,):
             "ontology_level": fp[3]
         })
 
+    functions_desc = sql2[0][5]
+    functions_desc = re.sub(
+        r" \((PubMed):(\d*)\).",
+        r'. <a href="https://pubmed.ncbi.nlm.nih.gov/\2">[\1]</a>',
+        functions_desc
+    )
+
     db_data = {
         "go": sql2[0][1],
         "g2c": sql2[0][2],
         "SynGO": sql2[0][3],
         "SynaptomeDB": sql2[0][4],
-        "Functions": sql2[0][5],
+        "Functions": functions_desc,
     }
 
     print("DB data")
