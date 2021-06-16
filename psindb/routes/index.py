@@ -170,26 +170,14 @@ def index(request):
 
             query, query_results = DB.execute_sql(
                 """
-                SELECT Protein.GO, Protein.G2C,
-                    Protein.Syngo, Protein.Synaptomedb,
-                    Protein.protein_id, Protein.Interactions,
-                    Protein.interacting
-                FROM Protein INNER JOIN Sets
-                    ON Sets.protein_id=Protein.protein_id
-                    AND Sets.set_name=%s;
-                """,
-                (browse,)
-            )
-
-            query, query_results = DB.execute_sql(
-                """
                 SELECT Protein.go, Protein.g2c, Protein.syngo,
                 Protein.synaptomedb, Protein.protein_id,
                 Protein.interactions 
                 FROM Protein INNER JOIN Sets 
                 ON Sets.protein_id=Protein.protein_id AND 
                 Sets.set_name=%s 
-                ORDER BY Protein.interactions;
+                ORDER BY Protein.interactions
+                DESC;
                 """,
                 (browse,)
             )
@@ -212,7 +200,7 @@ def index(request):
                 evidence_synaptomedb = query_result[3]
                 protein_id = query_result[4]
                 num_interactions = query_result[5]
-                connectivity = query_result[6]
+                # connectivity = query_result[6]
                 # insert_js = create_graph_data(protein_id, connectivity)
 
                 results.append({
