@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}PSINDB{% endblock %}
+
+{% block content %}
+    <h1 class="lonely">Server manual</h1>
+
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-sm">#}
+                <h4>Selection of Postsynaptic Density (PSD) proteins</h4>
+                <div class="manual-content">
+                    <p>
+                        We used 4 resources to define the postsynaptic density proteome:
+                        SynaptomeDB (<a href="http://metamoodics.org/SynaptomeDB/index.php">http://metamoodics.org/SynaptomeDB/index.php</a>),
+                        G2C (<a href="https://www.genes2cognition.org/">https://www.genes2cognition.org/</a>),
+                        SynGO (<a href="https://syngoportal.org/">https://syngoportal.org/</a> )and
+                        Gene ontology annotations (<a href="http://geneontology.org/">http://geneontology.org/</a>).
+                        For all proteins listed in any of these resources we collected interactions from various sources.
+                    </p>
+                </div>
+                <h4>Comprehensive collection of PSD protein-protein interactions (PPIs)</h4>
+                <div class="manual-content">
+                    <p>
+                        We collected over 3000 experiments from the literature describing PPIs using MIMIx
+                        (<a href="https://pubmed.ncbi.nlm.nih.gov/17687370/">https://pubmed.ncbi.nlm.nih.gov/17687370/</a>)
+                        standards. During the collection we aimed to look for papers that were not included in other
+                        similar resources. To have a more complete collection of PSD Interactome we also display
+                        interactions from IntAct (<a href="https://www.ebi.ac.uk/intact/">https://www.ebi.ac.uk/intact/</a>)
+                        and BIOGRID (<a href="https://thebiogrid.org/">https://thebiogrid.org/</a>) databases.
+                        In addition, we scanned the PDB database (<a href="https://www.rcsb.org/">https://www.rcsb.org/</a>)
+                        for complexes that have interacting residues. Furthermore, computational evidences from the STRING
+                        (<a href="https://string-db.org/">https://string-db.org/</a>) database also displayed
+                        (above 0.8 cutoff score).
+                    </p>
+                </div>
+                <div class="manual-content">
+                    <p>
+                        When defining PPIs it is a common and necessary step to check whether the proposed partners
+                        co-occure in the same cellular compartment, giving biological significance to the experiment.
+                        In this case, all proteins were collected from the same subcellular localization, thus further
+                        filters were not applied. However, we discarded interaction data that were only confirmed
+                        using co-localization or proximity.
+                    </p>
+                </div>
+                 <div class="manual-content">
+                    <p>
+                        PSINDB displays the interaction between human PSD proteins. We considered evidences from mouse
+                        and rat experiments too – in this case the interaction was always mapped back the the
+                        orthologous human protein, using OMA
+                        (<a href="https://omabrowser.org/oma/home/">https://omabrowser.org/oma/home/</a>)
+                        orthologous database and gene names.
+                </div>
+
+                <h4>Navigating on the PSINDB database</h4>
+{#            </div>#}
+{#            <div class="col-sm">#}
+{#                <h4>Hi I am the manual page</h4>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{% endblock %}
