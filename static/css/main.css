@@ -71,7 +71,7 @@ td, th {
 
 ul.browse-list {
     list-style-type: square;
-    font-size: 180%;
+    font-size: 160%;
 }
 
 h1.lonely {
@@ -180,4 +180,19 @@ h4.fingerprint-category {
 
 tr.partner-psd-row td {
     background-color: #bbd7ce;
+}
+
+p.server-description {
+    margin-top: 28px;
+}
+
+div.description-div {
+    margin-left: 41px;
+    border-left-width: 4px;
+    border-left-style: solid;
+    padding-left: 10px;
+}
+
+div.manual-content {
+    text-align: justify;
 }
