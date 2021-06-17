@@ -24,22 +24,28 @@
                     {% else %}
                         <img src="{% static 'images/circle.svg' %}">
                     {% endif %}</div>
-                    <div class="left-flex"><span class="evidence">G2C</span>
+                    <div class="left-flex">
                     {% if result.evidence_g2c != "no" %}
+                        <a href="https://www.genes2cognition.org/db/Search?text={{ result.evidence_g2c }}">G2C</a>
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
+                        <span class="evidence">G2C</span>
                         <img src="{% static 'images/circle.svg' %}">
                     {% endif %}</div>
-                    <div class="left-flex"><span class="evidence">SynGO</span>
+                    <div class="left-flex">
                     {% if result.evidence_syngo != "no" %}
+                        <a href="https://syngoportal.org/gene.html?HGNC:{{ result.evidence_syngo }}">SynGO</a>
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
+                        <span class="evidence">SynGO</span>
                         <img src="{% static 'images/circle.svg' %}">
                     {% endif %}</div>
-                    <div class="left-flex"><span class="evidence">SynaptomeDB</span>
+                    <div class="left-flex">
                     {% if result.evidence_synaptomedb != "no" %}
+                        <a href="http://metamoodics.org/SynaptomeDB/synmain/synaptome_all_view.php?editid1={{ result.evidence_synaptomedb }}">SynaptomeDB</a>
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
+                        <span class="evidence">SynaptomeDB</span>
                         <img src="{% static 'images/circle.svg' %}">
                     {% endif %}</div>
                 </div>

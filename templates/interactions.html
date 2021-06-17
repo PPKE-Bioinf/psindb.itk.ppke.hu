@@ -26,22 +26,28 @@
             {% else %}
                 <img src="{% static 'images/circle.svg' %}">
             {% endif %}</div>
-            <div class="right-flex"><span>G2C</span>
+            <div class="right-flex">
             {% if id1_db.g2c != "no" %}
+                <a href="https://www.genes2cognition.org/db/Search?text={{ id1_db.g2c }}">G2C</a>
                 <img src="{% static 'images/check-circle.svg' %}">
             {% else %}
+                <span>G2C</span>
                 <img src="{% static 'images/circle.svg' %}">
             {% endif %}</div>
-            <div class="right-flex"><span>SynGO</span>
+            <div class="right-flex">
             {% if id1_db.syngo != "no" %}
+                 <a href="https://syngoportal.org/gene.html?HGNC:{{ id1_db.syngo }}">SynGO</a>
                 <img src="{% static 'images/check-circle.svg' %}">
             {% else %}
+                <span>SynGO</span>
                 <img src="{% static 'images/circle.svg' %}">
             {% endif %}</div>
-            <div class="right-flex"><span>SynaptomeDB</span>
+            <div class="right-flex">
             {% if id1_db.synaptomedb != "no" %}
+                <a href="http://metamoodics.org/SynaptomeDB/synmain/synaptome_all_view.php?editid1={{ id1_db.synaptomedb }}">SynaptomeDB</a>
                 <img src="{% static 'images/check-circle.svg' %}">
             {% else %}
+                <span>SynaptomeDB</span>
                 <img src="{% static 'images/circle.svg' %}">
             {% endif %}</div>
 
@@ -56,22 +62,28 @@
             {% else %}
                 <img src="{% static 'images/circle.svg' %}">
             {% endif %}</div>
-            <div class="right-flex"><span>G2C</span>
+            <div class="right-flex">
             {% if id2_db.g2c != "no" %}
+                <a href="https://www.genes2cognition.org/db/Search?text={{ id2_db.g2c }}">G2C</a>
                 <img src="{% static 'images/check-circle.svg' %}">
             {% else %}
+                <span>G2C</span>
                 <img src="{% static 'images/circle.svg' %}">
             {% endif %}</div>
-            <div class="right-flex"><span>SynGO</span>
+            <div class="right-flex">
             {% if id2_db.syngo != "no" %}
+                 <a href="https://syngoportal.org/gene.html?HGNC:{{ id2_db.syngo }}">SynGO</a>
                 <img src="{% static 'images/check-circle.svg' %}">
             {% else %}
+                <span>SynGO</span>
                 <img src="{% static 'images/circle.svg' %}">
             {% endif %}</div>
-            <div class="right-flex"><span>SynaptomeDB</span>
+            <div class="right-flex">
             {% if id2_db.synaptomedb != "no" %}
+                <a href="http://metamoodics.org/SynaptomeDB/synmain/synaptome_all_view.php?editid1={{ id2_db.synaptomedb }}">SynaptomeDB</a>
                 <img src="{% static 'images/check-circle.svg' %}">
             {% else %}
+                <span>SynaptomeDB</span>
                 <img src="{% static 'images/circle.svg' %}">
             {% endif %}</div>
 
