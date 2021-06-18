@@ -745,6 +745,8 @@ def entry(request, uniprot_id,):
         functions_desc
     )
 
+    functions_desc += ""
+
     db_data = {
         "go": sql2[0][1],
         "g2c": sql2[0][2],

@@ -1,0 +1,1 @@
+[{"accession":"PCDH8_HUMAN","name":"PCDH8_HUMAN","interactions":[{"accession1":"PCDH8_HUMAN","accession2":"TNIK_HUMAN","experiments":1}]},{"accession":"TNIK_HUMAN","name":"TNIK_HUMAN","interactions":[{"accession1":"TNIK_HUMAN","accession2":"PCDH8_HUMAN","experiments":1},{"accession1":"TNIK_HUMAN","accession2":"TNIK_HUMAN","experiments":2}]}]

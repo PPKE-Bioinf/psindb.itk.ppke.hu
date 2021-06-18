@@ -1,0 +1,1 @@
+[{"accession":"K0513_HUMAN","name":"K0513_HUMAN","interactions":[{"accession1":"K0513_HUMAN","accession2":"A4_HUMAN","experiments":1}]},{"accession":"A4_HUMAN","name":"A4_HUMAN","interactions":[{"accession1":"A4_HUMAN","accession2":"K0513_HUMAN","experiments":1},{"accession1":"A4_HUMAN","accession2":"A4_HUMAN","experiments":10}]}]

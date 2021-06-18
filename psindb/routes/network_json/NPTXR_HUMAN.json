@@ -1,0 +1,1 @@
+[{"accession":"NPTXR_HUMAN","name":"NPTXR_HUMAN","interactions":[{"accession1":"NPTXR_HUMAN","accession2":"NPTX1_HUMAN","experiments":1}]},{"accession":"NPTX1_HUMAN","name":"NPTX1_HUMAN","interactions":[{"accession1":"NPTX1_HUMAN","accession2":"NPTXR_HUMAN","experiments":1},{"accession1":"NPTX1_HUMAN","accession2":"NPTX1_HUMAN","experiments":0}]}]

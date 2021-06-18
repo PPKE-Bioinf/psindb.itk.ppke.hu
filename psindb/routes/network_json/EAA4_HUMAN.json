@@ -1,0 +1,1 @@
+[{"accession":"EAA4_HUMAN","name":"EAA4_HUMAN","interactions":[{"accession1":"EAA4_HUMAN","accession2":"SPTN2_HUMAN","experiments":1}]},{"accession":"SPTN2_HUMAN","name":"SPTN2_HUMAN","interactions":[{"accession1":"SPTN2_HUMAN","accession2":"EAA4_HUMAN","experiments":1}]}]

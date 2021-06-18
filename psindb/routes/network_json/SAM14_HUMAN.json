@@ -1,0 +1,1 @@
+[{"accession":"SAM14_HUMAN","name":"SAM14_HUMAN","interactions":[{"accession1":"SAM14_HUMAN","accession2":"KCC2A_HUMAN","experiments":1}]},{"accession":"KCC2A_HUMAN","name":"KCC2A_HUMAN","interactions":[{"accession1":"KCC2A_HUMAN","accession2":"SAM14_HUMAN","experiments":1},{"accession1":"KCC2A_HUMAN","accession2":"KCC2A_HUMAN","experiments":10}]}]

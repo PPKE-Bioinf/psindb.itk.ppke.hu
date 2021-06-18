@@ -1,0 +1,1 @@
+[{"accession":"DGLA_HUMAN","name":"DGLA_HUMAN","interactions":[{"accession1":"DGLA_HUMAN","accession2":"STOM_HUMAN","experiments":3}]},{"accession":"STOM_HUMAN","name":"STOM_HUMAN","interactions":[{"accession1":"STOM_HUMAN","accession2":"DGLA_HUMAN","experiments":3},{"accession1":"STOM_HUMAN","accession2":"STOM_HUMAN","experiments":10}]}]

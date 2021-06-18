@@ -1,0 +1,1 @@
+[{"accession":"KCND1_HUMAN","name":"KCND1_HUMAN","interactions":[{"accession1":"KCND1_HUMAN","accession2":"KCAB2_HUMAN","experiments":1}]},{"accession":"KCAB2_HUMAN","name":"KCAB2_HUMAN","interactions":[{"accession1":"KCAB2_HUMAN","accession2":"KCND1_HUMAN","experiments":1},{"accession1":"KCAB2_HUMAN","accession2":"KCAB2_HUMAN","experiments":10}]}]

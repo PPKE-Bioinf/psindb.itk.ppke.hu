@@ -1,0 +1,1 @@
+[{"accession":"LEG12_HUMAN","name":"LEG12_HUMAN","interactions":[{"accession1":"LEG12_HUMAN","accession2":"CLCN3_HUMAN","experiments":1}]},{"accession":"CLCN3_HUMAN","name":"CLCN3_HUMAN","interactions":[{"accession1":"CLCN3_HUMAN","accession2":"LEG12_HUMAN","experiments":1},{"accession1":"CLCN3_HUMAN","accession2":"CLCN3_HUMAN","experiments":1}]}]

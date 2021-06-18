@@ -1,0 +1,1 @@
+[{"accession":"ZDHC2_HUMAN","name":"ZDHC2_HUMAN","interactions":[{"accession1":"ZDHC2_HUMAN","accession2":"CKAP4_HUMAN","experiments":1}]},{"accession":"CKAP4_HUMAN","name":"CKAP4_HUMAN","interactions":[{"accession1":"CKAP4_HUMAN","accession2":"ZDHC2_HUMAN","experiments":1},{"accession1":"CKAP4_HUMAN","accession2":"CKAP4_HUMAN","experiments":2}]}]
