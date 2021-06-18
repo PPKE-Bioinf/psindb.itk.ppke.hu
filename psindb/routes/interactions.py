@@ -37,9 +37,9 @@ def create_graph_data(protein_id, num, connectivity, row_title=""):
     value_colors = {
         "1": "#4a2226",
         "2": "#705080",
-        "3": "#879cac",
-        "4": "#a9d1d5",
-        "5": "#32a481",
+        "3": "#32a481",
+        "4": "#879cac",
+        "5": "#a9d1d5",
     }
 
     value_display_ids = {

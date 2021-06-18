@@ -104,8 +104,8 @@ def get_binary_data_list(data):
     })
 
     value_colors = {
-        "1": "#32a481",
-        "0": "#879cac",
+        "1": "#a9d1d5",
+        "0": "#32a481",
     }
 
     value_display_ids = {
@@ -163,9 +163,9 @@ def generate_connectivity_data_list(connectivity):
     value_colors = {
         "1": "#4a2226",
         "2": "#705080",
-        "3": "#879cac",
-        "4": "#a9d1d5",
-        "5": "#32a481",
+        "3": "#32a481",
+        "4": "#879cac",
+        "5": "#a9d1d5",
     }
 
     value_display_ids = {
