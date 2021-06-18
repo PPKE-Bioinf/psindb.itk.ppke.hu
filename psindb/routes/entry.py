@@ -197,6 +197,7 @@ def generate_connectivity_data_list(connectivity):
 def create_graph_data(
         protein_id,
         transmembrane=None,
+        htp=None,
         llps=None,
         elm=None,
         phosphorylation=None,
@@ -205,6 +206,7 @@ def create_graph_data(
         anchor=None,
         disordered=None,
         connectivity=None,
+        phasepro=None,
         sequence=None,
 ):
     transmembrane_data_list = generate_transmembrane_data_list(transmembrane)
@@ -216,6 +218,33 @@ def create_graph_data(
     anchor_data_list = get_binary_data_list(anchor)
     disordered_data_list = get_binary_data_list(disordered)
     connectivity_data_list = generate_connectivity_data_list(connectivity)
+
+    transmembrane_row_title = '"Transmembrane"'
+
+    if htp != "-":
+        transmembrane_row_title = f"""
+            RcsbFvLink = {{
+                visibleTex: "Transmembrane",
+                url: "http://htp.enzim.hu/?_=/viewer/{htp}"
+            }}
+            """
+
+    llps_row_title = '"Phase separation"'
+
+    if phasepro != "-":
+        llps_row_title = f"""
+        RcsbFvLink = {{
+            visibleTex: "Phase separation",
+            url: "http://pfam.xfam.org/protein/{phasepro}"
+        }}
+        """
+
+    pfam_row_title = f"""
+    RcsbFvLink = {{
+        visibleTex: "PFAM",
+        url: "http://pfam.xfam.org/protein/{protein_id}"
+    }}
+    """
 
     js = f"""
     $(document).ready(function(){{
@@ -234,7 +263,7 @@ def create_graph_data(
     trackHeight: 20,
     trackColor: "#F9F9F9",
     displayType: "composite",
-    rowTitle: "Transmembrane",
+    rowTitle: {transmembrane_row_title},
     displayConfig: {transmembrane_data_list}
   }},
   {{
@@ -242,7 +271,7 @@ def create_graph_data(
     trackHeight: 20,
     trackColor: "#F9F9F9",
     displayType: "composite",
-    rowTitle: "LLPS",
+    rowTitle: {llps_row_title},
     displayConfig: {llps_data_list}
   }},
   {{
@@ -266,7 +295,7 @@ def create_graph_data(
     trackHeight: 20,
     trackColor: "#F9F9F9",
     displayType: "composite",
-    rowTitle: "PFAM",
+    rowTitle: {pfam_row_title},
     displayConfig: {pfam_data_list}
   }},
   {{
@@ -282,7 +311,7 @@ def create_graph_data(
     trackHeight: 20,
     trackColor: "#F9F9F9",
     displayType: "composite",
-    rowTitle: "Disordered binding regions",
+    rowTitle: "Anchor",
     displayConfig: {anchor_data_list}
   }},
   {{
@@ -536,7 +565,7 @@ def entry(request, uniprot_id,):
         """
         SELECT protein_id, GO, G2C, SynGO, SynaptomeDB, Functions,
         topology, HTP, LLPS, ELM, phosphorylation, PFAM, coiledcoil, Anchor,
-        Disordered, ELM, interacting, sequence
+        Disordered, ELM, interacting, sequence, phasepro
         FROM Protein WHERE protein_id=%s;
         """,
         (uniprot_id,)
@@ -761,6 +790,7 @@ def entry(request, uniprot_id,):
     features_graph_js = create_graph_data(
         uniprot_id,
         transmembrane=sql2[0][6],
+        htp=sql2[0][7],
         llps=sql2[0][8],
         elm=sql2[0][9],
         phosphorylation=sql2[0][10],
@@ -770,6 +800,7 @@ def entry(request, uniprot_id,):
         disordered=sql2[0][14],
         connectivity=sql2[0][16],
         sequence=sql2[0][17],
+        phasepro=sql2[0][18],
     )
 
     partner_data = create_partner_data(uniprot_id, sql3)
