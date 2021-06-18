@@ -745,7 +745,7 @@ def entry(request, uniprot_id,):
         functions_desc
     )
 
-    functions_desc += ""
+    functions_desc += f' <a href="https://www.uniprot.org/uniprot/{uniprot_id}">[View more on UniProt]</a>'
 
     db_data = {
         "go": sql2[0][1],

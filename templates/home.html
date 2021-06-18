@@ -24,22 +24,28 @@
                     {% else %}
                         <img src="{% static 'images/circle.svg' %}">
                     {% endif %}</div>
-                    <div class="left-flex"><span class="evidence">G2C</span>
+                    <div class="left-flex">
                     {% if result.evidence_g2c != "no" %}
+                        <a href="https://www.genes2cognition.org/db/Search?text={{ result.evidence_g2c }}">G2C</a>
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
+                        <span class="evidence">G2C</span>
                         <img src="{% static 'images/circle.svg' %}">
                     {% endif %}</div>
-                    <div class="left-flex"><span class="evidence">SynGO</span>
+                    <div class="left-flex">
                     {% if result.evidence_syngo != "no" %}
+                        <a href="https://syngoportal.org/gene.html?HGNC:{{ result.evidence_syngo }}">SynGO</a>
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
+                        <span class="evidence">SynGO</span>
                         <img src="{% static 'images/circle.svg' %}">
                     {% endif %}</div>
-                    <div class="left-flex"><span class="evidence">SynaptomeDB</span>
+                    <div class="left-flex">
                     {% if result.evidence_synaptomedb != "no" %}
+                        <a href="http://metamoodics.org/SynaptomeDB/synmain/synaptome_all_view.php?editid1={{ result.evidence_synaptomedb }}">SynaptomeDB</a>
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
+                        <span class="evidence">SynaptomeDB</span>
                         <img src="{% static 'images/circle.svg' %}">
                     {% endif %}</div>
                 </div>
@@ -56,17 +62,43 @@
     {% endif %}
 
     {% if show_browse_list %}
-        <h1 class="lonely">Select a category to browse:</h1>
-        <ul class="browse-list">
-            <li><a href="/?browse=scaffold">Scaffold proteins</a></li>
-            <li><a href="/?browse=cytoskeletal">Cytoskeletal proteins</a></li>
-            <li><a href="/?browse=membrane">Transmembrane proteins</a></li>
-            <li><a href="/?browse=cc">Coiled-coil containing proteins</a></li>
-            <li><a href="/?browse=llps">Phase separation</a></li>
-            <li><a href="/?browse=hub">Hub proteins</a></li>
-            <li><a href="/?browse=Structure">With structural evidence</a></li>
-            <li><a href="/?browse=Literature">With literature evidence</a></li>
-        </ul>
+        <div class="container interactions-header">
+            <div class="row">
+                <div class="col-sm">
+                    <h1 class="lonely">Select a category to browse:</h1>
+                    <ul class="browse-list">
+                        <li><a href="/?browse=scaffold">Scaffold proteins</a></li>
+                        <li><a href="/?browse=cytoskeletal">Cytoskeletal proteins</a></li>
+                        <li><a href="/?browse=membrane">Transmembrane proteins</a></li>
+                        <li><a href="/?browse=cc">Coiled-coil containing proteins</a></li>
+                        <li><a href="/?browse=llps">Phase separation</a></li>
+                        <li><a href="/?browse=hub">Hub proteins</a></li>
+                        <li><a href="/?browse=Structure">With structural evidence</a></li>
+                        <li><a href="/?browse=Literature">With literature evidence</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm">
+                    <div class="description-div">
+                    <p class="server-description">The PostSynaptic INteraction DataBase is a comprehensive resources of
+                        the human postsynaptic density (PSD) binary protein-protein interactions. It contains
+                        experimental and computational evidences about interactions, along with structural and disease
+                        related information about the human PSD proteins.</p>
+
+                    <p class="server-description">
+                        You can read more about the database in the descriptive article or in the database manual.</p>
+
+                        For the usage of the PSINDB homepage please refer to the server manual.
+                        If you find our database useful, please cite it:</p>
+
+                    <p class="server-description">
+                        <i>Zsofia E. Kalman, Daniel Dudola, Balint Meszaros, Zoltan Gaspari, Laszlo Dobson
+                        PSINDB: A comprehensive collection of Protein-Protein
+                        Interactions in the postsynaptic density</i>
+                    </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endif %}
 
     {% if error %}
