@@ -430,6 +430,13 @@ def create_isoform_data(
         isoform_name = isoform[0]
         isoform_seq = isoform[1]
 
+        isoform_row_title = f"""
+        RcsbFvLink = {{
+            visibleTex: "Isoform [{isoform_name}]",
+            url: "https://www.uniprot.org/uniprot/{isoform_name}"
+        }}
+        """
+
         isoform_tracks += f"""
         ,{{
         trackId: "compositeSequence_mini_{isoform_name}",
@@ -445,7 +452,7 @@ def create_isoform_data(
             trackColor: "#F9F9F9",
             displayType: "sequence",
             nonEmptyDisplay: true,
-            rowTitle: "Isoform [{isoform_name}]",
+            rowTitle: {isoform_row_title},
             trackData: [
                 {{
                     begin: 1,
@@ -650,7 +657,7 @@ def entry(request, uniprot_id,):
 
     query, disease_sql = DB.execute_sql(
         """
-        SELECT posi, original, mutation, descr, in_region
+        SELECT posi, original, mutation, descr, in_region, mim, partner
         FROM Mendeley WHERE protein_id=%s;
         """,
         (uniprot_id,)
@@ -659,12 +666,16 @@ def entry(request, uniprot_id,):
     diseases = []
 
     for disease in disease_sql:
+        print("PARTNER")
+        print(disease[6])
         diseases.append({
             "position": disease[0],
             "original": disease[1],
             "mutation": disease[2],
             "descr": disease[3],
             "in_region": disease[4],
+            "mim": disease[5],
+            "partner": disease[6].split(";"),
         })
 
     query, linear_motifs_sql = DB.execute_sql(

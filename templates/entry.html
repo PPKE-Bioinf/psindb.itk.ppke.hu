@@ -86,13 +86,16 @@
 
 
     <h3 id="isoform" class="entry-category">Isoforms</h3>
-
+    {% if isoforms %}
     <div id="pfv-isoform" style="margin-top:15px" ></div>
     <script type="text/javascript">
     {% autoescape off %}
     {{ isoforms.connectivity }}
     {% endautoescape %}
     </script>
+    {% else %}
+        <p>No data found.</p>
+    {% endif %}
 
 
     <h3 id="disease" class="entry-category">Disease</h3>
@@ -104,6 +107,7 @@
         <th>Amino acid</th>
         <th>Mutation</th>
         <th>Disease</th>
+        <th>Partner</th>
     </tr>
     {% for disease in diseases %}
         {% if disease.in_region == "yes" %}
@@ -115,7 +119,12 @@
         <td>{{ disease.position }}</td>
         <td>{{ disease.original }}</td>
         <td>{{ disease.mutation }}</td>
-        <td>{{ disease.descr }}</td>
+        <td><a href="https://www.omim.org/entry/{{ disease.mim }}">{{ disease.descr }}</a></td>
+        <td>
+            {% for p in disease.partner %}
+                [<a href="interactions?id1={{ uniprot_id }}&id2={{ p }}">{{ p }}</a>]
+            {% endfor %}
+        </td>
     </tr>
     {% endfor %}
     </table>
