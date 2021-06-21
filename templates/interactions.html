@@ -123,7 +123,11 @@
                     </tr>
                     <tr>
                         <td>Taxonomy:</td>
-                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.tax_link_1 }}">{{ result.tax_1 }}</a></td>
+                        {% if result.tax_link_1 == "-1" %}
+                        <td>-</td>
+                        {% else %}
+                        <td><a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{ result.tax_link_1 }}">{{ result.tax_1 }}</a></td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>Experimental role:</td>
@@ -135,7 +139,11 @@
                     </tr>
                     <tr>
                         <td>Participant detection method:</td>
+                        {% if result.source == "STRING" %}
+                        <td>-</td>
+                        {% else %}
                         <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.participant_detection_link_1 }}">{{ result.participant_detection_method_1 }}</a></td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td></td>
@@ -143,7 +151,11 @@
                     </tr>
                     <tr>
                         <td>Host:</td>
-                        <td>{{ result.host }}</td>
+                        {% if result.host_id == "-1" %}
+                        <td>-</td>
+                        {% else %}
+                        <td><a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{ result.host_id }}">{{ result.host }}</a></td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>Interaction detection method:</td>
@@ -180,7 +192,11 @@
                     </tr>
                     <tr>
                         <td>Taxonomy:</td>
-                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.tax_link_2 }}">{{ result.tax_2 }}</a></td>
+                        {% if result.tax_link_2 == "-1" %}
+                        <td>-</td>
+                        {% else %}
+                        <td><a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{ result.tax_link_2 }}">{{ result.tax_2 }}</a></td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td>Experimental role:</td>
@@ -192,7 +208,11 @@
                     </tr>
                     <tr>
                         <td>Participant detection method:</td>
+                        {% if result.source == "STRING" %}
+                        <td>-</td>
+                        {% else %}
                         <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.participant_detection_link_2 }}">{{ result.participant_detection_method_2 }}</a></td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td></td>

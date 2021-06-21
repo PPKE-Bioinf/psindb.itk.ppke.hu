@@ -257,7 +257,7 @@ def interactions(request):
                 "tax_2": result[9],
                 "tax_link_2": result[10],
                 "host": result[11],
-                "host_ink": result[12],
+                "host_id": result[12],
                 "participant_detection_method_1": result[13],
                 "participant_detection_link_1": result[14],
                 "participant_detection_method_2": result[15],
