@@ -238,4 +238,8 @@
 
     {% endfor %}
     {% endif %}
+
+    {% if error %}
+        <h1 class="lonely">{{ error }}</h1>
+    {% endif %}
 {% endblock %}
