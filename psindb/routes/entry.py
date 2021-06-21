@@ -346,7 +346,7 @@ def create_graph_data(
   }}
 ];
 
-const elementId = "pfv-{protein_id}";
+const elementId = "pfv-{protein_id}-features";
 const pfv = new RcsbFv.Create({{
             boardConfigData,
             rowConfigData,
@@ -514,12 +514,24 @@ const pfv = new RcsbFv.Create({{
 def create_partner_data(uniprot_id, partners):
     partner_data_list = []
     for partner in partners:
+        print("PARTNER")
+        print(partner)
         partner_name = partner[0]
         partner_connectivity = partner[1]
+        partner_connectivity2 = partner[2]
 
         connectivity_data_list = generate_connectivity_data_list(
             partner_connectivity
         )
+
+        connectivity_data_list2 = generate_connectivity_data_list(
+            partner_connectivity2
+        )
+
+        display_length = len(partner_connectivity)
+
+        if len(partner_connectivity2) > len(partner_connectivity):
+            display_length = len(partner_connectivity2)
 
         partner_row_title = f"""
         RcsbFvLink = {{
@@ -530,10 +542,9 @@ def create_partner_data(uniprot_id, partners):
 
         partner_js = f"""
             $(document).ready(function(){{
-            const partner_connectivity = "{partner_connectivity}";
 
             const boardConfigData = {{
-              length: partner_connectivity.length,
+              length: {display_length},
               trackWidth: 920,
               includeAxis: true,
               disableMenu: true
@@ -545,8 +556,16 @@ def create_partner_data(uniprot_id, partners):
             trackHeight: 20,
             trackColor: "#F9F9F9",
             displayType: "composite",
-            rowTitle: {partner_row_title},
+            rowTitle: "{uniprot_id}",
             displayConfig: {connectivity_data_list}
+          }},
+          {{
+            trackId: "compositeSequence",
+            trackHeight: 20,
+            trackColor: "#F9F9F9",
+            displayType: "composite",
+            rowTitle: {partner_row_title},
+            displayConfig: {connectivity_data_list2}
           }}
         ];
 
@@ -564,6 +583,8 @@ def create_partner_data(uniprot_id, partners):
             "connectivity_js": partner_js,
         })
 
+    print("partner_data_list")
+    print(partner_data_list)
     return partner_data_list
 
 
@@ -578,14 +599,17 @@ def entry(request, uniprot_id,):
         (uniprot_id,)
     )
 
+
     query, sql3 = DB.execute_sql(
         """
-        SELECT protein_id2, reg_p2, isPSD, evidence
-        FROM Partners
-        WHERE protein_id1=%s AND region='yes';
+        SELECT protein_id2, reg_p1, reg_p2 FROM Partners 
+        WHERE protein_id1=%s AND ispsd='PSD' AND region='yes';
         """,
         (uniprot_id,)
     )
+
+    print("SQL3")
+    print(sql3)
 
     query, all_partners_list = DB.execute_sql(
         """
@@ -666,8 +690,6 @@ def entry(request, uniprot_id,):
     diseases = []
 
     for disease in disease_sql:
-        print("PARTNER")
-        print(disease[6])
         diseases.append({
             "position": disease[0],
             "original": disease[1],
@@ -680,10 +702,11 @@ def entry(request, uniprot_id,):
 
     query, linear_motifs_sql = DB.execute_sql(
         """
-        SELECT instance_ref, elm_ref, elm_type, start_pos, end_pos, in_region
+        SELECT instance_ref, elm_ref, elm_type, 
+        start_pos, end_pos, in_region, partner
         FROM ELM WHERE protein_id=%s;
         """,
-        (uniprot_id,)
+    (uniprot_id,)
     )
 
     linear_motifs = []
@@ -695,6 +718,7 @@ def entry(request, uniprot_id,):
             "start_pos": motif[3],
             "end_pos": motif[4],
             "in_region": motif[5],
+            "partner": motif[6].split(";"),
         })
 
     query, fp_mol_func_sql = DB.execute_sql(
@@ -795,9 +819,6 @@ def entry(request, uniprot_id,):
         "Functions": functions_desc,
     }
 
-    print("DB data")
-    print(db_data)
-
     features_graph_js = create_graph_data(
         uniprot_id,
         transmembrane=sql2[0][6],
@@ -815,9 +836,6 @@ def entry(request, uniprot_id,):
     )
 
     partner_data = create_partner_data(uniprot_id, sql3)
-
-    print("FP DISEASES")
-    print(fp_disease)
 
     return render(
         request,

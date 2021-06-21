@@ -67,12 +67,13 @@
 
 
     <h3 id="features" class="entry-category">Protein features</h3>
-    <div id="pfv-{{ uniprot_id }}" style="margin-top:15px" ></div>
+    <div id="pfv-{{ uniprot_id }}-features" style="margin-top:15px" ></div>
     <script type="text/javascript">
     {% autoescape off %}
     {{ features_graph_js }}
     {% endautoescape %}
     </script>
+    <img class="legend" src="{% static 'images/legend.gif' %}">
 
     <h3 id="interacitons" class="entry-category">Partners with known interacting regions</h3>
     {% for partner in partners %}
@@ -122,7 +123,11 @@
         <td><a href="https://www.omim.org/entry/{{ disease.mim }}">{{ disease.descr }}</a></td>
         <td>
             {% for p in disease.partner %}
-                [<a href="interactions?id1={{ uniprot_id }}&id2={{ p }}">{{ p }}</a>]
+                {% if p %}
+                [<a href="/interactions?id1={{ uniprot_id }}&id2={{ p }}">{{ p }}</a>]
+                {% else %}
+                -
+                {% endif %}
             {% endfor %}
         </td>
     </tr>
@@ -142,6 +147,7 @@
         <th>Type</th>
         <th>Start</th>
         <th>End</th>
+        <th>Partner</th>
     </tr>
     {% for linear_motif in linear_motifs %}
         {% if linear_motif.in_region == "yes" %}
@@ -155,6 +161,15 @@
         <td>{{ linear_motif.elm_type }}</td>
         <td>{{ linear_motif.start_pos }}</td>
         <td>{{ linear_motif.end_pos }}</td>
+        <td>
+            {% for p in linear_motif.partner %}
+                {% if p %}
+                [<a href="interactions?id1={{ uniprot_id }}&id2={{ p }}">{{ p }}</a>]
+                {% else %}
+                -
+                {% endif %}
+            {% endfor %}
+        </td>
     </tr>
     {% endfor %}
     </table>
@@ -243,6 +258,9 @@
 
 
     <h3 id="network" class="entry-category">Network</h3>
+    <a href="{% static 'cyto/'|add:uniprot_id|add:'.sif' %}" download>
+        [Download SIF file]
+    </a>
     <interaction-viewer accession="{{ uniprot_id }}"></interaction-viewer>
 
 
