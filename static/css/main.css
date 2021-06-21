@@ -196,3 +196,16 @@ div.description-div {
 div.manual-content {
     text-align: justify;
 }
+
+div.manual-content2 {
+    text-align: justify;
+    margin-left: 30px;
+}
+
+img.legend {
+    display: block;
+    margin-left: 163px;
+    margin-top: 10px;
+    /*margin-right: auto;*/
+    width: 80%;
+}
