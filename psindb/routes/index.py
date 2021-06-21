@@ -99,125 +99,175 @@ const pfv = new RcsbFv.Create({{
 def index(request):
     search = request.GET.get('search', None)
     browse = request.GET.get('browse', None)
+    interaction = request.GET.get('interaction', None)
     print(f"SEARCH: {search}")
     print(f"BROWSE: {browse}")
-    if request.method == 'GET':
-        if not (search or browse):
+
+    if not (search or browse or interaction):
+        return render(
+            request,
+            "home.html",
+            {
+                "show_browse_list": True,
+            },
+        )
+
+    if search:
+        query, query_results = DB.execute_sql(
+            """
+            SELECT DISTINCT Protein.protein_id, Protein.go, 
+            Protein.synaptomedb, Protein.syngo, Protein.g2c,
+            Protein.interactions
+            FROM Protein INNER JOIN Alias ON 
+            Alias.protein_id = Protein.protein_id AND 
+            (Alias.protein_alias LIKE %s OR Alias.protein_id LIKE %s)
+            ORDER BY Protein.interactions;
+            """,
+            ("%" + search + "%", "%" + search + "%",)
+        )
+
+        if not query_results:
             return render(
                 request,
                 "home.html",
                 {
-                    "show_browse_list": True,
+                    "error": f'"{search}" NOT FOUND',
                 },
             )
 
-        if search:
-            query, query_results = DB.execute_sql(
-                """
-                SELECT DISTINCT Protein.protein_id, Protein.go, 
-                Protein.synaptomedb, Protein.syngo, Protein.g2c,
-                Protein.interactions
-                FROM Protein INNER JOIN Alias ON 
-                Alias.protein_id = Protein.protein_id AND 
-                (Alias.protein_alias LIKE %s OR Alias.protein_id LIKE %s)
-                ORDER BY Protein.interactions;
-                """,
-                ("%" + search + "%", "%" + search + "%",)
-            )
+        results = []
 
-            if not query_results:
-                return render(
-                    request,
-                    "home.html",
-                    {
-                        "error": f'"{search}" NOT FOUND',
-                    },
-                )
+        for query_result in query_results:
+            protein_id = query_result[0]
+            evidence_go = query_result[1]
+            evidence_synaptomedb = query_result[2]
+            evidence_syngo = query_result[3]
+            evidence_g2c = query_result[4]
+            num_interactions = query_result[5]
+            # connectivity = query_result[6]
+            # insert_js = create_graph_data(protein_id, connectivity)
 
-            results = []
+            results.append({
+                "evidence_go": evidence_go,
+                "evidence_g2c": evidence_g2c,
+                "evidence_syngo": evidence_syngo,
+                "evidence_synaptomedb": evidence_synaptomedb,
+                "protein_id": protein_id,
+                "num_interactions": num_interactions,
+                # "insert_js": insert_js,
+            })
 
-            for query_result in query_results:
-                protein_id = query_result[0]
-                evidence_go = query_result[1]
-                evidence_synaptomedb = query_result[2]
-                evidence_syngo = query_result[3]
-                evidence_g2c = query_result[4]
-                num_interactions = query_result[5]
-                # connectivity = query_result[6]
-                # insert_js = create_graph_data(protein_id, connectivity)
+        return render(
+            request,
+            "home.html",
+            {
+                "results": results,
+                "search_term": search,
+            },
+        )
 
-                results.append({
-                    "evidence_go": evidence_go,
-                    "evidence_g2c": evidence_g2c,
-                    "evidence_syngo": evidence_syngo,
-                    "evidence_synaptomedb": evidence_synaptomedb,
-                    "protein_id": protein_id,
-                    "num_interactions": num_interactions,
-                    # "insert_js": insert_js,
-                })
+    if browse:
+        print("BROWSE parameter: {browse}")
 
+        query, query_results = DB.execute_sql(
+            """
+            SELECT Protein.go, Protein.g2c, Protein.syngo,
+            Protein.synaptomedb, Protein.protein_id,
+            Protein.interactions 
+            FROM Protein INNER JOIN Sets 
+            ON Sets.protein_id=Protein.protein_id AND 
+            Sets.set_name=%s 
+            ORDER BY Protein.interactions
+            DESC;
+            """,
+            (browse,)
+        )
+
+        if not query_results:
             return render(
                 request,
                 "home.html",
                 {
-                    "results": results,
-                    "search_term": search,
+                    "error": "NOT FOUND",
                 },
             )
 
-        if browse:
-            print("BROWSE parameter: {browse}")
+        results = []
 
-            query, query_results = DB.execute_sql(
-                """
-                SELECT Protein.go, Protein.g2c, Protein.syngo,
-                Protein.synaptomedb, Protein.protein_id,
-                Protein.interactions 
-                FROM Protein INNER JOIN Sets 
-                ON Sets.protein_id=Protein.protein_id AND 
-                Sets.set_name=%s 
-                ORDER BY Protein.interactions
-                DESC;
-                """,
-                (browse,)
-            )
+        for query_result in query_results:
+            evidence_go = query_result[0]
+            evidence_g2c = query_result[1]
+            evidence_syngo = query_result[2]
+            evidence_synaptomedb = query_result[3]
+            protein_id = query_result[4]
+            num_interactions = query_result[5]
+            # connectivity = query_result[6]
+            # insert_js = create_graph_data(protein_id, connectivity)
 
-            if not query_results:
-                return render(
-                    request,
-                    "home.html",
-                    {
-                        "error": "NOT FOUND",
-                    },
-                )
+            results.append({
+                "evidence_go": evidence_go,
+                "evidence_g2c": evidence_g2c,
+                "evidence_syngo": evidence_syngo,
+                "evidence_synaptomedb": evidence_synaptomedb,
+                "protein_id": protein_id,
+                "num_interactions": num_interactions,
+                # "insert_js": insert_js,
+            })
 
-            results = []
+        return render(
+            request,
+            "home.html",
+            {
+                "results": results,
+                "browse_term": browse,
+            },
+        )
 
-            for query_result in query_results:
-                evidence_go = query_result[0]
-                evidence_g2c = query_result[1]
-                evidence_syngo = query_result[2]
-                evidence_synaptomedb = query_result[3]
-                protein_id = query_result[4]
-                num_interactions = query_result[5]
-                # connectivity = query_result[6]
-                # insert_js = create_graph_data(protein_id, connectivity)
+    if interaction:
+        query, query_results = DB.execute_sql(
+            """
+            SELECT Partners.protein_id2, Protein.go, Protein.g2c, Protein.syngo, Protein.synaptomedb
+            FROM Protein INNER JOIN Partners
+            WHERE (Partners.protein_id1 LIKE %s) AND
+                  (Partners.ispsd='PSD') AND
+                  (Partners.protein_id2=Protein.protein_id);
+            """,
+            ("%" + interaction + "%",)
+        )
 
-                results.append({
-                    "evidence_go": evidence_go,
-                    "evidence_g2c": evidence_g2c,
-                    "evidence_syngo": evidence_syngo,
-                    "evidence_synaptomedb": evidence_synaptomedb,
-                    "protein_id": protein_id,
-                    "num_interactions": num_interactions,
-                    # "insert_js": insert_js,
-                })
-
+        if not query_results:
             return render(
                 request,
                 "home.html",
                 {
-                    "results": results,
-                    "browse_term": browse,
+                    "error": f'"INTERACTIONS FOR {interaction}" NOT FOUND',
                 },
             )
+
+        results = []
+
+        for query_result in query_results:
+            evidence_go = query_result[1]
+            evidence_g2c = query_result[2]
+            evidence_syngo = query_result[3]
+            evidence_synaptomedb = query_result[4]
+            protein_id = query_result[0]
+
+            results.append({
+                "evidence_go": evidence_go,
+                "evidence_g2c": evidence_g2c,
+                "evidence_syngo": evidence_syngo,
+                "evidence_synaptomedb": evidence_synaptomedb,
+                "protein_id": protein_id,
+            })
+
+        print(results)
+
+        return render(
+            request,
+            "home.html",
+            {
+                "results": results,
+                "interaction_term": interaction,
+            },
+        )

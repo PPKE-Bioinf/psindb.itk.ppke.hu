@@ -218,3 +218,14 @@ img.legend {
 div.rcsbFvRowMark {
     display: none !important;
 }
+
+form.main-query {
+    display: inline-flex;
+}
+
+div.search-fields {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6px;
+}

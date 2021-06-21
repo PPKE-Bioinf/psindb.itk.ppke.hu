@@ -11,12 +11,22 @@
         {% if browse_term %}
             <h2>Browse results for "{{ browse_term }}":</h2>
         {% endif %}
+        {% if interaction_term %}
+            <h2>Intreaction results for "{{ interaction_term }}":</h2>
+        {% endif %}
         {% for result in results %}
             <div class="search-page-result">
                 <div class="search-result-header">
 {#                    <div><p>UNIPROT ID: </p></div>#}
-                    <div><a class="big-entry-link" href="{% url 'entry' uniprot_id=result.protein_id %}">{{ result.protein_id }}</a></div>
-                    <div class="push-flex"><span>Number of interacting partners: {{ result.num_interactions }}</span></div>
+
+                    {% if interaction_term %}
+                        <div><a class="big-entry-link" href="/interactions?id1={{ interaction_term }}&id2={{ result.protein_id }}">{{ result.protein_id }}</a></div>
+                        <div class="push-flex"><span></span></div>
+                    {% else %}
+                        <div><a class="big-entry-link" href="{% url 'entry' uniprot_id=result.protein_id %}">{{ result.protein_id }}</a></div>
+                        <div class="push-flex"><span>Number of interacting partners: {{ result.num_interactions }}</span></div>
+                    {% endif %}
+
                     <div class="left-flex"><span>Postsynaptic evidence:</span></div>
                     <div class="left-flex"><span class="evidence">GO</span>
                     {% if result.evidence_go != "no" %}
