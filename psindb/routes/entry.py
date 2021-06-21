@@ -254,7 +254,12 @@ def create_graph_data(
       length: transmembrane.length,
       trackWidth: 920,
       includeAxis: true,
-      disableMenu: true
+      disableMenu: true,
+      hideRowGlow: true,
+      hideTrackFrameGlow: true,
+      highlightHoverElement: false,
+      highlightHoverPosition: false,
+      includeTooltip: false
     }};
 
     const rowConfigData = [

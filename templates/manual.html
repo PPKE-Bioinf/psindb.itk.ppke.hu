@@ -9,33 +9,33 @@
 {#    <div class="container">#}
 {#        <div class="row">#}
 {#            <div class="col-sm">#}
-                <h4>Selection of Postsynaptic Density (PSD) proteins</h4>
+
                 <div class="manual-content">
+                    <h2>Selection of Postsynaptic Density (PSD) proteins</h2>
                     <p>
                         We used 4 resources to define the postsynaptic density proteome:
-                        SynaptomeDB (<a href="http://metamoodics.org/SynaptomeDB/index.php">http://metamoodics.org/SynaptomeDB/index.php</a>),
-                        G2C (<a href="https://www.genes2cognition.org/">https://www.genes2cognition.org/</a>),
-                        SynGO (<a href="https://syngoportal.org/">https://syngoportal.org/</a> )and
-                        Gene ontology annotations (<a href="http://geneontology.org/">http://geneontology.org/</a>).
+                        <a href="http://metamoodics.org/SynaptomeDB/index.php">SynaptomeDB</a>,
+                        <a href="https://www.genes2cognition.org/">G2C</a>,
+                        <a href="https://syngoportal.org/">SynGO</a> and
+                        <a href="http://geneontology.org/">Gene ontology annotations</a>.
                         For all proteins listed in any of these resources we collected interactions from various sources.
                     </p>
                 </div>
-                <h4>Comprehensive collection of PSD protein-protein interactions (PPIs)</h4>
+
                 <div class="manual-content">
+                    <h2>Comprehensive collection of PSD protein-protein interactions (PPIs)</h2>
                     <p>
-                        We collected over 3000 experiments from the literature describing PPIs using MIMIx
-                        (<a href="https://pubmed.ncbi.nlm.nih.gov/17687370/">https://pubmed.ncbi.nlm.nih.gov/17687370/</a>)
+                        We collected over 3000 experiments from the literature describing PPIs using
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/17687370/">MIMIx</a>
                         standards. During the collection we aimed to look for papers that were not included in other
                         similar resources. To have a more complete collection of PSD Interactome we also display
-                        interactions from IntAct (<a href="https://www.ebi.ac.uk/intact/">https://www.ebi.ac.uk/intact/</a>)
-                        and BIOGRID (<a href="https://thebiogrid.org/">https://thebiogrid.org/</a>) databases.
-                        In addition, we scanned the PDB database (<a href="https://www.rcsb.org/">https://www.rcsb.org/</a>)
-                        for complexes that have interacting residues. Furthermore, computational evidences from the STRING
-                        (<a href="https://string-db.org/">https://string-db.org/</a>) database also displayed
+                        interactions from IntAct <a href="https://www.ebi.ac.uk/intact/">IntAct</a>
+                        and <a href="https://thebiogrid.org/">BIOGRID</a> databases.
+                        In addition, we scanned the <a href="https://www.rcsb.org/">PDB database</a>
+                        for complexes that have interacting residues. Furthermore, computational evidences from the
+                        <a href="https://string-db.org/">STRING</a> database also displayed
                         (above 0.8 cutoff score).
                     </p>
-                </div>
-                <div class="manual-content">
                     <p>
                         When defining PPIs it is a common and necessary step to check whether the proposed partners
                         co-occure in the same cellular compartment, giving biological significance to the experiment.
@@ -43,17 +43,289 @@
                         filters were not applied. However, we discarded interaction data that were only confirmed
                         using co-localization or proximity.
                     </p>
-                </div>
-                 <div class="manual-content">
                     <p>
                         PSINDB displays the interaction between human PSD proteins. We considered evidences from mouse
                         and rat experiments too – in this case the interaction was always mapped back the the
-                        orthologous human protein, using OMA
-                        (<a href="https://omabrowser.org/oma/home/">https://omabrowser.org/oma/home/</a>)
+                        orthologous human protein, using
+                        <a href="https://omabrowser.org/oma/home/">OMA</a>
                         orthologous database and gene names.
+                    </p>
                 </div>
 
-                <h4>Navigating on the PSINDB database</h4>
+
+                <div class="manual-content">
+                    <h2>Navigating on the PSINDB database</h2>
+                    <p>
+                        Data on the PSINDB database can be viewed using three distinct layouts, each displaying more
+                        specific information about the PSD Interactome. The first level is the <strong>search/browse page</strong>,
+                        where proteins of preconstructed sets can be viewed (or any other search can be performed).
+                        The next level is the <strong>entry page</strong>, where general information is displayed about the protein,
+                        along with a summary of their interacting partners. Finally, the <strong>interaction page</strong> displays every
+                        specific experimental (or computational) information about the selected interaction.
+                    </p>
+                </div>
+
+                <div class="manual-content2">
+                    <h3>Search/browse page</h3>
+                    <p>
+                        Users can search for proteins using UniProt identifier, UniProt AC, GeneID, Gene name,
+                        Ensemble Protein identifier and HGNC codes using the search bar at the top of the page.
+                        After searching the results will be listed, along with the number of interactions and the
+                        evidence that the protein of choice localizes into the PSD.
+                    </p>
+                    <p>
+                        We also prepared sets of proteins, e.g, proteins known to be going through phase separation,
+                        proteins with PPIs having literature evidence or transmembrane proteins and more. These sets
+                        can be accessed through the browse menu.
+                    </p>
+                </div>
+
+                <div class="manual-content2">
+                    <h3>Entry page</h3>
+                </div>
+
+                <div class="manual-content3">
+                    <h4>Function</h4>
+                    <p>
+                        For each protein basic information about the protein is displayed using
+                        <a href="https://www.uniprot.org/">UniProt</a> functional annotations.
+                    </p>
+                </div>
+
+                <div class="manual-content3">
+                    <h4>Protein features</h4>
+                    <p>
+                        Protein features displays structural and functional information about the protein mirrored to
+                        the protein sequence. The legend below the Features guides the user how to interpret this information.
+                    </p>
+                    <p>
+                        <i>Topology:</i> transmembrane segments were predicted using
+                        <a href="http://cctop.enzim.ttk.mta.hu/">CCTOP</a>.
+                        Since CCTOP also includes experimental evidence, the corresponding entry is linked to the
+                        <a href="http://htp.enzim.hu/">Human Transmembrane Proteome</a> database.
+                    </p>
+                    <p>
+                        <i>Phase separation:</i> displays protein regions going through phase separation from
+                        <a href="https://phasepro.elte.hu/">PhaSePro</a> database. Although currently the number of
+                        annotated proteins is low, we expect rapid increase of annotated data as the field emerges.
+                    </p>
+                    <p>
+                        <i>Linear motifs:</i> short linear motifs are compact protein regions usually between 3-10 residues
+                        playing crucial roles in cell regulation. The <a href="http://elm.eu.org/">ELM</a> database is
+                        the most comprehensive collection of experimentally verified motifs. More information about
+                        these segments can be found below at the Linear motif section of the entry page.
+                    </p>
+                    <p>
+                        <i>Phosphorylation:</i> phosphorylations are post-translational modifications that can have a diverse
+                        range of functions. They often regulate PPIs by working as switches, changing between the
+                        non-modified (OFF) state and the modified (charged) (ON) state. Phosphorylation annotation were
+                        collected from <a href="https://www.uniprot.org/">UniProt</a>.
+                    </p>
+                    <p>
+                        <i>PFAM:</i> <a href="http://pfam.xfam.org/">PFAM</a> is a collection and classification of
+                        protein families and domains.
+
+                    </p>
+                    <p>
+                        <i>Coiled coil:</i> Coiled-coils are oligomeric helical structural units in proteins connected to a
+                        wide range of functions. They can bridge large distances and connect proteins at different
+                        sides of large supramolecular structures. Coiled coil segments were predicted using
+                        <a href="https://toolkit.tuebingen.mpg.de/tools/deepcoil">DeepCoil</a>.
+                    </p>
+                    <p>
+                        <i>Anchor:</i> Intrinsically disordered regions often bind to ordered globular domains.
+                        Such disordered binding segments are predicted using <a href="https://iupred2a.elte.hu/">Anchor</a>.
+                    </p>
+                    <p>
+                        <i>Disordered regions:</i> Intrinsically disordered regions (IDRs) are flexible protein regions that
+                        can serve various functions. IDRs can mediate binary interactions of proteins or promote
+                        organization of large assemblies. Disordered segments were predicted using
+                        <a href="https://iupred2a.elte.hu/">IUPred</a>.
+                    </p>
+                    <p>
+                        <i>Interacting regions:</i> In this panel we mirrored the interaction regions responsible for binding
+                        the protein’s partners. Experiments provide different levels of information about the
+                        interacting regions. If two or more experiments overlap, we always display the information from
+                        the most specific one.
+                    </p>
+                    <p>
+                        <i>Binding-associated region (source: Intact, PSINDB):</i> a region of a molecule or a component of a
+                        complex identified as being involved in an interaction. This may or may not be a region of the
+                        molecule in direct contact with the interacting partner.
+
+                    </p>
+                    <p>
+                        <i>Sufficient binding region (Intact, PSINDB, PDB):</i> binding will occur when this sequence range is
+                        present within a molecule or part of a molecule. This region will contain the direct binding
+                        region but may be longer.
+
+                    </p>
+                    <p>
+                        <i>Necessary binding region (Intact, PSINDB):</i> a sequence range within a molecule identified as
+                        being absolutely required for an interaction. The sequence may or may not be in direct physical
+                        contact with the interaction partner.
+
+                    </p>
+                    <p>
+                        <i>Atomic contact (PDB):</i> atomic contact between residues. After reconstructing the full PDB
+                        structures using the biomatrix information we used
+                        <a href="https://github.com/kliment-olechnovic/voronota">Voronota</a>
+                        to detect residues establishing interchain interactions.
+                    </p>
+                    <p>
+                        For experiments on orthologous proteins even if the binding segment was defined, we do not
+                        display it – sometimes this task is trivial, however there are several cases when the alignment
+                        is ambiguous, especially when there are disordered segments involved.
+                    </p>
+                </div>
+
+                <div class="manual-content3">
+                    <h4>Partners with known interacting regions</h4>
+                    <p>
+                        This section displays all partners where the interacting region of at least one of the partners
+                        was narrowed from the full length sequence. This annotation has the same levels as described
+                        earlier in the Protein features/Interacting regions section. The link of the partner navigates
+                        to the interaction page with detailed information about the experiments.
+                    </p>
+                </div>
+
+                <div class="manual-content3">
+                    <h4>Disease-causing germline mutations</h4>
+                    <p>
+                        Disease-causing germline mutations were collected from the
+                        <a href="https://www.omim.org/">OMIM</a> database. We also highlight mutations that fall into
+                        the interacting region of the protein and display partners binding through that region.
+                    </p>
+                </div>
+
+                <div class="manual-content3">
+                    <h4>Disease-causing germline mutations</h4>
+                    <p>
+                        Disease-causing germline mutations were collected from the
+                        <a href="https://www.omim.org/">OMIM</a> database. We also highlight mutations that fall into
+                        the interacting region of the protein and display partners binding through that region.
+                    </p>
+                </div>
+
+                <div class="manual-content3">
+                    <h4>Linear motifs</h4>
+                    <p>
+                        Short linear motifs are compact protein regions usually between 3-10 residues playing crucial
+                        roles in cell regulation. The <a href="http://elm.eu.org/">ELM</a> database is the most
+                        comprehensive collection of experimentally verified motifs. We also highlight SLiMs that fall
+                        into the interacting region of the protein and display partners binding through that region.
+                    </p>
+                </div>
+
+                <div class="manual-content3">
+                    <h4>Fingerprint</h4>
+                    <p>
+                        Fingerprint provides a collection of ontology terms re-occuring in the protein or it’s
+                        interaction partners. We collected all terms annotated for the proteins and also mapped
+                        ancestor terms for the given protein. The annotation of different proteins may vary and thus
+                        any statistics would be biased, therefore we only display the absolute number of different
+                        terms in the network and do not calculate further statistics.
+                    </p>
+                    <p>
+                        Hits can be filtered using how specific is the given term. Currently PSINDB displays 3 ontologies:
+                        <a href="http://geneontology.org/">GO</a>: biological process,
+                        <a href="http://geneontology.org/">GO</a>: molecular function
+                        and <a href="https://disease-ontology.org/">DOID</a>: disease ontology.
+
+                    </p>
+                </div>
+
+                <div class="manual-content3">
+                    <h4>Network</h4>
+                    <p>
+                        The Network view displays interaction partners and also shows how these partners interact with
+                        each other. The PSD exhibits an extremely high number of PPIs, therefore we reduced the amount
+                        of displayed partners to 50 in this view. For this purpose we scored each interaction using the
+                        following method: for each evidence we assigned a score. The score of any interaction is the
+                        sum of individual pieces of evidence.
+                    </p>
+                    <table>
+                        <thead>
+                        <th></th>
+                        <th>Experiment on human proteins</th>
+                        <th>Experiment on orthologous proteins</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Low throughput</td>
+                            <td>1</td>
+                            <td>0.8</td>
+                        </tr>
+                        <tr>
+                            <td>High throughput</td>
+                            <td>0.8</td>
+                            <td>0.64</td>
+                        </tr>
+                        <tr>
+                            <td>Computational</td>
+                            <td>0.6</td>
+                            <td>x</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p>
+                        For the definition of low throughput, high throughput and computational evidence see the next
+                        section.
+                    </p>
+                </div>
+
+                <div class="manual-content3">
+                    <h4>All partners</h4>
+                    <p>
+                        This panel displays all interacting partners, including the ones that not localize to PSD
+                        according to our current knowledge. PSD partners are highlighted.
+                    </p>
+                    <p>
+                        For each partner there are two links: [view entry] navigate to the entry page of the selected
+                        protein. [view interaction] navigates to the interaction page with detailed information about
+                        the experiments.
+                    </p>
+                    <p>
+                        Highest evidence display the highest level of information about the particular interaction:
+
+                    </p>
+                    <p>
+                        *Low throughput (LTP): in case of PSINDB, the curator can make the call to classify the given
+                        interaction. In case of Intact and BIOGRID, we followed the following procedure: in any paper,
+                        if using the same experimental setup less than 10 experimental data was produced, we assigned
+                        it as low throughput. Interactions from PDB are always classified as low throughput.
+                    </p>
+                    <p>
+                        *High throughput (HTP): in case of PSINDB, the curator can make the call to classify the given
+                        interaction. In case of Intact and BIOGRID, we followed the following procedure: in any paper,
+                        if using the same experimental setup 10 or more experimental data was produced, we assigned it
+                        as high throughput.
+                    </p>
+                    <p>
+                        Computational: Interactions collected from the STRING database belong to this category.
+                    </p>
+                    <p>
+                        *We are aware that this classification may have many pitfalls, however this seemed the most
+                        efficient way to filter out primary screens. In several cases these interactions are further
+                        validated in the same paper, therefore they will get the LTP tag.
+                    </p>
+                </div>
+
+                <div class="manual-content2">
+                    <h3>Interaction page</h3>
+                    <p>
+                        This page contains all evidence of an interaction for a pair of proteins. Information is stored
+                        according to the PSI MI controlled vocabularies and can be inspected on the
+                        <a href="https://www.ebi.ac.uk/ols/ontologies/mi">Ontology Lookup Services</a>.
+                    </p>
+                </div>
+
+
+
+
+
+
+
 {#            </div>#}
 {#            <div class="col-sm">#}
 {#                <h4>Hi I am the manual page</h4>#}

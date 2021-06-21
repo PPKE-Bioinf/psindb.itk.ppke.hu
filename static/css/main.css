@@ -202,10 +202,19 @@ div.manual-content2 {
     margin-left: 30px;
 }
 
+div.manual-content3 {
+    text-align: justify;
+    margin-left: 60px;
+}
+
 img.legend {
     display: block;
     margin-left: 163px;
     margin-top: 10px;
     /*margin-right: auto;*/
     width: 80%;
+}
+
+div.rcsbFvRowMark {
+    display: none !important;
 }
