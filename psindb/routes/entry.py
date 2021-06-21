@@ -104,8 +104,8 @@ def get_binary_data_list(data):
     })
 
     value_colors = {
-        "1": "#a9d1d5",
-        "0": "#32a481",
+        "0": "#a9d1d5",
+        "1": "#32a481",
     }
 
     value_display_ids = {
@@ -235,7 +235,7 @@ def create_graph_data(
         llps_row_title = f"""
         RcsbFvLink = {{
             visibleTex: "Phase separation",
-            url: "http://pfam.xfam.org/protein/{phasepro}"
+            url: "https://phasepro.elte.hu/entry/{phasepro}"
         }}
         """
 
@@ -804,10 +804,16 @@ def entry(request, uniprot_id,):
 
     functions_desc = sql2[0][5]
     functions_desc = re.sub(
-        r" \((PubMed):(\d*)\).",
-        r'. <a href="https://pubmed.ncbi.nlm.nih.gov/\2">[\1]</a>',
+        r"(PubMed):(\d*)",
+        r'<a href="https://pubmed.ncbi.nlm.nih.gov/\2">\1</a>',
         functions_desc
     )
+
+    # functions_desc = re.sub(
+    #     r" \((PubMed):(\d*), *(PubMed):(\d*)\).",
+    #     r'. <a href="https://pubmed.ncbi.nlm.nih.gov/\2">[\1]</a> <a href="https://pubmed.ncbi.nlm.nih.gov/\4">[\3]</a>',
+    #     functions_desc
+    # )
 
     functions_desc += f' <a href="https://www.uniprot.org/uniprot/{uniprot_id}">[View more on UniProt]</a>'
 

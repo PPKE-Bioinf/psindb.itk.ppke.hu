@@ -12,7 +12,7 @@
     <a href="#linear-motifs">Linear motifs</a>
     <a href="#fingerprint">Fingerprint</a>
     <a href="#network">Network</a>
-    <a href="#interacting-partners">Partners</a>
+    <a href="#interacting-partners">All partners</a>
 </div>
 {% endblock %}
 
@@ -108,7 +108,7 @@
         <th>Amino acid</th>
         <th>Mutation</th>
         <th>Disease</th>
-        <th>Partner</th>
+        <th>Overlap with binding region</th>
     </tr>
     {% for disease in diseases %}
         {% if disease.in_region == "yes" %}
@@ -264,7 +264,7 @@
     <interaction-viewer accession="{{ uniprot_id }}"></interaction-viewer>
 
 
-    <h3 id="interacting-partners" class="entry-category">Partners</h3>
+    <h3 id="interacting-partners" class="entry-category">All partners</h3>
     <table id="dataTable-partners" class="interaction-data">
     <thead>
         <tr>
