@@ -248,6 +248,8 @@ def interactions(request):
             crossreference_link = f"https://thebiogrid.org/interaction/{crossreference}"
         elif source == "STRING":
             crossreference_link = f"https://string-db.org/cgi/network?identifiers=/{crossreference}"
+        elif source == "PDB":
+            crossreference_link = f"https://www.rcsb.org/structure/{crossreference}"
 
         json_results.append({
             "id_1": result[0],
@@ -255,7 +257,7 @@ def interactions(request):
             "number": i,
             "connectivity_1": create_graph_data(result[0], i, result[2]),
             "connectivity_2": create_graph_data(result[1], i, result[3]),
-            "inferred": result[4],
+            "inferred": "-" if int(result[4]) == 0 else "from orthologous proteins",
             "original_protein_1": result[5],
             "original_protein_2": result[6],
             "tax_1": result[7],

@@ -131,7 +131,69 @@ def get_binary_data_list(data):
     return binary_data_list
 
 
+def get_alignment_data_list(data):
+    binary_value_ranges = {
+        "0": [],
+        "1": [],
+    }
+
+    prev_value = "0" if data[0] == "-" else "1"
+    value_from = 1
+    i, value = None, None
+
+    for i, value in enumerate(data[1:]):
+        if value == "-":
+            value = "0"
+        else:
+            value = "1"
+
+        if value != prev_value:
+            binary_value_ranges[prev_value].append({
+                "begin": value_from,
+                "end": i + 1
+            })
+
+            value_from = i + 2
+
+        prev_value = value
+
+    binary_value_ranges[value].append({
+        "begin": value_from,
+        "end": i + 2
+    })
+
+    value_colors = {
+        "0": "#0080FF",
+        "1": "#28C7FF",
+    }
+
+    value_display_ids = {
+        "1": "1_1",
+        "0": "1_2",
+    }
+
+    binary_data_list = []
+
+    for value in binary_value_ranges:
+        if not binary_value_ranges[value]:
+            continue
+
+        binary_data_list.append(
+            {
+                "displayType": "block",
+                "displayColor": value_colors[value],
+                "displayId": value_display_ids[value],
+                "displayData": binary_value_ranges[value]
+            }
+        )
+
+    return binary_data_list
+
+
 def generate_connectivity_data_list(connectivity):
+    print("CONNECTIVITY")
+    print(connectivity)
+
     value_ranges = {
         "1": [],
         "2": [],
@@ -145,6 +207,8 @@ def generate_connectivity_data_list(connectivity):
     i, value = None, None
 
     for i, value in enumerate(connectivity[1:]):
+        if value == "-":
+            value = "1"
         if value != prev_value:
             value_ranges[prev_value].append({
                 "begin": value_from,
@@ -369,78 +433,19 @@ const pfv = new RcsbFv.Create({{
 def create_isoform_data(
         canonical_name, canonical_seq, connectivity, isoforms
 ):
-    value_ranges = {
-        "1": [],
-        "2": [],
-        "3": [],
-        "4": [],
-        "5": [],
-    }
-
-    prev_value = "1" if connectivity[0] == "-" else connectivity[0]
-    value_from = 1
-    i, value = None, None
-
-    for i, value in enumerate(connectivity[1:]):
-        # TODO check
-        if value == "-":
-            value = "1"
-
-        if value != prev_value:
-            value_ranges[prev_value].append({
-                "begin": value_from,
-                "end": i + 1
-            })
-
-            value_from = i + 2
-
-        prev_value = value
-
-    value_ranges[value].append({
-        "begin": value_from,
-        "end": i + 2
-    })
-
-    value_colors = {
-        "1": "#4a2226",
-        "2": "#705080",
-        "3": "#879cac",
-        "4": "#a9d1d5",
-        "5": "#32a481",
-    }
-
-    value_display_ids = {
-        "1": "1_1",
-        "2": "1_2",
-        "3": "1_3",
-        "4": "1_4",
-        "5": "1_5",
-    }
-
-    connectivity_data_list = []
-
-    for value in value_ranges:
-        if not value_ranges[value]:
-            continue
-
-        connectivity_data_list.append(
-            {
-                "displayType": "block",
-                "displayColor": value_colors[value],
-                "displayId": value_display_ids[value],
-                "displayData": value_ranges[value]
-            }
-        )
+    canonical_seq_connectivity = generate_connectivity_data_list(connectivity)
 
     isoform_tracks = ""
 
-    for isoform in isoforms:
+    for i, isoform in enumerate(isoforms):
         isoform_name = isoform[0]
         isoform_seq = isoform[1]
 
+        isoform_seq_data_list = get_alignment_data_list(isoform_seq)
+
         isoform_row_title = f"""
         RcsbFvLink = {{
-            visibleTex: "Isoform [{isoform_name}]",
+            visibleTex: "Isoform [{isoform_name}] sequence",
             url: "https://www.uniprot.org/uniprot/{isoform_name}"
         }}
         """
@@ -448,11 +453,11 @@ def create_isoform_data(
         isoform_tracks += f"""
         ,{{
         trackId: "compositeSequence_mini_{isoform_name}",
-        trackHeight: 10,
+        trackHeight: 20,
         trackColor: "#F9F9F9",
         displayType: "composite",
-        rowTitle: "",
-        displayConfig: {connectivity_data_list}
+        rowTitle: "Isoform [{isoform_name}] alignment",
+        displayConfig: {isoform_seq_data_list}
         }},
         {{
             trackId: "sequenceTrack_{isoform_name}",
@@ -476,7 +481,8 @@ def create_isoform_data(
 
     const boardConfigData = {{
       length: connectivity.length,
-      trackWidth: 920,
+      trackWidth: 900,
+      rowTitleWidth: 207,
       includeAxis: true,
       disableMenu: true
     }};
@@ -488,7 +494,7 @@ def create_isoform_data(
     trackColor: "#F9F9F9",
     displayType: "composite",
     rowTitle: "Interacting regions",
-    displayConfig: {connectivity_data_list}
+    displayConfig: {canonical_seq_connectivity}
   }},
   {{
     trackId: "sequenceTrack",
@@ -565,7 +571,7 @@ def create_partner_data(uniprot_id, partners):
             trackColor: "#F9F9F9",
             displayType: "composite",
             rowTitle: "{uniprot_id}",
-            displayConfig: {connectivity_data_list}
+            displayConfig: {connectivity_data_list2}
           }},
           {{
             trackId: "compositeSequence",
@@ -573,7 +579,7 @@ def create_partner_data(uniprot_id, partners):
             trackColor: "#F9F9F9",
             displayType: "composite",
             rowTitle: {partner_row_title},
-            displayConfig: {connectivity_data_list2}
+            displayConfig: {connectivity_data_list}
           }}
         ];
 
@@ -732,7 +738,7 @@ def entry(request, uniprot_id,):
     query, fp_mol_func_sql = DB.execute_sql(
         """
         SELECT Fingerprint.term_id, Ontology.descr, 
-        Fingerprint.ontology_number/Fingerprint.ontology_total1, 
+        100*Fingerprint.ontology_number/Fingerprint.ontology_total1, 
         Fingerprint.ontology_level 
         FROM Fingerprint INNER JOIN Ontology ON 
         Fingerprint.protein_id=%s AND 
@@ -760,7 +766,7 @@ def entry(request, uniprot_id,):
     query, fp_biol_proc_sql = DB.execute_sql(
         """
         SELECT Fingerprint.term_id, Ontology.descr, 
-        Fingerprint.ontology_number/Fingerprint.ontology_total1,
+        100*Fingerprint.ontology_number/Fingerprint.ontology_total1,
         Fingerprint.ontology_level
         FROM Fingerprint INNER JOIN Ontology ON 
         Fingerprint.protein_id=%s AND 
@@ -788,7 +794,7 @@ def entry(request, uniprot_id,):
     query, fp_disease_sql = DB.execute_sql(
         """
         SELECT Fingerprint.term_id, Ontology.descr,
-        Fingerprint.ontology_number/Fingerprint.ontology_total1,
+        100*Fingerprint.ontology_number/Fingerprint.ontology_total1,
         Fingerprint.ontology_level
         FROM Fingerprint INNER JOIN Ontology 
         ON Fingerprint.protein_id=%s AND 

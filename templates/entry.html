@@ -36,7 +36,7 @@
             <div class="right-flex">
 
             {% if db_data.g2c != "no" %}
-                <a href="https://www.genes2cognition.org/db/Search?text={{ db_data.g2c }}">G2C</a>
+                <a href="https://www.genes2cognition.org/db/Search?text={{ db_data.g2c }}" target="_blank" rel="noopener noreferrer">G2C</a>
                 <img src="{% static 'images/check-circle.svg' %}">
             {% else %}
                 <span>G2C</span>
@@ -45,7 +45,7 @@
 
             <div class="right-flex">
             {% if db_data.SynGO != "no" %}
-                <a href="https://syngoportal.org/gene.html?HGNC:{{ db_data.SynGO }}">SynGO</a>
+                <a href="https://syngoportal.org/gene.html?HGNC:{{ db_data.SynGO }}" target="_blank" rel="noopener noreferrer">SynGO</a>
                 <img src="{% static 'images/check-circle.svg' %}">
             {% else %}
                 <span>SynGO</span>
@@ -54,7 +54,7 @@
 
             <div class="right-flex">
             {% if db_data.SynaptomeDB != "no" %}
-                <a href="http://metamoodics.org/SynaptomeDB/synmain/synaptome_all_view.php?editid1={{ db_data.SynaptomeDB }}">SynaptomeDB</a>
+                <a href="http://metamoodics.org/SynaptomeDB/synmain/synaptome_all_view.php?editid1={{ db_data.SynaptomeDB }}" target="_blank" rel="noopener noreferrer">SynaptomeDB</a>
                 <img src="{% static 'images/check-circle.svg' %}">
             {% else %}
                 <span>SynaptomeDB</span>
@@ -86,7 +86,7 @@
     {{ features_graph_js }}
     {% endautoescape %}
     </script>
-    <img class="legend" src="{% static 'images/legend.gif' %}">
+    <img class="legend" src="{% static 'images/legend1.gif' %}">
 
 
     <div class="entry-menu-item">
@@ -103,6 +103,7 @@
         {% endautoescape %}
         </script>
     {% endfor %}
+    <img class="legend" src="{% static 'images/legend2.gif' %}">
 
 
     <div class="entry-menu-item">
@@ -125,6 +126,7 @@
     {{ isoforms.connectivity }}
     {% endautoescape %}
     </script>
+    <img class="isoform-legend" src="{% static 'images/legend3.gif' %}">
     {% else %}
         <p>No data found.</p>
     {% endif %}
@@ -155,7 +157,7 @@
         <td>{{ disease.position }}</td>
         <td>{{ disease.original }}</td>
         <td>{{ disease.mutation }}</td>
-        <td><a href="https://www.omim.org/entry/{{ disease.mim }}">{{ disease.descr }}</a></td>
+        <td><a href="https://www.omim.org/entry/{{ disease.mim }}" target="_blank" rel="noopener noreferrer">{{ disease.descr }}</a></td>
         <td>
             {% for p in disease.partner %}
                 {% if p %}
@@ -195,8 +197,8 @@
         <tr>
         {% endif %}
 
-        <td>{{ linear_motif.instance_ref }}</td>
-        <td>{{ linear_motif.elm_ref }}</td>
+        <td><a href="http://elm.eu.org/{{ linear_motif.instance_ref }}" target="_blank" rel="noopener noreferrer">{{ linear_motif.instance_ref }}</a></td>
+        <td><a href="http://elm.eu.org/elms/{{ linear_motif.elm_ref }}" target="_blank" rel="noopener noreferrer">{{ linear_motif.elm_ref }}</a></td>
         <td>{{ linear_motif.elm_type }}</td>
         <td>{{ linear_motif.start_pos }}</td>
         <td>{{ linear_motif.end_pos }}</td>
@@ -214,7 +216,7 @@
     </table>
     {% else %}
         <p>No annotated instance was found. To search for linear motifs, use the ELM
-            <a href="http://elm.eu.org/cgimodel.py?fun=Submit&swissprotId={{ uniprot_id }}">prediction server.</a></p>
+            <a href="http://elm.eu.org/cgimodel.py?fun=Submit&swissprotId={{ uniprot_id }}" target="_blank" rel="noopener noreferrer">prediction server.</a></p>
     {% endif %}
 
 
@@ -241,7 +243,7 @@
     <tr>
         <td><a href="http://amigo.geneontology.org/amigo/term/{{ fp.term_id }}">{{ fp.term_id }}</a></td>
         <td>{{ fp.des }}</td>
-        <td>{{ fp.ontology_number }}</td>
+        <td>{{ fp.ontology_number|floatformat:4 }}</td>
         <td>{{ fp.ontology_level }}</td>
     </tr>
     {% endfor %}
@@ -267,7 +269,7 @@
         <tr>
             <td><a href="http://amigo.geneontology.org/amigo/term/{{ fp.term_id }}">{{ fp.term_id }}</a></td>
             <td>{{ fp.des }}</td>
-            <td>{{ fp.ontology_number }}</td>
+            <td>{{ fp.ontology_number|floatformat:4 }}</td>
             <td>{{ fp.ontology_level }}</td>
         </tr>
         {% endfor %}
@@ -293,7 +295,7 @@
     <tr>
         <td>{{ fp.term_id }}</td>
         <td>{{ fp.des }}</td>
-        <td>{{ fp.ontology_number }}</td>
+        <td>{{ fp.ontology_number|floatformat:4 }}</td>
         <td>{{ fp.ontology_level }}</td>
     </tr>
     {% endfor %}
@@ -351,16 +353,21 @@
             });
             $('#dataTable-fp-mol').DataTable({
                 "pageLength": 25,
-                "order": [[ 3, "desc" ]]
+                "order": [[ 2, "desc" ]]
             });
             $('#dataTable-fp-bio').DataTable({
                 "pageLength": 25,
-                "order": [[ 3, "desc" ]]
+                "order": [[ 2, "desc" ]]
             });
             $('#dataTable-fp-disease').DataTable({
                 "pageLength": 25,
-                "order": [[ 3, "desc" ]]
+                "order": [[ 2, "desc" ]]
             });
         });
+    </script>
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
     </script>
 {% endblock %}
