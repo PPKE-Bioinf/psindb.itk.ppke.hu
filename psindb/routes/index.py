@@ -226,7 +226,8 @@ def index(request):
     if interaction:
         query, query_results = DB.execute_sql(
             """
-            SELECT Partners.protein_id2, Protein.go, Protein.g2c, Protein.syngo, Protein.synaptomedb
+            SELECT Partners.protein_id1, Partners.protein_id2, Protein.go, 
+            Protein.g2c, Protein.syngo, Protein.synaptomedb
             FROM Protein INNER JOIN Partners
             WHERE (Partners.protein_id1 LIKE %s) AND
                   (Partners.ispsd='PSD') AND
@@ -247,17 +248,19 @@ def index(request):
         results = []
 
         for query_result in query_results:
-            evidence_go = query_result[1]
-            evidence_g2c = query_result[2]
-            evidence_syngo = query_result[3]
-            evidence_synaptomedb = query_result[4]
-            protein_id = query_result[0]
+            protein_id1 = query_result[0]
+            protein_id = query_result[1]
+            evidence_go = query_result[2]
+            evidence_g2c = query_result[3]
+            evidence_syngo = query_result[4]
+            evidence_synaptomedb = query_result[5]
 
             results.append({
                 "evidence_go": evidence_go,
                 "evidence_g2c": evidence_g2c,
                 "evidence_syngo": evidence_syngo,
                 "evidence_synaptomedb": evidence_synaptomedb,
+                "protein_id1": protein_id1,
                 "protein_id": protein_id,
             })
 

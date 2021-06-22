@@ -20,7 +20,7 @@
 {#                    <div><p>UNIPROT ID: </p></div>#}
 
                     {% if interaction_term %}
-                        <div><a class="big-entry-link" href="/interactions?id1={{ interaction_term }}&id2={{ result.protein_id }}">{{ result.protein_id }}</a></div>
+                        <div><a class="big-entry-link" href="/interactions?id1={{ result.protein_id1 }}&id2={{ result.protein_id }}">{{ result.protein_id }}</a></div>
                         <div class="push-flex"><span></span></div>
                     {% else %}
                         <div><a class="big-entry-link" href="{% url 'entry' uniprot_id=result.protein_id %}">{{ result.protein_id }}</a></div>
