@@ -20,7 +20,11 @@
     <h1>{{ uniprot_id }}</h1>
 
 
-    <h3 id="evidences" class="entry-category">Evidences for PSD localization</h3>
+    <div class="entry-menu-item">
+        <h3 id="evidences" class="entry-category">Evidences for PSD localization</h3>
+        <img class="tooltip_icon" src="{% static 'images/help-circle.svg' %}" data-toggle="tooltip" data-placement="right"
+             title="Four resources have been used to define the postsynaptic density proteome: SynaptomeDB, G2C , SynGO and Gene ontology annotations">
+    </div>
     <div class="container">
         <div class="row">
             <div class="right-flex"><span>GO</span>
@@ -60,13 +64,22 @@
     </div>
 
 
-    <h3 id="functions" class="entry-category">Functions</h3>
+    <div class="entry-menu-item">
+        <h3 id="functions" class="entry-category">Functions</h3>
+        <img class="tooltip_icon" src="{% static 'images/help-circle.svg' %}" data-toggle="tooltip" data-placement="right"
+             title="Functional annotation was taken from UniProt">
+    </div>
     {% autoescape off %}
     <p>{{ db_data.Functions }}</p>
     {% endautoescape %}
 
 
-    <h3 id="features" class="entry-category">Protein features</h3>
+    <div class="entry-menu-item">
+        <h3 id="features" class="entry-category">Protein features</h3>
+        <img class="tooltip_icon" src="{% static 'images/help-circle.svg' %}" data-toggle="tooltip" data-placement="right"
+             title="Structural, functional units and interacting regions mapped to the protein sequence.">
+    </div>
+
     <div id="pfv-{{ uniprot_id }}-features" style="margin-top:15px" ></div>
     <script type="text/javascript">
     {% autoescape off %}
@@ -75,7 +88,13 @@
     </script>
     <img class="legend" src="{% static 'images/legend.gif' %}">
 
-    <h3 id="interacitons" class="entry-category">Partners with known interacting regions</h3>
+
+    <div class="entry-menu-item">
+        <h3 id="interacitons" class="entry-category">Binary interactions with known binding regions</h3>
+        <img class="tooltip_icon" src="{% static 'images/help-circle.svg' %}" data-toggle="tooltip" data-placement="right"
+             title="Shows all partners where the interacting regions was defined in the experiments.">
+    </div>
+    <p>To display all evidence describing the interaction with a partner, click on the protein name left to the bars.</p>
     {% for partner in partners %}
         <div id="pfv-{{ partner.name }}" style="margin-top:15px" ></div>
         <script type="text/javascript">
@@ -86,7 +105,19 @@
     {% endfor %}
 
 
-    <h3 id="isoform" class="entry-category">Isoforms</h3>
+    <div class="entry-menu-item">
+        <h3 id="network" class="entry-category">Network</h3>
+        <img class="tooltip_icon" src="{% static 'images/help-circle.svg' %}" data-toggle="tooltip" data-placement="right"
+             title="Displays the highest scoring 50 interactions for the protein. Interactions were scored based on the number if independent evidences from different sources. For the exact calculation of scores visit the Server Manual.">
+    </div>
+    <interaction-viewer accession="{{ uniprot_id }}"></interaction-viewer>
+
+
+    <div class="entry-menu-item">
+        <h3 id="isoform" class="entry-category">Isoforms</h3>
+        <img class="tooltip_icon" src="{% static 'images/help-circle.svg' %}" data-toggle="tooltip" data-placement="right"
+             title="Both the isoforms and the interacting regions are displayed, making visible variants lacking the binding sites.">
+    </div>
     {% if isoforms %}
     <div id="pfv-isoform" style="margin-top:15px" ></div>
     <script type="text/javascript">
@@ -99,7 +130,11 @@
     {% endif %}
 
 
-    <h3 id="disease" class="entry-category">Disease</h3>
+    <div class="entry-menu-item">
+        <h3 id="disease" class="entry-category">Disease-causing germline mutations</h3>
+        <img class="tooltip_icon" src="{% static 'images/help-circle.svg' %}" data-toggle="tooltip" data-placement="right"
+             title="Disease causing mutations associated with the protein together with the binding regions.">
+    </div>
     {% if diseases %}
 
     <table class="interaction-data">
@@ -137,8 +172,12 @@
         <p>No data found.</p>
     {% endif %}
 
-    <h3 id="linear-motifs" class="entry-category">Linear motifs</h3>
 
+    <div class="entry-menu-item">
+        <h3 id="linear-motifs" class="entry-category">Linear motifs</h3>
+        <img class="tooltip_icon" src="{% static 'images/help-circle.svg' %}" data-toggle="tooltip" data-placement="right"
+             title="Annotated ELM instances for the protein together with the binding regions.">
+    </div>
     {% if linear_motifs %}
     <table class="interaction-data">
     <tr>
@@ -174,10 +213,18 @@
     {% endfor %}
     </table>
     {% else %}
-        <p>No data found.</p>
+        <p>No annotated instance was found. To search for linear motifs, use the ELM
+            <a href="http://elm.eu.org/cgimodel.py?fun=Submit&swissprotId={{ uniprot_id }}">prediction server.</a></p>
     {% endif %}
 
-    <h3 id="fingerprint" class="entry-category">Fingerprint</h3>
+
+    <div class="entry-menu-item">
+        <h3 id="fingerprint" class="entry-category">Fingerprint</h3>
+        <img class="tooltip_icon" src="{% static 'images/help-circle.svg' %}" data-toggle="tooltip" data-placement="right"
+             title="Gene and Disease ontology terms were collected from the protein and its' interacting partners.
+             The list shows the most frequent terms in the network of the protein. Terms can be sorted based on their name,
+             frequency or their distance from the level (the higher number indicates more specific term).">
+    </div>
     <h4 class="fingerprint-category">Molecular function</h4>
     {% if fp_mol_func %}
     <table id="dataTable-fp-mol" class="interaction-data">
@@ -185,8 +232,8 @@
         <tr>
             <th>Term</th>
             <th>Name</th>
-            <th>Count</th>
-            <th>Level</th>
+            <th>%</th>
+            <th>Distance from top the of the tree</th>
         </tr>
     </thead>
     <tbody>
@@ -211,14 +258,14 @@
         <tr>
             <th>Term</th>
             <th>Name</th>
-            <th>Count</th>
-            <th>Level</th>
+            <th>%</th>
+            <th>Distance from top the of the tree</th>
         </tr>
     </thead>
     <tbody>
         {% for fp in fp_biol_proc %}
         <tr>
-            <td>{{ fp.term_id }}</td>
+            <td><a href="http://amigo.geneontology.org/amigo/term/{{ fp.term_id }}">{{ fp.term_id }}</a></td>
             <td>{{ fp.des }}</td>
             <td>{{ fp.ontology_number }}</td>
             <td>{{ fp.ontology_level }}</td>
@@ -237,8 +284,8 @@
         <tr>
             <th>Term</th>
             <th>Name</th>
-            <th>Count</th>
-            <th>Level</th>
+            <th>%</th>
+            <th>Distance from top the of the tree</th>
         </tr>
     </thead>
     <tbody>
@@ -257,11 +304,11 @@
     {% endif %}
 
 
-    <h3 id="network" class="entry-category">Network</h3>
-    <interaction-viewer accession="{{ uniprot_id }}"></interaction-viewer>
-
-
-    <h3 id="interacting-partners" class="entry-category">All partners</h3>
+    <div class="entry-menu-item">
+        <h3 id="interacting-partners" class="entry-category">All partners</h3>
+        <img class="tooltip_icon" src="{% static 'images/help-circle.svg' %}" data-toggle="tooltip" data-placement="right"
+             title="All interaction partners, including those proteins that were not associated with PSD yet">
+    </div>
     <table id="dataTable-partners" class="interaction-data">
     <thead>
         <tr>
@@ -303,13 +350,16 @@
                 "pageLength": 25
             });
             $('#dataTable-fp-mol').DataTable({
-                "pageLength": 25
+                "pageLength": 25,
+                "order": [[ 3, "desc" ]]
             });
             $('#dataTable-fp-bio').DataTable({
-                "pageLength": 25
+                "pageLength": 25,
+                "order": [[ 3, "desc" ]]
             });
             $('#dataTable-fp-disease').DataTable({
-                "pageLength": 25
+                "pageLength": 25,
+                "order": [[ 3, "desc" ]]
             });
         });
     </script>

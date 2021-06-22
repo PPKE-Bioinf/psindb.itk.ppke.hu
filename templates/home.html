@@ -36,7 +36,7 @@
                     {% endif %}</div>
                     <div class="left-flex">
                     {% if result.evidence_g2c != "no" %}
-                        <a href="https://www.genes2cognition.org/db/Search?text={{ result.evidence_g2c }}">G2C</a>
+                        <a href="https://www.genes2cognition.org/db/Search?text={{ result.evidence_g2c }}" target="_blank" rel="noopener noreferrer">G2C</a>
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
                         <span class="evidence">G2C</span>
@@ -44,7 +44,7 @@
                     {% endif %}</div>
                     <div class="left-flex">
                     {% if result.evidence_syngo != "no" %}
-                        <a href="https://syngoportal.org/gene.html?HGNC:{{ result.evidence_syngo }}">SynGO</a>
+                        <a href="https://syngoportal.org/gene.html?HGNC:{{ result.evidence_syngo }}" target="_blank" rel="noopener noreferrer">SynGO</a>
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
                         <span class="evidence">SynGO</span>
@@ -52,7 +52,7 @@
                     {% endif %}</div>
                     <div class="left-flex">
                     {% if result.evidence_synaptomedb != "no" %}
-                        <a href="http://metamoodics.org/SynaptomeDB/synmain/synaptome_all_view.php?editid1={{ result.evidence_synaptomedb }}">SynaptomeDB</a>
+                        <a href="http://metamoodics.org/SynaptomeDB/synmain/synaptome_all_view.php?editid1={{ result.evidence_synaptomedb }}" target="_blank" rel="noopener noreferrer">SynaptomeDB</a>
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
                         <span class="evidence">SynaptomeDB</span>

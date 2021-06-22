@@ -1,7 +1,7 @@
 // --- Config --- //
-var purecookieTitle = "Cookies."; // Title
-var purecookieDesc = "By using this website, you automatically accept that we use cookies."; // Description
-var purecookieLink = '<a href="https://www.cssscript.com/privacy-policy/" target="_blank">What for?</a>'; // Cookiepolicy link
+var purecookieTitle = "[GDPR]"; // Title
+var purecookieDesc = "By using PSINDB you accept the Privacy Notice in compliance with Europe’s new General Data Protection Regulation (GDPR) that applies since 25 May 2018. Read the"; // Description
+var purecookieLink = '<a href="/privacy-policy" target="_blank">Privacy notes</a>.'; // Cookiepolicy link
 var purecookieButton = "Understood"; // Button text
 // ---        --- //
 

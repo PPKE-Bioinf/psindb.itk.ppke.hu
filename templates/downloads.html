@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}PSINDB{% endblock %}
+
+{% block content %}
+    <h1 class="lonely">Downloads</h1>
+
+{#    <div class="manual-content">#}
+{#        <h2>Download database</h2>#}
+        <p>
+            <a href="{% static 'download/PSINDB1.0_mitab2.5.tsv' %}">PSINDB1.0_mitab2.5.tsv</a>
+            - PSI-MI TAB 2.5 Format (contains interactions curated by the PSINDB team)
+        </p>
+    <p>More download formats coming soon.</p>
+{#    </div>#}
+
+{% endblock %}

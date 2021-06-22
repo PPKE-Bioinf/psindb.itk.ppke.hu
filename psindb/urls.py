@@ -8,4 +8,8 @@ urlpatterns = [
     path('network/<str:accession>', views.network, name='network'),
     path('interactions', views.interactions, name='interactions'),
     path('manual', TemplateView.as_view(template_name="manual.html")),
+    path('downloads', TemplateView.as_view(template_name="downloads.html")),
+    path('faq', TemplateView.as_view(template_name="faq.html")),
+    path('related-pages', TemplateView.as_view(template_name="related-pages.html")),
+    path('privacy-policy', TemplateView.as_view(template_name="privacy-policy.html")),
 ]
