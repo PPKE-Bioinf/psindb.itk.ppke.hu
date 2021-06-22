@@ -215,7 +215,15 @@ img.legend {
     margin-left: 163px;
     margin-top: 10px;
     /*margin-right: auto;*/
-    width: 80%;
+    width: 720px;
+}
+
+img.isoform-legend {
+    display: block;
+    margin-left: 202px;
+    margin-top: 10px;
+    /*margin-right: auto;*/
+    width: 720px;
 }
 
 div.rcsbFvRowMark {
@@ -238,7 +246,7 @@ div.entry-menu-item {
     border-bottom: 2px solid #479183;
     margin-bottom: 6px;
     width: 100%;
-    margin-top: -20px;
+    margin-top: -10px;
 }
 
 img.tooltip_icon {
@@ -344,3 +352,7 @@ p.main-title sup {
 		width: 100%  !important;
 	}
 }
+
+/*form.first-search {*/
+/*    padding-right: 16px;*/
+/*}*/
