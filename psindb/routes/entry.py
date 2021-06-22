@@ -225,7 +225,8 @@ def create_graph_data(
         transmembrane_row_title = f"""
             RcsbFvLink = {{
                 visibleTex: "Transmembrane",
-                url: "http://htp.enzim.hu/?_=/viewer/{htp}"
+                url: "http://htp.enzim.hu/?_=/viewer/{htp}",
+                isThirdParty: true
             }}
             """
 
@@ -235,14 +236,16 @@ def create_graph_data(
         llps_row_title = f"""
         RcsbFvLink = {{
             visibleTex: "Phase separation",
-            url: "https://phasepro.elte.hu/entry/{phasepro}"
+            url: "https://phasepro.elte.hu/entry/{phasepro}",
+            isThirdParty: true
         }}
         """
 
     pfam_row_title = f"""
     RcsbFvLink = {{
         visibleTex: "PFAM",
-        url: "http://pfam.xfam.org/protein/{protein_id}"
+        url: "http://pfam.xfam.org/protein/{protein_id}",
+        isThirdParty: true
     }}
     """
 
@@ -729,7 +732,8 @@ def entry(request, uniprot_id,):
     query, fp_mol_func_sql = DB.execute_sql(
         """
         SELECT Fingerprint.term_id, Ontology.descr, 
-        Fingerprint.ontology_number, Fingerprint.ontology_level 
+        Fingerprint.ontology_number/Fingerprint.ontology_total1, 
+        Fingerprint.ontology_level 
         FROM Fingerprint INNER JOIN Ontology ON 
         Fingerprint.protein_id=%s AND 
         Ontology.term_id=Fingerprint.term_id AND
@@ -756,7 +760,8 @@ def entry(request, uniprot_id,):
     query, fp_biol_proc_sql = DB.execute_sql(
         """
         SELECT Fingerprint.term_id, Ontology.descr, 
-        Fingerprint.ontology_number, Fingerprint.ontology_level
+        Fingerprint.ontology_number/Fingerprint.ontology_total1,
+        Fingerprint.ontology_level
         FROM Fingerprint INNER JOIN Ontology ON 
         Fingerprint.protein_id=%s AND 
         Ontology.term_id=Fingerprint.term_id AND 
@@ -783,7 +788,8 @@ def entry(request, uniprot_id,):
     query, fp_disease_sql = DB.execute_sql(
         """
         SELECT Fingerprint.term_id, Ontology.descr,
-        Fingerprint.ontology_number, Fingerprint.ontology_level
+        Fingerprint.ontology_number/Fingerprint.ontology_total1,
+        Fingerprint.ontology_level
         FROM Fingerprint INNER JOIN Ontology 
         ON Fingerprint.protein_id=%s AND 
         Ontology.term_id=Fingerprint.term_id AND 
@@ -810,17 +816,11 @@ def entry(request, uniprot_id,):
     functions_desc = sql2[0][5]
     functions_desc = re.sub(
         r"(PubMed):(\d*)",
-        r'<a href="https://pubmed.ncbi.nlm.nih.gov/\2">\1</a>',
+        r'<a href="https://pubmed.ncbi.nlm.nih.gov/\2" target="_blank" rel="noopener noreferrer">\1</a>',
         functions_desc
     )
 
-    # functions_desc = re.sub(
-    #     r" \((PubMed):(\d*), *(PubMed):(\d*)\).",
-    #     r'. <a href="https://pubmed.ncbi.nlm.nih.gov/\2">[\1]</a> <a href="https://pubmed.ncbi.nlm.nih.gov/\4">[\3]</a>',
-    #     functions_desc
-    # )
-
-    functions_desc += f' <a href="https://www.uniprot.org/uniprot/{uniprot_id}">[View more on UniProt]</a>'
+    functions_desc += f' <a href="https://www.uniprot.org/uniprot/{uniprot_id}" target="_blank" rel="noopener noreferrer">[View more on UniProt]</a>'
 
     db_data = {
         "go": sql2[0][1],
