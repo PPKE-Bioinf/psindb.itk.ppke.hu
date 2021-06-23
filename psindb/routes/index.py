@@ -175,7 +175,8 @@ def index(request):
                 SELECT Protein.go, Protein.g2c, Protein.syngo,
                 Protein.synaptomedb, Protein.protein_id,
                 Protein.interactions 
-                FROM Protein ORDER BY Protein.interactions ASC;
+                FROM Protein ORDER BY Protein.interactions 
+                DESC;
                 """
             )
         else:
