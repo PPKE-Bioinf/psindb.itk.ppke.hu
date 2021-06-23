@@ -163,8 +163,8 @@ def get_alignment_data_list(data):
     })
 
     value_colors = {
-        "0": "#0080FF",
-        "1": "#28C7FF",
+        "0": "#28C7FF",
+        "1": "#0080FF",
     }
 
     value_display_ids = {
@@ -195,6 +195,7 @@ def generate_connectivity_data_list(connectivity):
     print(connectivity)
 
     value_ranges = {
+        "-": [],
         "1": [],
         "2": [],
         "3": [],
@@ -207,8 +208,8 @@ def generate_connectivity_data_list(connectivity):
     i, value = None, None
 
     for i, value in enumerate(connectivity[1:]):
-        if value == "-":
-            value = "1"
+        # if value == "-":
+        #     value = "1"
         if value != prev_value:
             value_ranges[prev_value].append({
                 "begin": value_from,
@@ -225,6 +226,7 @@ def generate_connectivity_data_list(connectivity):
     })
 
     value_colors = {
+        "-": "#28C7FF",
         "1": "#4a2226",
         "2": "#705080",
         "3": "#32a481",
@@ -233,6 +235,7 @@ def generate_connectivity_data_list(connectivity):
     }
 
     value_display_ids = {
+        "-": "1_0",
         "1": "1_1",
         "2": "1_2",
         "3": "1_3",
@@ -446,7 +449,8 @@ def create_isoform_data(
         isoform_row_title = f"""
         RcsbFvLink = {{
             visibleTex: "Isoform [{isoform_name}] sequence",
-            url: "https://www.uniprot.org/uniprot/{isoform_name}"
+            url: "https://www.uniprot.org/uniprot/{isoform_name}",
+            isThirdParty: true
         }}
         """
 
