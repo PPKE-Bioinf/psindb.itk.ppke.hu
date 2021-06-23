@@ -4,6 +4,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('', views.index, name='routes'),
+    path('browse', TemplateView.as_view(template_name="browse.html")),
     path('entry/<str:uniprot_id>', views.entry, name='entry'),
     path('network/<str:accession>', views.network, name='network'),
     path('interactions', views.interactions, name='interactions'),

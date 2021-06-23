@@ -71,10 +71,54 @@
         {% endfor %}
     {% endif %}
 
-
-
     {% if error %}
         <h1 class="lonely">{{ error }}</h1>
+    {% endif %}
+
+    {% if not error and not results %}
+        <h1 class="lonely">Welcome to the Postsynaptic Interaction Database!</h1>
+
+    <p>The Postsynaptic Interaction Database is a comprehensive resource of the human postsynaptic-density (PSD) binary
+        protein-protein interactions. It contains experimental and computational evidence about interactions,
+        along with structural and disease-related information about the human PSD proteins.</p>
+    <p>The PSINDB web-server provides data integration coupled with manual curation. PSINDB collects interaction
+        evidence from several other resources. In addition our team also takes part in collecting and curating
+        related papers to expedite the annotation of PSD related proteins.</p>
+    <p>PSINDB offers common format download and community standard curation process and data interpretation to ensure
+        interoperability with other resources.</p>
+    <p>PSINDB enables exploring proteins and their interactions. The database offers various visualizations for the
+        data stored, where interacting regions, structural features, disease-causing mutations, and network information
+        is easily accessible. PSINDB also displays detailed information about each interaction evidence, including but
+        not limited to interaction detection method, experimental and biological role of participants.</p>
+    <p>You can read more about the database in the descriptive article or in the database manual.</p>
+
+    <div style="display: flex; justify-content: center; margin: 20px 0px 40px 0px;">
+        <figure style="text-align: center; margin: 0px 20px 0px 20px;">
+            <img class="picto" src="{% static 'images/picto_protein.gif' %}" alt="PSINDB logo">
+            <figcaption> 2211 proteins </figcaption>
+        </figure>
+
+        <figure style="text-align: center; margin: 0px 20px 0px 20px;">
+            <img class="picto" src="{% static 'images/picto_paper.gif' %}" alt="PSINDB logo">
+            <figcaption> 22892 pubmed IDs </figcaption>
+        </figure>
+
+        <figure style="text-align: center; margin: 0px 20px 0px 20px;">
+            <img class="picto" src="{% static 'images/picto_interaction.gif' %}" alt="PSINDB logo">
+            <figcaption> 16618 unique binary interactions </figcaption>
+        </figure>
+
+        <figure style="text-align: center; margin: 0px 20px 0px 20px;">
+            <img class="picto" src="{% static 'images/picto_experiment.gif' %}" alt="PSINDB logo">
+            <figcaption> 484314 experimental evidence </figcaption>
+        </figure>
+    </div>
+
+    <p>For the usage of the PSINDB homepage please refer to the server manual. If you find our database useful,
+        please cite it:</p>
+    <p><i>Zsofia E. Kalman, Daniel Dudola, Balint Meszaros, Zoltan Gaspari, Laszlo Dobson PSINDB: A comprehensive
+        collection of Protein-Protein Interactions in the postsynaptic density</i></p>
+
     {% endif %}
 
 {% endblock %}

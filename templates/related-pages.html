@@ -4,15 +4,34 @@
 {% block title %}PSINDB{% endblock %}
 
 {% block content %}
-    <h1 class="lonely">Downloads</h1>
+<h1 class="lonely">Related pages</h1>
 
-{#    <div class="manual-content">#}
-{#        <h2>Download database</h2>#}
-        <p>
-            <a href="{% static 'download/PSINDB1.0_mitab2.5.tsv' %}">PSINDB1.0_mitab2.5.tsv</a>
-            - PSI-MI TAB 2.5 Format (contains interactions curated by the PSINDB team)
-        </p>
-    <p>More download formats coming soon.</p>
-{#    </div>#}
+<ul>
+    <il>Postsynaptic proteins:</il>
+    <ul class="faq-answer">
+        <li>SynGO: <a href="https://syngoportal.org/">https://syngoportal.org/</a></li>
+        <li>SynaptomeDB: <a href="http://metamoodics.org/SynaptomeDB/">http://metamoodics.org/SynaptomeDB/</a></li>
+        <li>G2C: <a href="https://www.genes2cognition.org/">https://www.genes2cognition.org/</a></li>
+        <li>GO: <a href="http://geneontology.org/">http://geneontology.org/</a></li>
+    </ul>
+    <il>Interactions:</il>
+    <ul class="faq-answer">
+        <li>BIOGRID: <a href="https://thebiogrid.org/">https://thebiogrid.org/</a></li>
+        <li>IntAct: <a href="https://www.ebi.ac.uk/intact/">https://www.ebi.ac.uk/intact/</a></li>
+        <li>STRING: <a href="https://string-db.org/">https://string-db.org/</a></li>
+        <li>PDB: <a href="https://www.rcsb.org/">https://www.rcsb.org/</a></li>
+        <li>Proteomics Standards Initiative: <a href="https://www.psidev.info/mif">https://www.psidev.info/mif</a></li>
+        <li>Ontology Lookup Service: <a href="https://www.ebi.ac.uk/ols/ontologies/mi">https://www.ebi.ac.uk/ols/ontologies/mi</a></li>
+    </ul>
+    <il>Other servers and databases:</il>
+    <ul class="faq-answer">
+        <li>UniProt: <a href="https://www.uniprot.org/">https://www.uniprot.org/</a></li>
+        <li>PFAM (protein families and domains): <a href="http://pfam.xfam.org/">http://pfam.xfam.org/</a></li>
+        <li>Iupred2A (disordered regions): <a href="https://iupred2a.elte.hu/">https://iupred2a.elte.hu/</a></li>
+        <li>PhaSePro (phase separation): <a href="https://phasepro.elte.hu/">https://phasepro.elte.hu/</a></li>
+        <li>ELM (Eukaryotic linear motifs): <a href="http://elm.eu.org/">http://elm.eu.org/</a></li>
+        <li>CCTOP (transmembrane topology): <a href="http://cctop.enzim.ttk.mta.hu/">http://cctop.enzim.ttk.mta.hu/</a></li>
+    </ul>
+</ul>
 
 {% endblock %}

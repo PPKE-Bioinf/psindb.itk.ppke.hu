@@ -356,3 +356,11 @@ p.main-title sup {
 /*form.first-search {*/
 /*    padding-right: 16px;*/
 /*}*/
+
+img.picto {
+    width: 200px;
+}
+
+ul.faq-answer {
+    padding-bottom: 20px;
+}

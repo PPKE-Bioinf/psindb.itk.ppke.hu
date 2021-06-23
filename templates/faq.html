@@ -4,15 +4,28 @@
 {% block title %}PSINDB{% endblock %}
 
 {% block content %}
-    <h1 class="lonely">Downloads</h1>
+    <h1 class="lonely">FAQ</h1>
 
-{#    <div class="manual-content">#}
-{#        <h2>Download database</h2>#}
-        <p>
-            <a href="{% static 'download/PSINDB1.0_mitab2.5.tsv' %}">PSINDB1.0_mitab2.5.tsv</a>
-            - PSI-MI TAB 2.5 Format (contains interactions curated by the PSINDB team)
-        </p>
-    <p>More download formats coming soon.</p>
-{#    </div>#}
+
+
+<ul>
+    <li>Why is there protein interaction displayed from PDB, if the structure only contains 1 subunit?</li>
+    <ul class="faq-answer"><li>All PDB files were preprocessed, including the generation of the full structure using BIOMT lines, specifying the transformation matrix that was applied.</li></ul>
+
+
+    <li>Why does the network view contain less interaction compared to the downloadable file and the listed partners?</li>
+    <ul class="faq-answer"><li>The PSD exhibits an extremely high number of PPIs, therefore we reduced the number of displayed partners to 50 in this view. For this purpose we scored each interaction. For more details see the server manual</li></ul>
+    </li>
+
+    <li>How high throughput experiments discriminated against low throughput experiments?</li>
+    <ul class="faq-answer"><li>In the case of PSINDB, the curator can make the call to classify the given interaction. In case of Intact and BIOGRID, we followed the following procedure: in any paper, if using the same experimental setup less than 10 experimental data was produced, we assigned it as low throughput. Interactions from PDB are always classified as low throughput. Experiments that do not satisfy these criteria are marked as high-throughput.</li></ul>
+
+    <li>Does the database store interactions from other species than humans?</li>
+    <ul class="faq-answer"><li>Yes, PSINDB stores information from rat and mouse experiments too, however these are always mapped back to their human orthologs.</li></ul>
+
+    <li>What information is stored about an interaction curated by PSINDB curator group?</li>
+    <ul class="faq-answer"><li>We stored every information that is required for MIMIx standards, however in each case we aimed for a somewhat higher annotation level. The current version of PSINDB stores the following information about each interaction: UniProt ACs of interactors, interaction detection method, 1st author of publication, pubmed id, taxonomy identifier of interactors, interaction type, biological role of interactors, experimental role of interactors, participant identification method and host organism.</li></ul>
+</ul>
+
 
 {% endblock %}
