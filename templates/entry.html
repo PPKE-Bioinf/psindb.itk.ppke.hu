@@ -94,6 +94,7 @@
         <img class="tooltip_icon" src="{% static 'images/help-circle.svg' %}" data-toggle="tooltip" data-placement="right"
              title="Shows all partners where the interacting regions was defined in the experiments.">
     </div>
+    {% if partners %}
     <p>To display all evidence describing the interaction with a partner, click on the protein name left to the bars.</p>
     {% for partner in partners %}
         <div id="pfv-{{ partner.name }}" style="margin-top:15px" ></div>
@@ -104,6 +105,9 @@
         </script>
     {% endfor %}
     <img class="legend" src="{% static 'images/legend2.gif' %}">
+    {% else %}
+        <p>Interacting region for partners were not defined.</p>
+    {% endif %}
 
 
     <div class="entry-menu-item">
@@ -241,7 +245,7 @@
     <tbody>
     {% for fp in fp_mol_func %}
     <tr>
-        <td><a href="http://amigo.geneontology.org/amigo/term/{{ fp.term_id }}">{{ fp.term_id }}</a></td>
+        <td><a href="http://amigo.geneontology.org/amigo/term/{{ fp.term_id }}" target="_blank" rel="noopener noreferrer">{{ fp.term_id }}</a></td>
         <td>{{ fp.des }}</td>
         <td>{{ fp.ontology_number|floatformat:4 }}</td>
         <td>{{ fp.ontology_level }}</td>
@@ -267,7 +271,7 @@
     <tbody>
         {% for fp in fp_biol_proc %}
         <tr>
-            <td><a href="http://amigo.geneontology.org/amigo/term/{{ fp.term_id }}">{{ fp.term_id }}</a></td>
+            <td><a href="http://amigo.geneontology.org/amigo/term/{{ fp.term_id }}" target="_blank" rel="noopener noreferrer">{{ fp.term_id }}</a></td>
             <td>{{ fp.des }}</td>
             <td>{{ fp.ontology_number|floatformat:4 }}</td>
             <td>{{ fp.ontology_level }}</td>
