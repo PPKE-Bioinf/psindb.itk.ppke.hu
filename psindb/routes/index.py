@@ -169,19 +169,29 @@ def index(request):
     if browse:
         print("BROWSE parameter: {browse}")
 
-        query, query_results = DB.execute_sql(
-            """
-            SELECT Protein.go, Protein.g2c, Protein.syngo,
-            Protein.synaptomedb, Protein.protein_id,
-            Protein.interactions 
-            FROM Protein INNER JOIN Sets 
-            ON Sets.protein_id=Protein.protein_id AND 
-            Sets.set_name=%s 
-            ORDER BY Protein.interactions
-            DESC;
-            """,
-            (browse,)
-        )
+        if browse == "all":
+            query, query_results = DB.execute_sql(
+                """
+                SELECT Protein.go, Protein.g2c, Protein.syngo,
+                Protein.synaptomedb, Protein.protein_id,
+                Protein.interactions 
+                FROM Protein ORDER BY Protein.interactions ASC;
+                """
+            )
+        else:
+            query, query_results = DB.execute_sql(
+                """
+                SELECT Protein.go, Protein.g2c, Protein.syngo,
+                Protein.synaptomedb, Protein.protein_id,
+                Protein.interactions 
+                FROM Protein INNER JOIN Sets 
+                ON Sets.protein_id=Protein.protein_id AND 
+                Sets.set_name=%s 
+                ORDER BY Protein.interactions
+                DESC;
+                """,
+                (browse,)
+            )
 
         if not query_results:
             return render(

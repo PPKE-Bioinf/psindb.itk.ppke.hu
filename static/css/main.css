@@ -215,7 +215,7 @@ img.legend {
     margin-left: 163px;
     margin-top: 10px;
     /*margin-right: auto;*/
-    width: 720px;
+    width: 550px;
 }
 
 img.isoform-legend {
@@ -223,7 +223,7 @@ img.isoform-legend {
     margin-left: 202px;
     margin-top: 10px;
     /*margin-right: auto;*/
-    width: 720px;
+    width: 550px;
 }
 
 div.rcsbFvRowMark {
@@ -361,6 +361,20 @@ img.picto {
     width: 200px;
 }
 
+img.browse-pic {
+    width: 120px;
+}
+
+img.manual-image {
+    width: 1050px;
+    border: 1px solid;
+    margin-bottom: 20px;
+}
+
 ul.faq-answer {
     padding-bottom: 20px;
+}
+
+p.interaction-title {
+    display: none;
 }

@@ -4,21 +4,21 @@
 {% block title %}PSINDB{% endblock %}
 
 {% block content %}
-    <div class="container interactions-header">
-        <div class="row">
-            <div class="col-sm">
-                <h1 class="lonely">Select a category to browse:</h1>
-                <ul class="browse-list">
-                    <li><a href="/?browse=scaffold">Scaffold proteins</a></li>
-                    <li><a href="/?browse=cytoskeletal">Cytoskeletal proteins</a></li>
-                    <li><a href="/?browse=membrane">Transmembrane proteins</a></li>
-                    <li><a href="/?browse=cc">Coiled-coil containing proteins</a></li>
-                    <li><a href="/?browse=llps">Phase separation</a></li>
-                    <li><a href="/?browse=hub">Hub proteins</a></li>
-                    <li><a href="/?browse=Structure">With structural evidence</a></li>
-                    <li><a href="/?browse=Literature">With literature evidence</a></li>
-                </ul>
-            </div>
+{#    <div class="container interactions-header">#}
+{#        <div class="row">#}
+{#            <div class="col-sm">#}
+{#                <h1 class="lonely">Select a category to browse:</h1>#}
+{#                <ul class="browse-list">#}
+{#                    <li><a href="/?browse=scaffold">Scaffold proteins</a></li>#}
+{#                    <li><a href="/?browse=cytoskeletal">Cytoskeletal proteins</a></li>#}
+{#                    <li><a href="/?browse=membrane">Transmembrane proteins</a></li>#}
+{#                    <li><a href="/?browse=cc">Coiled-coil containing proteins</a></li>#}
+{#                    <li><a href="/?browse=llps">Phase separation</a></li>#}
+{#                    <li><a href="/?browse=hub">Hub proteins</a></li>#}
+{#                    <li><a href="/?browse=Structure">With structural evidence</a></li>#}
+{#                    <li><a href="/?browse=Literature">With literature evidence</a></li>#}
+{#                </ul>#}
+{#            </div>#}
 {#            <div class="col-sm">#}
 {#                <div class="description-div">#}
 {#                <p class="server-description">The PostSynaptic INteraction DataBase is a comprehensive resources of#}
@@ -39,6 +39,80 @@
 {#                </p>#}
 {#                </div>#}
 {#            </div>#}
-        </div>
+{#        </div>#}
+{#    </div>#}
+    <h3>Based on higher order assemblies:</h3>
+    <div style="display: flex; justify-content: center; margin: 20px 0px 40px 0px;">
+        <a href="/?browse=cytoskeletal">
+        <figure style="text-align: center; margin: 0px 20px 0px 20px;">
+            <img class="browse-pic" src="{% static 'images/citos.gif' %}" alt="PSINDB logo">
+            <figcaption> Cytoskeletal proteins </figcaption>
+        </figure>
+        </a>
+
+        <a href="/?browse=scaffold">
+        <figure style="text-align: center; margin: 0px 20px 0px 20px;">
+            <img class="browse-pic" src="{% static 'images/scaffold.gif' %}" alt="PSINDB logo">
+            <figcaption> Scaffold proteins  </figcaption>
+        </figure>
+        </a>
+
+        <a href="/?browse=hub">
+        <figure style="text-align: center; margin: 0px 20px 0px 20px;">
+            <img class="browse-pic" src="{% static 'images/hub.gif' %}" alt="PSINDB logo">
+            <figcaption> Hub proteins </figcaption>
+        </figure>
+        </a>
+    </div>
+
+    <h3>Based on structural features:</h3>
+    <div style="display: flex; justify-content: center; margin: 20px 0px 40px 0px;">
+        <a href="/?browse=membrane">
+        <figure style="text-align: center; margin: 0px 20px 0px 20px;">
+            <img class="browse-pic" src="{% static 'images/tm.gif' %}" alt="PSINDB logo">
+            <figcaption> Transmembrane proteins </figcaption>
+        </figure>
+        </a>
+
+        <a href="/?browse=llps">
+        <figure style="text-align: center; margin: 0px 20px 0px 20px;">
+            <img class="browse-pic" src="{% static 'images/phase.gif' %}" alt="PSINDB logo">
+            <figcaption> Phase separation proteins  </figcaption>
+        </figure>
+        </a>
+
+        <a href="/?browse=cc">
+        <figure style="text-align: center; margin: 0px 20px 0px 20px;">
+            <img class="browse-pic" src="{% static 'images/cc.gif' %}" alt="PSINDB logo">
+            <figcaption> Coiled-coil containing proteins </figcaption>
+        </figure>
+        </a>
+    </div>
+
+    <h3>Based on evidence:</h3>
+    <div style="display: flex; justify-content: center; margin: 20px 0px 40px 0px;">
+        <a href="/?browse=Literature">
+        <figure style="text-align: center; margin: 0px 20px 0px 20px;">
+            <img class="browse-pic" src="{% static 'images/paper.gif' %}" alt="PSINDB logo">
+            <figcaption> With literature evidence </figcaption>
+        </figure>
+        </a>
+
+        <a href="/?browse=Literature">
+        <figure style="text-align: center; margin: 0px 20px 0px 20px;">
+            <img class="browse-pic" src="{% static 'images/structure.gif' %}" alt="PSINDB logo">
+            <figcaption> With structural evidence  </figcaption>
+        </figure>
+        </a>
+    </div>
+
+    <h3>Other:</h3>
+    <div style="display: flex; justify-content: center; margin: 20px 0px 40px 0px;">
+        <a href="/?browse=all">
+        <figure style="text-align: center; margin: 0px 20px 0px 20px;">
+            <img class="browse-pic" src="{% static 'images/all.gif' %}" alt="PSINDB logo">
+            <figcaption> Browse all </figcaption>
+        </figure>
+        </a>
     </div>
 {% endblock %}
