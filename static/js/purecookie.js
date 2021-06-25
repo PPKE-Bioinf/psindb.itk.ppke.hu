@@ -57,10 +57,44 @@ function eraseCookie(name) {
 
 function cookieConsent() {
   if (!getCookie('purecookieDismiss')) {
-    document.body.innerHTML += '<div class="cookieConsentContainer" id="cookieConsentContainer"><div class="cookieTitle"><a>' + purecookieTitle + '</a></div><div class="cookieDesc"><p>' + purecookieDesc + ' ' + purecookieLink + '</p></div><div class="cookieButton"><a onClick="purecookieDismiss();">' + purecookieButton + '</a></div></div>';
-	pureFadeIn("cookieConsentContainer");
+	var cookieContainer = document.createElement('DIV')
+    var cookieTitleContainer = document.createElement('DIV')
+    var cookieTitle = document.createElement('A')
+    var cookieDescriptionContainer = document.createElement('DIV')
+    var cookieDescription = document.createElement('P')
+    var cookieButtonContainer = document.createElement('DIV')
+    var cookieButton = document.createElement('A')
+    var cookieLink = document.createElement('A')
+
+    cookieContainer.classList.add('cookieConsentContainer')
+    cookieContainer.setAttribute('id', 'cookieConsentContainer')
+    cookieLink.setAttribute('href', '/privacy-policy')
+    cookieLink.setAttribute('target', '_blank')
+    cookieTitleContainer.classList.add('cookieTitle')
+    cookieDescriptionContainer.classList.add('cookieDesc')
+    cookieButtonContainer.classList.add('cookieButton')
+    cookieTitle.innerText = purecookieTitle;
+    cookieDescription.innerText = purecookieDesc
+    cookieButton.innerText = purecookieButton
+    cookieLink.innerText = 'Privacy notes'
+    cookieButton.addEventListener('click', function () {
+      purecookieDismiss();
+    })
+
+    cookieButtonContainer.appendChild(cookieButton);
+    cookieDescriptionContainer.appendChild(cookieDescription);
+    cookieDescriptionContainer.appendChild(cookieLink);
+    cookieTitleContainer.appendChild(cookieTitle);
+
+    cookieContainer.appendChild(cookieTitleContainer)
+    cookieContainer.appendChild(cookieDescriptionContainer)
+    cookieContainer.appendChild(cookieButtonContainer)
+
+    document.getElementsByTagName('BODY')[0].appendChild(cookieContainer)
+      pureFadeIn("cookieConsentContainer");
   }
 }
+
 
 function purecookieDismiss() {
   setCookie('purecookieDismiss','1',7);
