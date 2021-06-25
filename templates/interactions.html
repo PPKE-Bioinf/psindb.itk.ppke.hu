@@ -96,14 +96,14 @@
 
     {% for result in results %}
 
-        <div id="pfv-{{ result.id_1 }}-{{ result.number }}" style="margin-top:15px" ></div>
+        <div id="pfv-{{ result.id_1 }}-{{ result.number }}-1" style="margin-top:15px" ></div>
         <script type="text/javascript">
         {% autoescape off %}
         {{ result.connectivity_1 }}
         {% endautoescape %}
         </script>
 
-        <div id="pfv-{{ result.id_2 }}-{{ result.number }}" style="margin-top:15px" ></div>
+        <div id="pfv-{{ result.id_2 }}-{{ result.number }}-2" style="margin-top:15px" ></div>
         <script type="text/javascript">
         {% autoescape off %}
         {{ result.connectivity_2 }}

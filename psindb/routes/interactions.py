@@ -2,7 +2,7 @@ from django.shortcuts import render
 from psindb.util.db import DB
 
 
-def create_graph_data(protein_id, num, connectivity, row_title=""):
+def create_graph_data(protein_id, num, group, connectivity, row_title=""):
     if not row_title:
         row_title = protein_id
 
@@ -87,7 +87,7 @@ def create_graph_data(protein_id, num, connectivity, row_title=""):
   }}
 ];
 
-const elementId = "pfv-{protein_id}-{num}";
+const elementId = "pfv-{protein_id}-{num}-{group}";
 const pfv = new RcsbFv.Create({{
             boardConfigData,
             rowConfigData,
@@ -255,8 +255,8 @@ def interactions(request):
             "id_1": result[0],
             "id_2": result[1],
             "number": i,
-            "connectivity_1": create_graph_data(result[0], i, result[2]),
-            "connectivity_2": create_graph_data(result[1], i, result[3]),
+            "connectivity_1": create_graph_data(result[0], i, 1, result[2]),
+            "connectivity_2": create_graph_data(result[1], i, 2, result[3]),
             "inferred": "-" if int(result[4]) == 0 else "from orthologous proteins",
             "original_protein_1": result[5],
             "original_protein_2": result[6],
