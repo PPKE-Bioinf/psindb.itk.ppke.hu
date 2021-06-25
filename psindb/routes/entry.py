@@ -191,9 +191,6 @@ def get_alignment_data_list(data):
 
 
 def generate_connectivity_data_list(connectivity):
-    print("CONNECTIVITY")
-    print(connectivity)
-
     value_ranges = {
         "-": [],
         "1": [],
@@ -532,8 +529,6 @@ const pfv = new RcsbFv.Create({{
 def create_partner_data(uniprot_id, partners):
     partner_data_list = []
     for partner in partners:
-        print("PARTNER")
-        print(partner)
         partner_name = partner[0]
         partner_connectivity = partner[1]
         partner_connectivity2 = partner[2]
@@ -601,8 +596,6 @@ def create_partner_data(uniprot_id, partners):
             "connectivity_js": partner_js,
         })
 
-    print("partner_data_list")
-    print(partner_data_list)
     return partner_data_list
 
 
@@ -617,7 +610,6 @@ def entry(request, uniprot_id,):
         (uniprot_id,)
     )
 
-
     query, sql3 = DB.execute_sql(
         """
         SELECT protein_id2, reg_p1, reg_p2 FROM Partners 
@@ -625,9 +617,6 @@ def entry(request, uniprot_id,):
         """,
         (uniprot_id,)
     )
-
-    print("SQL3")
-    print(sql3)
 
     query, all_partners_list = DB.execute_sql(
         """

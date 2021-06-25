@@ -275,8 +275,6 @@ def index(request):
                 "protein_id": protein_id,
             })
 
-        print(results)
-
         return render(
             request,
             "home.html",
