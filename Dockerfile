@@ -34,6 +34,8 @@ RUN dpkg --add-architecture i386 \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
+RUN pip install gunicorn
+
 ENV PYROOT /pyroot
 ENV PYTHONPATH $PYROOT/lib/python:$PATH
 ENV PYTHONUSERBASE $PYROOT

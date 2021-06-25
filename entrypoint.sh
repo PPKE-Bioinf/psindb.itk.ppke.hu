@@ -20,4 +20,5 @@ echo "DB is / should be ready..."
 python3 manage.py migrate
 echo "Database migration complete."
 echo "Starting PSINDB..."
-python3 manage.py runserver 0.0.0.0:8000 --noreload
+# python3 manage.py runserver 0.0.0.0:8000 --noreload
+gunicorn --workers=4 --bind 0.0.0.0:8000 global_config.wsgi
