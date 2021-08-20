@@ -1,0 +1,1 @@
+[{"accession":"T132B_HUMAN","name":"T132B_HUMAN","interactions":[{"accession1":"T132B_HUMAN","accession2":"DLGP1_HUMAN","experiments":1}]},{"accession":"DLGP1_HUMAN","name":"DLGP1_HUMAN","interactions":[{"accession1":"DLGP1_HUMAN","accession2":"T132B_HUMAN","experiments":1}]}]

@@ -1,1 +1,0 @@
-[{"accession":"MIS_HUMAN","name":"MIS_HUMAN","interactions":[{"accession1":"MIS_HUMAN","accession2":"BMPR2_HUMAN","experiments":1}]},{"accession":"BMPR2_HUMAN","name":"BMPR2_HUMAN","interactions":[{"accession1":"BMPR2_HUMAN","accession2":"MIS_HUMAN","experiments":1},{"accession1":"BMPR2_HUMAN","accession2":"BMPR2_HUMAN","experiments":2}]}]

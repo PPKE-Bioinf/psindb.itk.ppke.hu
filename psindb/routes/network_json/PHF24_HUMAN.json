@@ -1,1 +1,0 @@
-[{"accession":"PHF24_HUMAN","name":"PHF24_HUMAN","interactions":[{"accession1":"PHF24_HUMAN","accession2":"GNAI3_HUMAN","experiments":3}]},{"accession":"GNAI3_HUMAN","name":"GNAI3_HUMAN","interactions":[{"accession1":"GNAI3_HUMAN","accession2":"PHF24_HUMAN","experiments":3},{"accession1":"GNAI3_HUMAN","accession2":"GNAI3_HUMAN","experiments":2}]}]

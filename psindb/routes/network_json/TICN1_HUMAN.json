@@ -1,0 +1,1 @@
+[{"accession":"TICN1_HUMAN","name":"TICN1_HUMAN","interactions":[{"accession1":"TICN1_HUMAN","accession2":"ELAV1_HUMAN","experiments":1}]},{"accession":"ELAV1_HUMAN","name":"ELAV1_HUMAN","interactions":[{"accession1":"ELAV1_HUMAN","accession2":"TICN1_HUMAN","experiments":1},{"accession1":"ELAV1_HUMAN","accession2":"ELAV1_HUMAN","experiments":10}]}]
