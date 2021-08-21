@@ -9,7 +9,7 @@ class PsindbConfig(AppConfig):
         "host": "psindb-db",
         "user": "daniel",
         "passwd": "password",
-        "database": "PSDInteractome_v1_00",
+        "database": "PSDInteractome_v1_01",
     }
 
     def ready(self):
