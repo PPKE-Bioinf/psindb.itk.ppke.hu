@@ -3,6 +3,19 @@
 
 {% block title %}PSINDB{% endblock %}
 
+{% block sidenav %}
+<div class="sidenav">
+    <a href="#search-browse">Search/Browse</a>
+    <a href="#entry">Entry</a>
+    <a href="#entry-function">Function</a>
+    <a href="#entry-features">Features</a>
+    <a href="#linear-motifs">Linear motifs</a>
+    <a href="#fingerprint">Fingerprint</a>
+    <a href="#network">Network</a>
+    <a href="#interacting-partners">All partners</a>
+</div>
+{% endblock %}
+
 {% block content %}
     <h1 class="lonely">Server manual</h1>
 
@@ -63,7 +76,7 @@
                 </div>
 
                 <div class="manual-content2">
-                    <h3>Search/browse page</h3>
+                    <h3 id="search-browse">Search/browse page</h3>
                     <p>
                         Users can search for proteins using UniProt identifier, UniProt AC, GeneID, Gene name,
                         Ensemble Protein identifier and HGNC codes using the search bar at the top of the page.
@@ -83,11 +96,11 @@
                 </div>
 
                 <div class="manual-content2">
-                    <h3>Entry page</h3>
+                    <h3 id="entry">Entry page</h3>
                 </div>
 
                 <div class="manual-content3">
-                    <h4>Function</h4>
+                    <h4 id="entry-function">Function</h4>
                     <p>
                         For each protein basic information about the protein is displayed using
                         <a href="https://www.uniprot.org/">UniProt</a> functional annotations.
@@ -95,7 +108,7 @@
                 </div>
 
                 <div class="manual-content3">
-                    <h4>Protein features</h4>
+                    <h4 id="entry-features">Protein features</h4>
                     <p>
                         Protein features displays structural and functional information about the protein mirrored to
                         the protein sequence. The legend below the Features guides the user how to interpret this information.
