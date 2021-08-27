@@ -16,6 +16,13 @@ div.footer-text {
     color: #9a9a9a;
 }
 
+a.nav-link {
+    padding-top: 4px;
+    padding-bottom: 0;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
 .rowTrackBoardSatus {
     visibility: hidden;
 }
@@ -175,6 +182,17 @@ p.isoform-p {
 
 .sidenav a:hover {
   color: #f1f1f1;
+}
+
+#sidenav-manual {
+    width: 180px;
+}
+
+#sidenav-manual a.sub-category {
+    padding-left: 25px;
+    padding-top: 0;
+    padding-down: 0;
+    font-size: 14px;
 }
 
 h4.fingerprint-category {

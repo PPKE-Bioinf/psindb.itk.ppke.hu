@@ -530,8 +530,8 @@ def create_partner_data(uniprot_id, partners):
     partner_data_list = []
     for partner in partners:
         partner_name = partner[0]
-        partner_connectivity = partner[1]
-        partner_connectivity2 = partner[2]
+        partner_connectivity = partner[2]
+        partner_connectivity2 = partner[1]
 
         connectivity_data_list = generate_connectivity_data_list(
             partner_connectivity

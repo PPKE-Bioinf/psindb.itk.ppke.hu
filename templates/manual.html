@@ -4,15 +4,19 @@
 {% block title %}PSINDB{% endblock %}
 
 {% block sidenav %}
-<div class="sidenav">
+<div id="sidenav-manual" class="sidenav">
     <a href="#search-browse">Search/Browse</a>
     <a href="#entry">Entry</a>
-    <a href="#entry-function">Function</a>
-    <a href="#entry-features">Features</a>
-    <a href="#linear-motifs">Linear motifs</a>
-    <a href="#fingerprint">Fingerprint</a>
-    <a href="#network">Network</a>
-    <a href="#interacting-partners">All partners</a>
+    <a class="sub-category" href="#entry-function">Function</a>
+    <a class="sub-category" href="#entry-features">Protein features</a>
+    <a class="sub-category" href="#entry-partners-interacting-regions">Partners with known interacting regions</a>
+    <a class="sub-category" href="#network">Network</a>
+    <a class="sub-category" href="#isoforms">Isoforms</a>
+    <a class="sub-category" href="#disease">Disease-causing germline mutations</a>
+    <a class="sub-category" href="#linear-motifs">Linear motifs</a>
+    <a class="sub-category" href="#fingerprint">Fingerprint</a>
+    <a class="sub-category" href="#all-partners">All partners</a>
+    <a href="#interaction-page">Interaction page</a>
 </div>
 {% endblock %}
 
@@ -199,7 +203,7 @@
                 </div>
 
                 <div class="manual-content3">
-                    <h4>Partners with known interacting regions</h4>
+                    <h4 id="entry-partners-interacting-regions">Partners with known interacting regions</h4>
                     <p>
                         This section displays all partners where the interacting region of at least one of the partners
                         was narrowed from the full length sequence. This annotation has the same levels as described
@@ -211,7 +215,7 @@
 
                 <div class="manual-content3">
 
-                    <h4>Network</h4>
+                    <h4 id="network">Network</h4>
                     <p>
                         The Network view displays interaction partners and also shows how these partners interact with
                         each other. The PSD exhibits an extremely high number of PPIs, therefore we reduced the amount
@@ -252,7 +256,7 @@
 
                 <div class="manual-content3">
 
-                    <h4>Isoforms</h4>
+                    <h4 id="isoforms">Isoforms</h4>
                     <p>
                         This section displays all isoforms, together with the interacting regions of the canonical form,
                         thus isoforms with missing binding regions can be easily captured. Isoforms were collected from
@@ -263,7 +267,7 @@
                 </div>
 
                 <div class="manual-content3">
-                    <h4>Disease-causing germline mutations</h4>
+                    <h4 id="disease">Disease-causing germline mutations</h4>
                     <p>
                         Disease-causing germline mutations were collected from the
                         <a href="https://www.omim.org/">OMIM</a> database. We also highlight mutations that fall into
@@ -273,7 +277,7 @@
 
 
                 <div class="manual-content3">
-                    <h4>Linear motifs</h4>
+                    <h4 id="linear-motifs">Linear motifs</h4>
                     <p>
                         Short linear motifs are compact protein regions usually between 3-10 residues playing crucial
                         roles in cell regulation. The <a href="http://elm.eu.org/">ELM</a> database is the most
@@ -284,7 +288,7 @@
                 </div>
 
                 <div class="manual-content3">
-                    <h4>Fingerprint</h4>
+                    <h4 id="fingerprint">Fingerprint</h4>
                     <p>
                         Fingerprint provides a collection of ontology terms re-occuring in the protein or it’s
                         interaction partners. We collected all terms annotated for the proteins and also mapped
@@ -303,7 +307,7 @@
                 </div>
 
                 <div class="manual-content3">
-                    <h4>All partners</h4>
+                    <h4 id="all-partners">All partners</h4>
                     <p>
                         This panel displays all interacting partners, including the ones that not localize to PSD
                         according to our current knowledge. PSD partners are highlighted.
@@ -341,7 +345,7 @@
                 </div>
 
                 <div class="manual-content2">
-                    <h3>Interaction page</h3>
+                    <h3 id="interaction-page">Interaction page</h3>
                     <p>
                         This page contains all evidence of an interaction for a pair of proteins. Information is stored
                         according to the PSI MI controlled vocabularies and can be inspected on the
