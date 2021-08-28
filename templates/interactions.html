@@ -8,10 +8,19 @@
         <div class="container interactions-header">
             <div class="row">
                 <div class="col-sm">
-                    <a class="big-entry-link" href="{% url 'entry' uniprot_id=id1_db.id %}">{{ id1_db.id }}</a>
+                    {% if id1_db.go == "no" and id1_db.g2c == "no" and id1_db.syngo == "no" and id1_db.synaptomedb == "no" %}
+                        <p class="big-entry-link">{{ id1_db.id }}</p>
+                    {% else %}
+                        <a class="big-entry-link" href="{% url 'entry' uniprot_id=id1_db.id %}">{{ id1_db.id }}</a>
+                    {% endif %}
                 </div>
                 <div class="col-sm">
-                    <a class="big-entry-link" href="{% url 'entry' uniprot_id=id2_db.id %}">{{ id2_db.id }}</a>
+                    {% if id2_db.go == "no" and id2_db.g2c == "no" and id2_db.syngo == "no" and id2_db.synaptomedb == "no" %}
+                        <p class="big-entry-link">{{ id2_db.id }}</p>
+                    {% else %}
+                        <a class="big-entry-link" href="{% url 'entry' uniprot_id=id2_db.id %}">{{ id2_db.id }}</a>
+                    {% endif %}
+
                 </div>
             </div>
 
@@ -121,7 +130,7 @@
                     </tr>
                     <tr>
                         <td>Original protein 1:</td>
-                        <td>{{ result.original_protein_1 }}</td>
+                        <td><a href="https://www.uniprot.org/uniprot/{{ result.original_protein_1 }}">{{ result.original_protein_1 }}</a></td>
                     </tr>
                     <tr>
                         <td>Taxonomy:</td>
@@ -190,7 +199,7 @@
                     </tr>
                     <tr>
                         <td>Original protein 2:</td>
-                        <td>{{ result.original_protein_2 }}</td>
+                        <td><a href="https://www.uniprot.org/uniprot/{{ result.original_protein_2 }}">{{ result.original_protein_2 }}</a></td>
                     </tr>
                     <tr>
                         <td>Taxonomy:</td>

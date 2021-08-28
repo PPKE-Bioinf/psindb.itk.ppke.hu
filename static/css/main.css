@@ -98,6 +98,11 @@ a.big-entry-link {
     color: #326259;
 }
 
+p.big-entry-link {
+    font-size: 120%;
+    color: #9b2626;
+}
+
 a.big-entry-link:visited {
     color: #326259;
 }
