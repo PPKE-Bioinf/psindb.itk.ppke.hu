@@ -245,15 +245,21 @@
             <th>Name</th>
             <th>%</th>
             <th>Distance from the top the of the tree</th>
+            <th>Annotated in {{ uniprot_id }}</th>
         </tr>
     </thead>
     <tbody>
     {% for fp in fp_mol_func %}
-    <tr>
+    {% if fp.main == "yes" %}
+        <tr class="partner-psd-row">
+    {% else %}
+        <tr>
+    {% endif %}
         <td><a href="http://amigo.geneontology.org/amigo/term/{{ fp.term_id }}" target="_blank" rel="noopener noreferrer">{{ fp.term_id }}</a></td>
         <td>{{ fp.des }}</td>
         <td>{{ fp.ontology_number|floatformat:4 }}</td>
         <td>{{ fp.ontology_level }}</td>
+        <td>{{ fp.main }}</td>
     </tr>
     {% endfor %}
     </tbody>
@@ -271,15 +277,21 @@
             <th>Name</th>
             <th>%</th>
             <th>Distance from top the of the tree</th>
+            <th>Annotated in {{ uniprot_id }}</th>
         </tr>
     </thead>
     <tbody>
         {% for fp in fp_biol_proc %}
-        <tr>
+        {% if fp.main == "yes" %}
+            <tr class="partner-psd-row">
+        {% else %}
+            <tr>
+        {% endif %}
             <td><a href="http://amigo.geneontology.org/amigo/term/{{ fp.term_id }}" target="_blank" rel="noopener noreferrer">{{ fp.term_id }}</a></td>
             <td>{{ fp.des }}</td>
             <td>{{ fp.ontology_number|floatformat:4 }}</td>
             <td>{{ fp.ontology_level }}</td>
+            <td>{{ fp.main }}</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -297,15 +309,21 @@
             <th>Name</th>
             <th>%</th>
             <th>Distance from top the of the tree</th>
+            <th>Annotated in {{ uniprot_id }}</th>
         </tr>
     </thead>
     <tbody>
     {% for fp in fp_disease %}
-    <tr>
+    {% if fp.main == "yes" %}
+        <tr class="partner-psd-row">
+    {% else %}
+        <tr>
+    {% endif %}
         <td>{{ fp.term_id }}</td>
         <td>{{ fp.des }}</td>
         <td>{{ fp.ontology_number|floatformat:4 }}</td>
         <td>{{ fp.ontology_level }}</td>
+        <td>{{ fp.main }}</td>
     </tr>
     {% endfor %}
     </tbody>

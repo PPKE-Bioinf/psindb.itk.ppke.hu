@@ -685,7 +685,6 @@ def entry(request, uniprot_id,):
     except IndexError:
         isoforms_data = None
 
-
     query, disease_sql = DB.execute_sql(
         """
         SELECT posi, original, mutation, descr, in_region, mim, partner
@@ -732,7 +731,7 @@ def entry(request, uniprot_id,):
         """
         SELECT Fingerprint.term_id, Ontology.descr, 
         100*Fingerprint.ontology_number/Fingerprint.ontology_total1, 
-        Fingerprint.ontology_level 
+        Fingerprint.ontology_level, Fingerprint.main
         FROM Fingerprint INNER JOIN Ontology ON 
         Fingerprint.protein_id=%s AND 
         Ontology.term_id=Fingerprint.term_id AND
@@ -753,14 +752,15 @@ def entry(request, uniprot_id,):
             "term_id": fp[0],
             "des": fp[1],
             "ontology_number": fp[2],
-            "ontology_level": fp[3]
+            "ontology_level": fp[3],
+            "main": fp[4],
         })
 
     query, fp_biol_proc_sql = DB.execute_sql(
         """
         SELECT Fingerprint.term_id, Ontology.descr, 
         100*Fingerprint.ontology_number/Fingerprint.ontology_total1,
-        Fingerprint.ontology_level
+        Fingerprint.ontology_level, Fingerprint.main
         FROM Fingerprint INNER JOIN Ontology ON 
         Fingerprint.protein_id=%s AND 
         Ontology.term_id=Fingerprint.term_id AND 
@@ -781,14 +781,15 @@ def entry(request, uniprot_id,):
             "term_id": fp[0],
             "des": fp[1],
             "ontology_number": fp[2],
-            "ontology_level": fp[3]
+            "ontology_level": fp[3],
+            "main": fp[4],
         })
 
     query, fp_disease_sql = DB.execute_sql(
         """
         SELECT Fingerprint.term_id, Ontology.descr,
         100*Fingerprint.ontology_number/Fingerprint.ontology_total1,
-        Fingerprint.ontology_level
+        Fingerprint.ontology_level, Fingerprint.main
         FROM Fingerprint INNER JOIN Ontology 
         ON Fingerprint.protein_id=%s AND 
         Ontology.term_id=Fingerprint.term_id AND 
@@ -809,7 +810,8 @@ def entry(request, uniprot_id,):
             "term_id": fp[0],
             "des": fp[1],
             "ontology_number": fp[2],
-            "ontology_level": fp[3]
+            "ontology_level": fp[3],
+            "main": fp[4],
         })
 
     functions_desc = sql2[0][5]
