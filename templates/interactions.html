@@ -29,12 +29,15 @@
 
             <div class="col-sm search-result-header">
 
-            <div class="right-flex"><span>GO</span>
+            <div class="right-flex">
             {% if id1_db.go != "no" %}
+                <a href="https://www.ebi.ac.uk/QuickGO/annotations?geneProductId={{ id1_db.go }}" target="_blank" rel="noopener noreferrer">GO</a>
                 <img src="{% static 'images/check-circle.svg' %}">
             {% else %}
+                <span>GO</span>
                 <img src="{% static 'images/circle.svg' %}">
-            {% endif %}</div>
+            {% endif %}
+            </div>
             <div class="right-flex">
             {% if id1_db.g2c != "no" %}
                 <a href="https://www.genes2cognition.org/db/Search?text={{ id1_db.g2c }}" target="_blank" rel="noopener noreferrer">G2C</a>
@@ -65,12 +68,15 @@
             <div class="col-sm search-result-header">
 
 
-            <div class="right-flex"><span>GO</span>
+            <div class="right-flex">
             {% if id2_db.go != "no" %}
+                <a href="https://www.ebi.ac.uk/QuickGO/annotations?geneProductId={{ id2_db.go }}" target="_blank" rel="noopener noreferrer">GO</a>
                 <img src="{% static 'images/check-circle.svg' %}">
             {% else %}
+                <span>GO</span>
                 <img src="{% static 'images/circle.svg' %}">
-            {% endif %}</div>
+            {% endif %}
+            </div>
             <div class="right-flex">
             {% if id2_db.g2c != "no" %}
                 <a href="https://www.genes2cognition.org/db/Search?text={{ id2_db.g2c }}" target="_blank" rel="noopener noreferrer">G2C</a>

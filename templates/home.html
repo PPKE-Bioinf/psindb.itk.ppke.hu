@@ -28,12 +28,15 @@
                     {% endif %}
 
                     <div class="left-flex"><span>Postsynaptic evidence:</span></div>
-                    <div class="left-flex"><span class="evidence">GO</span>
+                    <div class="left-flex">
                     {% if result.evidence_go != "no" %}
+                        <a href="https://www.ebi.ac.uk/QuickGO/annotations?geneProductId={{ result.evidence_go }}" target="_blank" rel="noopener noreferrer">GO</a>
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
+                        <span class="evidence">GO</span>
                         <img src="{% static 'images/circle.svg' %}">
-                    {% endif %}</div>
+                    {% endif %}
+                    </div>
                     <div class="left-flex">
                     {% if result.evidence_g2c != "no" %}
                         <a href="https://www.genes2cognition.org/db/Search?text={{ result.evidence_g2c }}" target="_blank" rel="noopener noreferrer">G2C</a>

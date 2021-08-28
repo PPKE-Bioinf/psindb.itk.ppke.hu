@@ -27,12 +27,17 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="right-flex"><span>GO</span>
+            <div class="right-flex">
             {% if db_data.go != "no" %}
+                <a href="https://www.ebi.ac.uk/QuickGO/annotations?geneProductId={{ db_data.go }}" target="_blank" rel="noopener noreferrer">GO</a>
                 <img src="{% static 'images/check-circle.svg' %}">
             {% else %}
+                <span>GO</span>
                 <img src="{% static 'images/circle.svg' %}">
-            {% endif %}</div>
+            {% endif %}
+            </div>
+
+
             <div class="right-flex">
 
             {% if db_data.g2c != "no" %}
