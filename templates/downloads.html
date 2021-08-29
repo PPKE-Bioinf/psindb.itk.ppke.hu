@@ -5,13 +5,9 @@
 
 {% block content %}
     <h1 class="lonely">Downloads</h1>
-
-{#    <div class="manual-content">#}
-{#        <h2>Download database</h2>#}
         <p>
             <a href="{% static 'download/experimental_mitab25.tsv' %}">experimental_mitab25.tsv</a>
-            - PSI-MI TAB 2.5 Format (contains interactions experimental interactions)
-
+            - PSI-MI TAB 2.5 Format (contains experimental interactions)
         </p>
         <p>
             <a href="{% static 'download/PSINDB_mitab25.tsv' %}">PSINDB_mitab25.tsv</a>
@@ -22,7 +18,4 @@
             - This file  contains the interacting regions, whenever it is available. For interactions with multiple
             experiments and different regions the union of the interacting region is shown
         </p>
-    <p>More download formats coming soon.</p>
-{#    </div>#}
-
 {% endblock %}
