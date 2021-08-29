@@ -193,11 +193,26 @@ p.isoform-p {
     width: 180px;
 }
 
-#sidenav-manual a.sub-category {
-    padding-left: 25px;
+#sidenav-manual a.manual-main-category {
+    padding-left: 6px;
+    padding-top: 0;
+    padding-down: 0;
+    font-size: 16px;
+    text-decoration: underline;
+}
+
+#sidenav-manual a.manual-sub-category {
+    padding-left: 14px;
     padding-top: 0;
     padding-down: 0;
     font-size: 14px;
+}
+
+#sidenav-manual a.manual-sub-sub-category {
+    padding-left: 22px;
+    padding-top: 0;
+    padding-down: 0;
+    font-size: 12px;
 }
 
 h4.fingerprint-category {
