@@ -1,0 +1,2 @@
+UniProtID	UniProtID	score
+GSG1L_HUMAN	SYNG1_HUMAN	0.6

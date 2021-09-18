@@ -21,7 +21,7 @@
 
 
     <div class="entry-menu-item">
-        <h3 id="evidences" class="entry-category">Evidences for PS localization</h3>
+        <h3 id="evidences" class="entry-category">Evidence for PS localization</h3>
         <img class="tooltip_icon" src="{% static 'images/help-circle.svg' %}" data-toggle="tooltip" data-placement="right"
              title="Four resources have been used to define the postsynaptic density proteome: SynaptomeDB, G2C , SynGO and Gene ontology annotations">
     </div>
@@ -118,9 +118,10 @@
     <div class="entry-menu-item" style="margin-bottom: 26px;">
         <h3 id="network" class="entry-category">Network</h3>
         <img class="tooltip_icon" src="{% static 'images/help-circle.svg' %}" data-toggle="tooltip" data-placement="right"
-             title="Displays the highest scoring 50 interactions for the protein. Interactions were scored based on the number if independent evidences from different sources. For the exact calculation of scores visit the Server Manual.">
+             title="Displays the highest scoring 50 interactions for the protein. Interactions were scored based on the number if independent evidence from different sources. For the exact calculation of scores visit the Server Manual.">
     </div>
     <interaction-viewer accession="{{ uniprot_id }}"></interaction-viewer>
+    <a href="{% static 'download/protein-network/'|add:uniprot_id|add:'.txt' %}" download>Download full PS network for entry.</a>
 
 
     <div class="entry-menu-item">

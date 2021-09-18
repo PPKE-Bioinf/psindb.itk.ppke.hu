@@ -1,0 +1,2 @@
+UniProtID	UniProtID	score
+IGS11_HUMAN	IGS11_HUMAN	3.2

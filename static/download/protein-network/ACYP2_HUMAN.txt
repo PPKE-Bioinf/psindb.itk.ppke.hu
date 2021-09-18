@@ -1,0 +1,2 @@
+UniProtID	UniProtID	score
+ACYP2_HUMAN	ACYP2_HUMAN	6.0

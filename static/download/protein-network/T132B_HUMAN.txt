@@ -1,0 +1,2 @@
+UniProtID	UniProtID	score
+T132B_HUMAN	DLGP1_HUMAN	0.64

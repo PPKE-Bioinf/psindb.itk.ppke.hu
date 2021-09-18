@@ -1,0 +1,2 @@
+UniProtID	UniProtID	score
+STC1_HUMAN	STC1_HUMAN	4.0

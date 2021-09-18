@@ -1,0 +1,2 @@
+UniProtID	UniProtID	score
+PCDB6_HUMAN	PCDB6_HUMAN	1.6
