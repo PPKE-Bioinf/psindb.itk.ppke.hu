@@ -226,9 +226,10 @@
                     <p>
                         The Network view displays interaction partners and also shows how these partners interact with
                         each other. The PS exhibits an extremely high number of PPIs, therefore we reduced the number
-                        of displayed partners to 50 in this view. For this purpose we scored each interaction using the
-                        following method: for each evidence we assigned a score. The score of any interaction is the
-                        sum of individual pieces of evidence.
+                        of displayed partners to 50 in this view (users can still download the full network from the
+                        link below the panel). For this purpose we scored each interaction using the following method:
+                        for each evidence we assigned a score. The score of any interaction is the sum of individual
+                        pieces of evidence.
                     </p>
                     <table>
                         <thead>
@@ -255,8 +256,8 @@
                         </tbody>
                     </table>
                     <p>
-                        For the definition of low throughput, high throughput and computational evidence see the next
-                        section.
+                        For the definition of low throughput, high throughput and computational evidence see the
+                        "All partners" section.
                     </p>
                     <img class="manual-image" src="{% static 'images/IMAGE4.gif' %}" alt="PSINDB logo">
                 </div>
@@ -374,6 +375,8 @@
                             For interactions with multiple experiments and different regions the union of the interacting
                             region is shown
                         </li>
+                        <li>postsynaptic_proteins.tsv - List of postsynaptic proteins</li>
+                        <li>postsynaptic_network.tsv - Full PS network with scores</li>
                     </ul>
                 </div>
 {% endblock %}
