@@ -26,9 +26,11 @@
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container" style="max-height: 114px;">
 {#        width="100" height="100"#}
+        <div class="d-none d-lg-block">
         <a href="/">
             <img src="{% static 'images/psindb_small.gif' %}" alt="PSINDB logo">
         </a>
+        </div>
         <p class="main-title"><strong>PSINDB:</strong> Postsynaptic Interaction Database<sup>1.01</sup></p>
 {#        <button class="navbar-toggler my-2" type="button" data-toggle="collapse" data-target="#navbarCollapse">#}
 {#            <span class="navbar-toggler-icon"></span>#}
@@ -74,7 +76,7 @@
   {% block sidenav %}
   {% endblock %}
 
-<div class="container mt-1 pt-1">
+<div class="container mt-1 pt-1" style="padding-left: 120px;">
 {#    <div id="pfv" style="margin-top:10px; margin-bottom:117px" ></div>#}
     <main>
         {% block content %}

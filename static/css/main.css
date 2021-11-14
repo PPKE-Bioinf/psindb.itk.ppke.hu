@@ -154,22 +154,10 @@ p.isoform-p {
 }
 
 .sidenav {
-    width: 130px;
-    position: fixed;
-    z-index: 1;
-    top: 142px;
-    left: 90px;
-    /*background: #343a40;*/
-    overflow-x: hidden;
-    padding: 8px 0;
-    border: 4px solid #343a40;
-}
-
-.sidenav {
   height: 100%;
   width: 134px;
   position: fixed;
-  z-index: 1;
+  z-index: -1;
   top: 0;
   left: 0;
   background-color: #343a40;
