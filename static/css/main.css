@@ -21,6 +21,7 @@ a.nav-link {
     padding-bottom: 0;
     margin-left: 8px;
     margin-right: 8px;
+    min-width: 136px;
 }
 
 .rowTrackBoardSatus {
@@ -179,6 +180,18 @@ p.isoform-p {
   display: block;
 }
 
+.menu-items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-items a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #818181;
+}
+
 .sidenav a:hover {
   color: #f1f1f1;
 }
@@ -308,14 +321,15 @@ img.tooltip_icon {
     border-radius:4px;
 }
 
-p.main-title {
+a.main-title {
     color: rgba(255,255,255,.75);
     font-size: 30px;
     max-width: 340px;
     margin-left: 20px;
+    text-decoration: none;
 }
 
-p.main-title sup {
+a.main-title sup {
     font-size: 15px;
 }
 
