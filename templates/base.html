@@ -19,6 +19,7 @@
     <script src="{% static 'js/jquery.datatables.min.js' %}" type="text/javascript" defer></script>
     <script src="{% static 'js/datatables.bootstrap4.min.js' %}" type="text/javascript" defer></script>
     <script src="{% static 'js/purecookie.js' %}" type="text/javascript" defer></script>
+    <script src="{% static 'js/main.js' %}" type="text/javascript" defer></script>
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
     <link href="{% static 'css/datatables.bootstrap4.min.css' %}" rel="stylesheet">
 </head>
@@ -37,13 +38,17 @@
 {#        </button>#}
         <div class="collapse navbar-collapse flex-column align-items-start ml-lg-2 ml-0" id="navbarCollapse">
             <div class="search-fields">
-                <form action="/" method="GET" class="main-query">
-                  <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search protein" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form action="/" method="GET" autocomplete="off" class="main-query">
+                    <div class="autocomplete">
+                        <input id="myInput" class="form-control mr-sm-2" type="search" name="search" placeholder="Search protein" aria-label="Search">
+                    </div>
+                    <button class="btn btn-outline-success my-2 my-sm-0 base-form-submit" type="submit">Search</button>
                 </form>
-                <form action="/" method="GET" class="main-query">
-                  <input class="form-control mr-sm-2" type="interaction" name="interaction" placeholder="Search interaction" aria-label="Search" style="margin-left: 10px;">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form action="/" method="GET" autocomplete="off" class="main-query">
+                    <div class="autocomplete">
+                        <input id="myInput2" class="form-control mr-sm-2" type="interaction" name="interaction" placeholder="Search interaction" aria-label="Search">
+                    </div>
+                    <button class="btn btn-outline-success my-2 my-sm-0 base-form-submit" type="submit">Search</button>
                 </form>
             </div>
             <ul class="navbar-nav mx-auto">

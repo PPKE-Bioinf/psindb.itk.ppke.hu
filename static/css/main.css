@@ -410,3 +410,31 @@ ul.faq-answer {
 p.interaction-title {
     display: none;
 }
+
+.autocomplete {
+  /*the container must be positioned relative:*/
+  max-height: 0;
+  position: relative;
+  display: inline-block;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #b5c2cf;
+}
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: #479183 !important;
+  color: #ffffff;
+}
+
+.base-form-submit {
+    margin-left: 4px;
+    margin-right: 10px;
+}
