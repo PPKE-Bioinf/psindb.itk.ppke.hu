@@ -325,8 +325,8 @@ def create_graph_data(
       hideRowGlow: true,
       hideTrackFrameGlow: true,
       highlightHoverElement: false,
-      highlightHoverPosition: false,
-      includeTooltip: false
+      // highlightHoverPosition: false,
+      // includeTooltip: false
     }};
 
     const rowConfigData = [
