@@ -14,64 +14,95 @@
         {% if interaction_term %}
             <h2>Intreaction results for "{{ interaction_term }}":</h2>
         {% endif %}
-        {% for result in results %}
-            <div class="search-page-result">
-                <div class="search-result-header">
-{#                    <div><p>UNIPROT ID: </p></div>#}
 
-                    {% if interaction_term %}
-                        <div><a class="big-entry-link" href="/interactions?id1={{ result.protein_id1 }}&id2={{ result.protein_id }}">{{ result.protein_id }}</a></div>
-                        <div class="push-flex"><span></span></div>
-                    {% else %}
-                        <div><a class="big-entry-link" href="{% url 'entry' uniprot_id=result.protein_id %}">{{ result.protein_id }}</a></div>
-                        <div class="push-flex"><span>Number of interacting partners: {{ result.num_interactions }}</span></div>
+        <table id="search-results" class="table table-striped table-sm">
+            <thead class="table-dark">
+            <tr>
+                <td>Protein name</td>
+                {% if not interaction_term %}
+                    <td>Number of interacting partners</td>
+                {% endif %}
+                <td>GO</td>
+                <td>G2C</td>
+                <td>SynGO</td>
+                <td>SynaptomeDB</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for result in results %}
+                <tr>
+                    <td>
+                        {% if interaction_term %}
+                            <div><a class="big-entry-link"
+                                    href="/interactions?id1={{ result.protein_id1 }}&id2={{ result.protein_id }}">{{ result.protein_id }}</a>
+                            </div>
+                        {% else %}
+                            <div><a class="big-entry-link"
+                                    href="{% url 'entry' uniprot_id=result.protein_id %}">{{ result.protein_id }}</a>
+                            </div>
+                        {% endif %}
+                    </td>
+                    {% if not interaction_term %}
+                        <td>{{ result.num_interactions }}</td>
                     {% endif %}
-
-                    <div class="left-flex"><span>Postsynaptic evidence:</span></div>
-                    <div class="left-flex">
-                    {% if result.evidence_go != "no" %}
-                        <a href="https://www.ebi.ac.uk/QuickGO/annotations?geneProductId={{ result.evidence_go }}" target="_blank" rel="noopener noreferrer">GO</a>
+                    <td>{% if result.evidence_go != "no" %}
+                        <a href="https://www.ebi.ac.uk/QuickGO/annotations?geneProductId={{ result.evidence_go }}"
+                           target="_blank" rel="noopener noreferrer">GO</a>
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
                         <span class="evidence">GO</span>
                         <img src="{% static 'images/circle.svg' %}">
-                    {% endif %}
-                    </div>
-                    <div class="left-flex">
-                    {% if result.evidence_g2c != "no" %}
-                        <a href="https://www.genes2cognition.org/db/Search?text={{ result.evidence_g2c }}" target="_blank" rel="noopener noreferrer">G2C</a>
+                    {% endif %}</td>
+                    <td>{% if result.evidence_g2c != "no" %}
+                        <a href="https://www.genes2cognition.org/db/Search?text={{ result.evidence_g2c }}"
+                           target="_blank" rel="noopener noreferrer">G2C</a>
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
                         <span class="evidence">G2C</span>
                         <img src="{% static 'images/circle.svg' %}">
-                    {% endif %}</div>
-                    <div class="left-flex">
-                    {% if result.evidence_syngo != "no" %}
-                        <a href="https://syngoportal.org/gene.html?HGNC:{{ result.evidence_syngo }}" target="_blank" rel="noopener noreferrer">SynGO</a>
+                    {% endif %}</td>
+                    <td>{% if result.evidence_syngo != "no" %}
+                        <a href="https://syngoportal.org/gene.html?HGNC:{{ result.evidence_syngo }}" target="_blank"
+                           rel="noopener noreferrer">SynGO</a>
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
                         <span class="evidence">SynGO</span>
                         <img src="{% static 'images/circle.svg' %}">
-                    {% endif %}</div>
-                    <div class="left-flex">
-                    {% if result.evidence_synaptomedb != "no" %}
-                        <a href="http://metamoodics.org/SynaptomeDB/synmain/synaptome_all_view.php?editid1={{ result.evidence_synaptomedb }}" target="_blank" rel="noopener noreferrer">SynaptomeDB</a>
+                    {% endif %}</td>
+                    <td>{% if result.evidence_synaptomedb != "no" %}
+                        <a href="http://metamoodics.org/SynaptomeDB/synmain/synaptome_all_view.php?editid1={{ result.evidence_synaptomedb }}"
+                           target="_blank" rel="noopener noreferrer">SynaptomeDB</a>
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
                         <span class="evidence">SynaptomeDB</span>
                         <img src="{% static 'images/circle.svg' %}">
-                    {% endif %}</div>
-                </div>
-{#                <div><span>Number of interacting partners: {{ result.num_interactions }}</span></div>#}
-                <div id="pfv-{{ result.protein_id }}" style="margin-top:15px" ></div>
-{#                <script type="text/javascript">#}
-{#                {% autoescape off %}#}
-{#                {{ result.insert_js }}#}
-{#                {% endautoescape %}#}
-{#                </script>#}
-            </div>
+                    {% endif %}</td>
+                </tr>
 
-        {% endfor %}
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <script>
+            $(document).ready(function () {
+                $('#search-results').DataTable({
+                    dom: "<'row'<'col-md-12't>>",
+                    {% if interaction_term %}
+                        order: [[0, "asc"]],
+                    {% else %}
+                        order: [[1, "desc"]],
+                    {% endif %}
+                    "columnDefs": [
+                        {% if interaction_term %}
+                            {"orderable": false, "targets": [1, 2, 3, 4]},
+                        {% else %}
+                            {"orderable": false, "targets": [2, 3, 4, 5]},
+                        {% endif %}
+                    ],
+                    paging: false
+                });
+            });
+        </script>
     {% endif %}
 
     {% if error %}
@@ -81,47 +112,51 @@
     {% if not error and not results %}
         <h1 class="lonely">Welcome to the Postsynaptic Interaction Database!</h1>
 
-    <p>The Postsynaptic Interaction Database is a comprehensive resource of the human postsynaptic (PS) binary
-        protein-protein interactions. It contains experimental and computational evidence about interactions,
-        along with structural and disease-related information about the human PS proteins.</p>
-    <p>The PSINDB web-server provides data integration coupled with manual curation. PSINDB collects interaction
-        evidence from several other resources. In addition our team also takes part in collecting and curating related
-        papers to expedite the annotation of PS related proteins.</p>
-    <p>PSINDB offers common format download and community standard curation process and data interpretation to ensure
-        interoperability with other resources.</p>
-    <p>PSINDB enables exploring proteins and their interactions. The database offers various visualizations for the
-        data stored, where interacting regions, structural features, disease-causing mutations, and network information
-        is easily accessible. PSINDB also displays detailed information about each interaction evidence, including but
-        not limited to interaction detection method, experimental and biological role of participants.</p>
-    <p>You can read more about the database in the descriptive article or in the database manual.</p>
+        <p>The Postsynaptic Interaction Database is a comprehensive resource of the human postsynaptic (PS) binary
+            protein-protein interactions. It contains experimental and computational evidence about interactions,
+            along with structural and disease-related information about the human PS proteins.</p>
+        <p>The PSINDB web-server provides data integration coupled with manual curation. PSINDB collects interaction
+            evidence from several other resources. In addition our team also takes part in collecting and curating
+            related
+            papers to expedite the annotation of PS related proteins.</p>
+        <p>PSINDB offers common format download and community standard curation process and data interpretation to
+            ensure
+            interoperability with other resources.</p>
+        <p>PSINDB enables exploring proteins and their interactions. The database offers various visualizations for the
+            data stored, where interacting regions, structural features, disease-causing mutations, and network
+            information
+            is easily accessible. PSINDB also displays detailed information about each interaction evidence, including
+            but
+            not limited to interaction detection method, experimental and biological role of participants.</p>
+        <p>You can read more about the database in the descriptive article or in the database manual.</p>
 
-    <div style="display: flex; justify-content: center; margin: 20px 0px 40px 0px;">
-        <figure style="text-align: center; margin: 0px 20px 0px 20px;">
-            <img class="picto" src="{% static 'images/picto_protein.gif' %}" alt="PSINDB logo">
-            <figcaption> 2160 postsynaptic proteins </figcaption>
-        </figure>
+        <div style="display: flex; justify-content: center; margin: 20px 0px 40px 0px;">
+            <figure style="text-align: center; margin: 0px 20px 0px 20px;">
+                <img class="picto" src="{% static 'images/picto_protein.gif' %}" alt="PSINDB logo">
+                <figcaption> 2160 postsynaptic proteins</figcaption>
+            </figure>
 
-        <figure style="text-align: center; margin: 0px 20px 0px 20px;">
-            <img class="picto" src="{% static 'images/picto_paper.gif' %}" alt="PSINDB logo">
-            <figcaption> 11671 pubmed IDs  </figcaption>
-        </figure>
+            <figure style="text-align: center; margin: 0px 20px 0px 20px;">
+                <img class="picto" src="{% static 'images/picto_paper.gif' %}" alt="PSINDB logo">
+                <figcaption> 11671 pubmed IDs</figcaption>
+            </figure>
 
-        <figure style="text-align: center; margin: 0px 20px 0px 20px;">
-            <img class="picto" src="{% static 'images/picto_interaction.gif' %}" alt="PSINDB logo">
-            <figcaption> 145395 unique binary interactions </figcaption>
-        </figure>
+            <figure style="text-align: center; margin: 0px 20px 0px 20px;">
+                <img class="picto" src="{% static 'images/picto_interaction.gif' %}" alt="PSINDB logo">
+                <figcaption> 145395 unique binary interactions</figcaption>
+            </figure>
 
-        <figure style="text-align: center; margin: 0px 20px 0px 20px;">
-            <img class="picto" src="{% static 'images/picto_experiment.gif' %}" alt="PSINDB logo">
-            <figcaption> 135709 experimental evidence </figcaption>
-        </figure>
-    </div>
+            <figure style="text-align: center; margin: 0px 20px 0px 20px;">
+                <img class="picto" src="{% static 'images/picto_experiment.gif' %}" alt="PSINDB logo">
+                <figcaption> 135709 experimental evidence</figcaption>
+            </figure>
+        </div>
 
-    <p>For the usage of the PSINDB homepage please refer to the server manual. If you find our database useful,
-        please cite it:</p>
-    <p><i>Zsofia E. Kalman, Daniel Dudola, Balint Meszaros, Zoltan Gaspari, Laszlo Dobson
-    PSINDB: The postsynaptic protein-protein interaction database
-    </i></p>
+        <p>For the usage of the PSINDB homepage please refer to the server manual. If you find our database useful,
+            please cite it:</p>
+        <p><i>Zsofia E. Kalman, Daniel Dudola, Balint Meszaros, Zoltan Gaspari, Laszlo Dobson
+            PSINDB: The postsynaptic protein-protein interaction database
+        </i></p>
 
     {% endif %}
 
