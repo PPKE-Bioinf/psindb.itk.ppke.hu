@@ -236,15 +236,21 @@ def index(request):
 
     if interaction:
         query, query_results = DB.execute_sql(
+            # """
+            # SELECT Partners.protein_id1, Partners.protein_id2, Protein.go,
+            # Protein.g2c, Protein.syngo, Protein.synaptomedb
+            # FROM Protein INNER JOIN Partners
+            # WHERE (Partners.protein_id1 LIKE %s) AND
+            #       (Partners.ispsd='PSD') AND
+            #       (Partners.protein_id2=Protein.protein_id);
+            # """,
             """
-            SELECT Partners.protein_id1, Partners.protein_id2, Protein.go, 
-            Protein.g2c, Protein.syngo, Protein.synaptomedb
-            FROM Protein INNER JOIN Partners
-            WHERE (Partners.protein_id1 LIKE %s) AND
-                  (Partners.ispsd='PSD') AND
-                  (Partners.protein_id2=Protein.protein_id);
+                SELECT DISTINCT Partners.protein_id1, Partners.protein_id2, Partners.evidence 
+                FROM Partners INNER JOIN Alias ON Alias.protein_id = Partners.protein_id1 
+                AND (Alias.protein_alias LIKE %s) ORDER BY Partners.protein_id1;
             """,
             ("%" + interaction + "%",)
+            # (interaction,)
         )
 
         if not query_results:
@@ -260,19 +266,19 @@ def index(request):
 
         for query_result in query_results:
             protein_id1 = query_result[0]
-            protein_id = query_result[1]
-            evidence_go = query_result[2]
-            evidence_g2c = query_result[3]
-            evidence_syngo = query_result[4]
-            evidence_synaptomedb = query_result[5]
+            protein_id2 = query_result[1]
+            evidence = query_result[2]
+
+            if evidence == "HT":
+                evidence = "High throughput"
+
+            if evidence == "LT":
+                evidence = "Low throughput"
 
             results.append({
-                "evidence_go": evidence_go,
-                "evidence_g2c": evidence_g2c,
-                "evidence_syngo": evidence_syngo,
-                "evidence_synaptomedb": evidence_synaptomedb,
+                "evidence": evidence,
                 "protein_id1": protein_id1,
-                "protein_id": protein_id,
+                "protein_id2": protein_id2,
             })
 
         return render(
