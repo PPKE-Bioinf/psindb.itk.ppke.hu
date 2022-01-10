@@ -332,6 +332,7 @@ a.main-title {
     max-width: 340px;
     margin-left: 20px;
     text-decoration: none;
+    line-height: 1.2;
 }
 
 a.main-title sup {
@@ -436,6 +437,7 @@ p.interaction-title {
     max-height: 0;
     position: relative;
     display: inline-block;
+    z-index: 999;
 }
 
 .autocomplete-items div {
