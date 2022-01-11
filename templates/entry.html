@@ -64,7 +64,14 @@
             {% else %}
                 <span>SynaptomeDB</span>
                 <img src="{% static 'images/circle.svg' %}">
-            {% endif %}</div>
+            {% endif %}
+            </div>
+
+            {% if db_data.expr != "no" %}
+                <div class="right-flex" style="border-left: 2px solid #343a40; padding-left: 10px;">
+                <a href="https://www.proteinatlas.org/{{ db_data.expr }}" target="_blank" rel="noopener noreferrer">Expressed in neurons</a>
+                </div>
+            {% endif %}
         </div>
     </div>
 
@@ -346,6 +353,7 @@
             <th>Details</th>
             <th>Highest evidence</th>
             <th>Localizing into PSD</th>
+            <th>Expressed in neurons</th>
         </tr>
     </thead>
     <tbody>
@@ -366,6 +374,13 @@
             {% if partner.is_psd %}
                 <td>
                     yes
+                </td>
+            {% else %}
+                <td>no</td>
+            {% endif %}
+            {% if partner.expr != "no" %}
+                <td>
+                    <a href="https://www.proteinatlas.org/{{ partner.expr }}">yes</a>
                 </td>
             {% else %}
                 <td>no</td>

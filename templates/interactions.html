@@ -27,233 +27,292 @@
 
             <div class="row">
 
-            <div class="col-sm search-result-header">
+                <div class="col-sm search-result-header">
 
-            <div class="right-flex">
-            {% if id1_db.go != "no" %}
-                <a href="https://www.ebi.ac.uk/QuickGO/annotations?geneProductId={{ id1_db.go }}" target="_blank" rel="noopener noreferrer">GO</a>
-                <img src="{% static 'images/check-circle.svg' %}">
-            {% else %}
-                <span>GO</span>
-                <img src="{% static 'images/circle.svg' %}">
-            {% endif %}
-            </div>
-            <div class="right-flex">
-            {% if id1_db.g2c != "no" %}
-                <a href="https://www.genes2cognition.org/db/Search?text={{ id1_db.g2c }}" target="_blank" rel="noopener noreferrer">G2C</a>
-                <img src="{% static 'images/check-circle.svg' %}">
-            {% else %}
-                <span>G2C</span>
-                <img src="{% static 'images/circle.svg' %}">
-            {% endif %}</div>
-            <div class="right-flex">
-            {% if id1_db.syngo != "no" %}
-                 <a href="https://syngoportal.org/gene.html?HGNC:{{ id1_db.syngo }}" target="_blank" rel="noopener noreferrer">SynGO</a>
-                <img src="{% static 'images/check-circle.svg' %}">
-            {% else %}
-                <span>SynGO</span>
-                <img src="{% static 'images/circle.svg' %}">
-            {% endif %}</div>
-            <div class="right-flex">
-            {% if id1_db.synaptomedb != "no" %}
-                <a href="http://metamoodics.org/SynaptomeDB/synmain/synaptome_all_view.php?editid1={{ id1_db.synaptomedb }}" target="_blank" rel="noopener noreferrer">SynaptomeDB</a>
-                <img src="{% static 'images/check-circle.svg' %}">
-            {% else %}
-                <span>SynaptomeDB</span>
-                <img src="{% static 'images/circle.svg' %}">
-            {% endif %}</div>
+                    <div class="right-flex">
+                        {% if id1_db.go != "no" %}
+                            <a href="https://www.ebi.ac.uk/QuickGO/annotations?geneProductId={{ id1_db.go }}"
+                               target="_blank" rel="noopener noreferrer">GO</a>
+                            <img src="{% static 'images/check-circle.svg' %}">
+                        {% else %}
+                            <span>GO</span>
+                            <img src="{% static 'images/circle.svg' %}">
+                        {% endif %}
+                    </div>
+                    <div class="right-flex">
+                        {% if id1_db.g2c != "no" %}
+                            <a href="https://www.genes2cognition.org/db/Search?text={{ id1_db.g2c }}" target="_blank"
+                               rel="noopener noreferrer">G2C</a>
+                            <img src="{% static 'images/check-circle.svg' %}">
+                        {% else %}
+                            <span>G2C</span>
+                            <img src="{% static 'images/circle.svg' %}">
+                        {% endif %}</div>
+                    <div class="right-flex">
+                        {% if id1_db.syngo != "no" %}
+                            <a href="https://syngoportal.org/gene.html?HGNC:{{ id1_db.syngo }}" target="_blank"
+                               rel="noopener noreferrer">SynGO</a>
+                            <img src="{% static 'images/check-circle.svg' %}">
+                        {% else %}
+                            <span>SynGO</span>
+                            <img src="{% static 'images/circle.svg' %}">
+                        {% endif %}</div>
+                    <div class="right-flex">
+                        {% if id1_db.synaptomedb != "no" %}
+                            <a href="http://metamoodics.org/SynaptomeDB/synmain/synaptome_all_view.php?editid1={{ id1_db.synaptomedb }}"
+                               target="_blank" rel="noopener noreferrer">SynaptomeDB</a>
+                            <img src="{% static 'images/check-circle.svg' %}">
+                        {% else %}
+                            <span>SynaptomeDB</span>
+                            <img src="{% static 'images/circle.svg' %}">
+                        {% endif %}</div>
+                    {% if id1_db.expr != "no" %}
+                        <div class="right-flex" style="border-left: 2px solid #343a40; padding-left: 10px;">
+                            <a href="https://www.proteinatlas.org/{{ id1_db.expr }}" target="_blank"
+                               rel="noopener noreferrer">Expressed in neurons</a>
+                        </div>
+                    {% endif %}
 
-            </div>
+                </div>
 
-            <div class="col-sm search-result-header">
+                <div class="col-sm search-result-header">
 
 
-            <div class="right-flex">
-            {% if id2_db.go != "no" %}
-                <a href="https://www.ebi.ac.uk/QuickGO/annotations?geneProductId={{ id2_db.go }}" target="_blank" rel="noopener noreferrer">GO</a>
-                <img src="{% static 'images/check-circle.svg' %}">
-            {% else %}
-                <span>GO</span>
-                <img src="{% static 'images/circle.svg' %}">
-            {% endif %}
-            </div>
-            <div class="right-flex">
-            {% if id2_db.g2c != "no" %}
-                <a href="https://www.genes2cognition.org/db/Search?text={{ id2_db.g2c }}" target="_blank" rel="noopener noreferrer">G2C</a>
-                <img src="{% static 'images/check-circle.svg' %}">
-            {% else %}
-                <span>G2C</span>
-                <img src="{% static 'images/circle.svg' %}">
-            {% endif %}</div>
-            <div class="right-flex">
-            {% if id2_db.syngo != "no" %}
-                 <a href="https://syngoportal.org/gene.html?HGNC:{{ id2_db.syngo }}" target="_blank" rel="noopener noreferrer">SynGO</a>
-                <img src="{% static 'images/check-circle.svg' %}">
-            {% else %}
-                <span>SynGO</span>
-                <img src="{% static 'images/circle.svg' %}">
-            {% endif %}</div>
-            <div class="right-flex">
-            {% if id2_db.synaptomedb != "no" %}
-                <a href="http://metamoodics.org/SynaptomeDB/synmain/synaptome_all_view.php?editid1={{ id2_db.synaptomedb }}" target="_blank" rel="noopener noreferrer">SynaptomeDB</a>
-                <img src="{% static 'images/check-circle.svg' %}">
-            {% else %}
-                <span>SynaptomeDB</span>
-                <img src="{% static 'images/circle.svg' %}">
-            {% endif %}</div>
+                    <div class="right-flex">
+                        {% if id2_db.go != "no" %}
+                            <a href="https://www.ebi.ac.uk/QuickGO/annotations?geneProductId={{ id2_db.go }}"
+                               target="_blank" rel="noopener noreferrer">GO</a>
+                            <img src="{% static 'images/check-circle.svg' %}">
+                        {% else %}
+                            <span>GO</span>
+                            <img src="{% static 'images/circle.svg' %}">
+                        {% endif %}
+                    </div>
+                    <div class="right-flex">
+                        {% if id2_db.g2c != "no" %}
+                            <a href="https://www.genes2cognition.org/db/Search?text={{ id2_db.g2c }}" target="_blank"
+                               rel="noopener noreferrer">G2C</a>
+                            <img src="{% static 'images/check-circle.svg' %}">
+                        {% else %}
+                            <span>G2C</span>
+                            <img src="{% static 'images/circle.svg' %}">
+                        {% endif %}</div>
+                    <div class="right-flex">
+                        {% if id2_db.syngo != "no" %}
+                            <a href="https://syngoportal.org/gene.html?HGNC:{{ id2_db.syngo }}" target="_blank"
+                               rel="noopener noreferrer">SynGO</a>
+                            <img src="{% static 'images/check-circle.svg' %}">
+                        {% else %}
+                            <span>SynGO</span>
+                            <img src="{% static 'images/circle.svg' %}">
+                        {% endif %}</div>
+                    <div class="right-flex">
+                        {% if id2_db.synaptomedb != "no" %}
+                            <a href="http://metamoodics.org/SynaptomeDB/synmain/synaptome_all_view.php?editid1={{ id2_db.synaptomedb }}"
+                               target="_blank" rel="noopener noreferrer">SynaptomeDB</a>
+                            <img src="{% static 'images/check-circle.svg' %}">
+                        {% else %}
+                            <span>SynaptomeDB</span>
+                            <img src="{% static 'images/circle.svg' %}">
+                        {% endif %}</div>
+                    {% if id2_db.expr != "no" %}
+                        <div class="right-flex" style="border-left: 1px solid #343a40; padding-left: 10px;">
+                            <a href="https://www.proteinatlas.org/{{ id2_db.expr }}" target="_blank"
+                               rel="noopener noreferrer">Expressed in neurons</a>
+                        </div>
+                    {% endif %}
 
-            </div>
+                </div>
 
             </div>
         </div>
 
         <img class="legend" src="{% static 'images/legend2.gif' %}">
 
-    {% for result in results %}
+        {% for result in results %}
 
-        <div id="pfv-{{ result.id_1 }}-{{ result.number }}-1" style="margin-top:15px" ></div>
-        <script type="text/javascript">
-        {% autoescape off %}
-        {{ result.connectivity_1 }}
-        {% endautoescape %}
-        </script>
+            <div id="pfv-{{ result.id_1 }}-{{ result.number }}-1" style="margin-top:15px"></div>
+            <script type="text/javascript">
+                {% autoescape off %}
+                    {{ result.connectivity_1 }}
+                {% endautoescape %}
+            </script>
 
-        <div id="pfv-{{ result.id_2 }}-{{ result.number }}-2" style="margin-top:15px" ></div>
-        <script type="text/javascript">
-        {% autoescape off %}
-        {{ result.connectivity_2 }}
-        {% endautoescape %}
-        </script>
+            <div id="pfv-{{ result.id_2 }}-{{ result.number }}-2" style="margin-top:15px"></div>
+            <script type="text/javascript">
+                {% autoescape off %}
+                    {{ result.connectivity_2 }}
+                {% endautoescape %}
+            </script>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-sm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
 
-                    <table class="interaction-data">
-                    <tr>
-                        <td>Inferred:</td>
-                        <td>{{ result.inferred }}</td>
-                    </tr>
-                    <tr>
-                        <td>Original protein 1:</td>
-                        <td><a href="https://www.uniprot.org/uniprot/{{ result.original_protein_1 }}">{{ result.original_protein_1 }}</a></td>
-                    </tr>
-                    <tr>
-                        <td>Taxonomy:</td>
-                        {% if result.tax_link_1 == "-1" %}
-                        <td>-</td>
-                        {% else %}
-                        <td><a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{ result.tax_link_1 }}" target="_blank" rel="noopener noreferrer">{{ result.tax_1 }}</a></td>
-                        {% endif %}
-                    </tr>
-                    <tr>
-                        <td>Experimental role:</td>
-                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.experimental_role_region1_link }}" target="_blank" rel="noopener noreferrer">{{ result.experimental_role_region1 }}</a></td>
-                    </tr>
-                    <tr>
-                        <td>Biological role participant:</td>
-                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.biological_role_region1_link }}" target="_blank" rel="noopener noreferrer">{{ result.biological_role_region1 }}</a></td>
-                    </tr>
-                    <tr>
-                        <td>Participant detection method:</td>
-                        {% if result.source == "STRING" %}
-                        <td>-</td>
-                        {% else %}
-                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.participant_detection_link_1 }}" target="_blank" rel="noopener noreferrer">{{ result.participant_detection_method_1 }}</a></td>
-                        {% endif %}
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Host:</td>
-                        {% if result.host_id == "-1" %}
-                        <td>-</td>
-                        {% else %}
-                        <td><a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{ result.host_id }}" target="_blank" rel="noopener noreferrer">{{ result.host }}</a></td>
-                        {% endif %}
-                    </tr>
-                    <tr>
-                        <td>Interaction detection method:</td>
-                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.interaction_detection_link }}" target="_blank" rel="noopener noreferrer">{{ result.interaction_detection_method }}</a></td>
-                    </tr>
-                    <tr>
-                        <td>Source:</td>
-                        <td>
-                            {% if result.source == "STRING" %}
-                                STRING
-                                <a href="https://string-db.org/cgi/network?identifiers={{ result.id_1 }}" target="_blank" rel="noopener noreferrer">[{{ result.id_1 }}]</a>
-                                <a href="https://string-db.org/cgi/network?identifiers={{ result.id_2 }}" target="_blank" rel="noopener noreferrer">[{{ result.id_2 }}]</a>
-                            {% elif result.crossreference %}
-                                <a href="{{ result.crossreference }}" target="_blank" rel="noopener noreferrer">{{ result.source }}</a>
-                            {% else %}
-                                {{ result.source }}
-                            {% endif %}
-                        </td>
-                    </tr>
-                    </table>
+                        <table class="interaction-data">
+                            <tr>
+                                <td>Inferred:</td>
+                                <td>{{ result.inferred }}</td>
+                            </tr>
+                            <tr>
+                                <td>Original protein 1:</td>
+                                <td>
+                                    <a href="https://www.uniprot.org/uniprot/{{ result.original_protein_1 }}">{{ result.original_protein_1 }}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Taxonomy:</td>
+                                {% if result.tax_link_1 == "-1" %}
+                                    <td>-</td>
+                                {% else %}
+                                    <td>
+                                        <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{ result.tax_link_1 }}"
+                                           target="_blank" rel="noopener noreferrer">{{ result.tax_1 }}</a></td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td>Experimental role:</td>
+                                <td>
+                                    <a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.experimental_role_region1_link }}"
+                                       target="_blank"
+                                       rel="noopener noreferrer">{{ result.experimental_role_region1 }}</a></td>
+                            </tr>
+                            <tr>
+                                <td>Biological role participant:</td>
+                                <td>
+                                    <a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.biological_role_region1_link }}"
+                                       target="_blank"
+                                       rel="noopener noreferrer">{{ result.biological_role_region1 }}</a></td>
+                            </tr>
+                            <tr>
+                                <td>Participant detection method:</td>
+                                {% if result.source == "STRING" %}
+                                    <td>-</td>
+                                {% else %}
+                                    <td>
+                                        <a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.participant_detection_link_1 }}"
+                                           target="_blank"
+                                           rel="noopener noreferrer">{{ result.participant_detection_method_1 }}</a>
+                                    </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Host:</td>
+                                {% if result.host_id == "-1" %}
+                                    <td>-</td>
+                                {% else %}
+                                    <td>
+                                        <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{ result.host_id }}"
+                                           target="_blank" rel="noopener noreferrer">{{ result.host }}</a></td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td>Interaction detection method:</td>
+                                <td>
+                                    <a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.interaction_detection_link }}"
+                                       target="_blank"
+                                       rel="noopener noreferrer">{{ result.interaction_detection_method }}</a></td>
+                            </tr>
+                            <tr>
+                                <td>Source:</td>
+                                <td>
+                                    {% if result.source == "STRING" %}
+                                        STRING
+                                        <a href="https://string-db.org/cgi/network?identifiers={{ result.id_1 }}"
+                                           target="_blank" rel="noopener noreferrer">[{{ result.id_1 }}]</a>
+                                        <a href="https://string-db.org/cgi/network?identifiers={{ result.id_2 }}"
+                                           target="_blank" rel="noopener noreferrer">[{{ result.id_2 }}]</a>
+                                    {% elif result.crossreference %}
+                                        <a href="{{ result.crossreference }}" target="_blank"
+                                           rel="noopener noreferrer">{{ result.source }}</a>
+                                    {% else %}
+                                        {{ result.source }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </table>
 
-                </div>
+                    </div>
 
-                <div class="col-sm">
+                    <div class="col-sm">
 
-                    <table class="interaction-data">
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Original protein 2:</td>
-                        <td><a href="https://www.uniprot.org/uniprot/{{ result.original_protein_2 }}">{{ result.original_protein_2 }}</a></td>
-                    </tr>
-                    <tr>
-                        <td>Taxonomy:</td>
-                        {% if result.tax_link_2 == "-1" %}
-                        <td>-</td>
-                        {% else %}
-                        <td><a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{ result.tax_link_2 }}" target="_blank" rel="noopener noreferrer">{{ result.tax_2 }}</a></td>
-                        {% endif %}
-                    </tr>
-                    <tr>
-                        <td>Experimental role:</td>
-                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.experimental_role_region2_link }}" target="_blank" rel="noopener noreferrer">{{ result.experimental_role_region2 }}</a></td>
-                    </tr>
-                    <tr>
-                        <td>Biological role participant:</td>
-                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.biological_role_region2_link }}" target="_blank" rel="noopener noreferrer">{{ result.biological_role_region2 }}</a></td>
-                    </tr>
-                    <tr>
-                        <td>Participant detection method:</td>
-                        {% if result.source == "STRING" %}
-                        <td>-</td>
-                        {% else %}
-                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.participant_detection_link_2 }}" target="_blank" rel="noopener noreferrer">{{ result.participant_detection_method_2 }}</a></td>
-                        {% endif %}
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>PMID:</td>
-                        <td><a href="https://pubmed.ncbi.nlm.nih.gov/{{ result.pmid }}" target="_blank" rel="noopener noreferrer">{{ result.pmid }}</a></td>
-                    </tr>
-                    <tr>
-                        <td>Interaction type:</td>
-                        <td><a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.interaction_type_link }}" target="_blank" rel="noopener noreferrer">{{ result.interaction_type }}</a></td>
-                    </tr>
-                    <tr>
-                        <td>Evidence:</td>
-                        <td>{{ result.evidence }}</td>
-                    </tr>
-                    </table>
+                        <table class="interaction-data">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Original protein 2:</td>
+                                <td>
+                                    <a href="https://www.uniprot.org/uniprot/{{ result.original_protein_2 }}">{{ result.original_protein_2 }}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Taxonomy:</td>
+                                {% if result.tax_link_2 == "-1" %}
+                                    <td>-</td>
+                                {% else %}
+                                    <td>
+                                        <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{ result.tax_link_2 }}"
+                                           target="_blank" rel="noopener noreferrer">{{ result.tax_2 }}</a></td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td>Experimental role:</td>
+                                <td>
+                                    <a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.experimental_role_region2_link }}"
+                                       target="_blank"
+                                       rel="noopener noreferrer">{{ result.experimental_role_region2 }}</a></td>
+                            </tr>
+                            <tr>
+                                <td>Biological role participant:</td>
+                                <td>
+                                    <a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.biological_role_region2_link }}"
+                                       target="_blank"
+                                       rel="noopener noreferrer">{{ result.biological_role_region2 }}</a></td>
+                            </tr>
+                            <tr>
+                                <td>Participant detection method:</td>
+                                {% if result.source == "STRING" %}
+                                    <td>-</td>
+                                {% else %}
+                                    <td>
+                                        <a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.participant_detection_link_2 }}"
+                                           target="_blank"
+                                           rel="noopener noreferrer">{{ result.participant_detection_method_2 }}</a>
+                                    </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>PMID:</td>
+                                <td><a href="https://pubmed.ncbi.nlm.nih.gov/{{ result.pmid }}" target="_blank"
+                                       rel="noopener noreferrer">{{ result.pmid }}</a></td>
+                            </tr>
+                            <tr>
+                                <td>Interaction type:</td>
+                                <td>
+                                    <a href="https://www.ebi.ac.uk/ols/ontologies/mi/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMI_{{ result.interaction_type_link }}"
+                                       target="_blank" rel="noopener noreferrer">{{ result.interaction_type }}</a></td>
+                            </tr>
+                            <tr>
+                                <td>Evidence:</td>
+                                <td>{{ result.evidence }}</td>
+                            </tr>
+                        </table>
 
+                    </div>
                 </div>
             </div>
-        </div>
 
-    {% endfor %}
+        {% endfor %}
     {% endif %}
 
     {% if error %}

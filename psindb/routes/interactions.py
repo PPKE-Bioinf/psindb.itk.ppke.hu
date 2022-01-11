@@ -181,6 +181,7 @@ def interactions(request):
     Protein.GO, Protein.G2C,
     Protein.Syngo,
     Protein.Synaptomedb,
+    Protein.expr,
     Protein.protein_id
     FROM Protein INNER JOIN Alias ON
     Alias.protein_id=Protein.protein_id AND
@@ -208,6 +209,7 @@ def interactions(request):
             "g2c": db_1_results[0][1],
             "syngo": db_1_results[0][2],
             "synaptomedb": db_1_results[0][3],
+            "expr": db_1_results[0][4],
         }
     except IndexError:
         pass
@@ -232,6 +234,7 @@ def interactions(request):
             "g2c": db_2_results[0][1],
             "syngo": db_2_results[0][2],
             "synaptomedb": db_2_results[0][3],
+            "expr": db_2_results[0][4],
         }
     except IndexError:
         pass

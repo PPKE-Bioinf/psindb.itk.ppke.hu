@@ -601,8 +601,14 @@ def create_partner_data(uniprot_id, partners):
 
 def entry(request, uniprot_id,):
     query, sql2 = DB.execute_sql(
+        # """
+        # SELECT protein_id, GO, G2C, SynGO, SynaptomeDB, Functions,
+        # topology, HTP, LLPS, ELM, phosphorylation, PFAM, coiledcoil, Anchor,
+        # Disordered, ELM, interacting, sequence, phasepro
+        # FROM Protein WHERE protein_id=%s;
+        # """,
         """
-        SELECT protein_id, GO, G2C, SynGO, SynaptomeDB, Functions,
+        SELECT protein_id, GO, G2C, SynGO, SynaptomeDB, expr, Functions,
         topology, HTP, LLPS, ELM, phosphorylation, PFAM, coiledcoil, Anchor,
         Disordered, ELM, interacting, sequence, phasepro
         FROM Protein WHERE protein_id=%s;
@@ -620,7 +626,7 @@ def entry(request, uniprot_id,):
 
     query, all_partners_list = DB.execute_sql(
         """
-        SELECT protein_id2, evidence, isPSD 
+        SELECT protein_id2, evidence, isPSD, expr 
         FROM Partners
         WHERE protein_id1=%s 
         ORDER BY evidence DESC;
@@ -636,6 +642,7 @@ def entry(request, uniprot_id,):
         entry_link = None
         interaction_link = f"/interactions?id1={uniprot_id}&id2={name}"
         is_psd = True if partner[2] == "PSD" else False
+        expr = partner[3]
 
         if is_psd:
             entry_link = f"/entry/{name}"
@@ -651,6 +658,7 @@ def entry(request, uniprot_id,):
             "interaction_link": interaction_link,
             "highest_evidence": highest_evidence,
             "is_psd": is_psd,
+            "expr": expr
         })
 
     query, sql7 = DB.execute_sql(
@@ -814,7 +822,7 @@ def entry(request, uniprot_id,):
             "main": fp[4],
         })
 
-    functions_desc = sql2[0][5]
+    functions_desc = sql2[0][6]
     functions_desc = re.sub(
         r"(PubMed):(\d*)",
         r'<a href="https://pubmed.ncbi.nlm.nih.gov/\2" target="_blank" rel="noopener noreferrer">\1</a>',
@@ -828,23 +836,24 @@ def entry(request, uniprot_id,):
         "g2c": sql2[0][2],
         "SynGO": sql2[0][3],
         "SynaptomeDB": sql2[0][4],
+        "expr": sql2[0][5],
         "Functions": functions_desc,
     }
 
     features_graph_js = create_graph_data(
         uniprot_id,
-        transmembrane=sql2[0][6],
-        htp=sql2[0][7],
-        llps=sql2[0][8],
-        elm=sql2[0][9],
-        phosphorylation=sql2[0][10],
-        pfam=sql2[0][11],
-        coiled_coil=sql2[0][12],
-        anchor=sql2[0][13],
-        disordered=sql2[0][14],
-        connectivity=sql2[0][16],
-        sequence=sql2[0][17],
-        phasepro=sql2[0][18],
+        transmembrane=sql2[0][7],
+        htp=sql2[0][8],
+        llps=sql2[0][9],
+        elm=sql2[0][10],
+        phosphorylation=sql2[0][11],
+        pfam=sql2[0][12],
+        coiled_coil=sql2[0][13],
+        anchor=sql2[0][14],
+        disordered=sql2[0][15],
+        connectivity=sql2[0][17],
+        sequence=sql2[0][18],
+        phasepro=sql2[0][19],
     )
 
     partner_data = create_partner_data(uniprot_id, sql3)
