@@ -236,21 +236,12 @@ def index(request):
 
     if interaction:
         query, query_results = DB.execute_sql(
-            # """
-            # SELECT Partners.protein_id1, Partners.protein_id2, Protein.go,
-            # Protein.g2c, Protein.syngo, Protein.synaptomedb
-            # FROM Protein INNER JOIN Partners
-            # WHERE (Partners.protein_id1 LIKE %s) AND
-            #       (Partners.ispsd='PSD') AND
-            #       (Partners.protein_id2=Protein.protein_id);
-            # """,
             """
                 SELECT DISTINCT Partners.protein_id1, Partners.protein_id2, Partners.evidence 
                 FROM Partners INNER JOIN Alias ON Alias.protein_id = Partners.protein_id1 
-                AND (Alias.protein_alias LIKE %s) ORDER BY Partners.protein_id1;
+                AND (Alias.protein_alias LIKE %s OR Alias.protein_id LIKE %s) ORDER BY Partners.protein_id1;
             """,
-            ("%" + interaction + "%",)
-            # (interaction,)
+            ("%" + interaction + "%", "%" + interaction + "%",)
         )
 
         if not query_results:
