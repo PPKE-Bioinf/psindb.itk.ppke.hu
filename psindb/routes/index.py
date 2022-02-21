@@ -239,7 +239,8 @@ def index(request):
             """
                 SELECT DISTINCT Partners.protein_id1, Partners.protein_id2, Partners.evidence 
                 FROM Partners INNER JOIN Alias ON Alias.protein_id = Partners.protein_id1 
-                AND (Alias.protein_alias LIKE %s OR Alias.protein_id LIKE %s) ORDER BY Partners.protein_id1;
+                AND (Alias.protein_alias LIKE %s OR Alias.protein_id LIKE %s) ORDER BY Partners.protein_id1
+                LIMIT 2000;
             """,
             ("%" + interaction + "%", "%" + interaction + "%",)
         )
@@ -277,6 +278,7 @@ def index(request):
             "home.html",
             {
                 "results": results,
+                "results_limited": len(query_results) == 2000,
                 "interaction_term": interaction,
             },
         )

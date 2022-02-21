@@ -131,6 +131,10 @@
             </tbody>
         </table>
 
+        {% if results_limited %}
+            <p>Results have been limited to 2000 entries. Please use a more specific search term.</p>
+        {% endif %}
+
         <script>
             $(document).ready(function () {
                 $('#search-results').DataTable({
