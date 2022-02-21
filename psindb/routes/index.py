@@ -254,6 +254,12 @@ def index(request):
                 },
             )
 
+        query, psd_proteins = DB.execute_sql(
+            "SELECT protein_id FROM Protein;"
+        )
+
+        psd_proteins = list(map(lambda x: x[0], psd_proteins))
+
         results = []
 
         for query_result in query_results:
@@ -271,6 +277,7 @@ def index(request):
                 "evidence": evidence,
                 "protein_id1": protein_id1,
                 "protein_id2": protein_id2,
+                "protein_id2_is_ps": protein_id2 in psd_proteins,
             })
 
         return render(

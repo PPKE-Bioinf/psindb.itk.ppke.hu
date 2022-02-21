@@ -108,13 +108,16 @@
                                 {{ result.protein_id1 }}
                             </a>
                         </div>
-
                     </td>
                     <td>
+                        {% if result.protein_id2_is_ps %}
                         <div><a class="big-entry-link"
                                 href="{% url 'entry' uniprot_id=result.protein_id2 %}">{{ result.protein_id2 }}</a>
                         </div>
-
+                        {% else %}
+                        <div><p style="font-size: 120%; margin-bottom: 0">{{ result.protein_id2 }}</p>
+                        </div>
+                        {% endif %}
                     </td>
                     <td>{{ result.evidence }}</td>
                     <td>
@@ -124,7 +127,6 @@
                             </a>
                         </div>
                     </td>
-
                 </tr>
 
             {% endfor %}
