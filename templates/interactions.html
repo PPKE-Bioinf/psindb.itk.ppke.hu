@@ -24,11 +24,8 @@
                 </div>
             </div>
 
-
             <div class="row">
-
                 <div class="col-sm search-result-header">
-
                     <div class="right-flex">
                         {% if id1_db.go != "no" %}
                             <a href="https://www.ebi.ac.uk/QuickGO/annotations?geneProductId={{ id1_db.go }}"
@@ -67,17 +64,20 @@
                             <img src="{% static 'images/circle.svg' %}">
                         {% endif %}</div>
                     {% if id1_db.expr != "no" %}
-                        <div class="right-flex" style="border-left: 2px solid #343a40; padding-left: 10px;">
+                        {% if id1_db.expr %}
+                            <div class="right-flex" style="border-left: 2px solid #343a40; padding-left: 10px;">
                             <a href="https://www.proteinatlas.org/{{ id1_db.expr }}" target="_blank"
                                rel="noopener noreferrer">HPA (protein expression in neurons)</a>
-                        </div>
+                            </div>
+                        {% else %}
+                            <div class="right-flex" style="border-left: 2px solid #343a40; padding-left: 10px;">
+                                <p>HPA (protein expression in neurons)</p>
+                            </div>
+                        {% endif %}
                     {% endif %}
-
                 </div>
 
                 <div class="col-sm search-result-header">
-
-
                     <div class="right-flex">
                         {% if id2_db.go != "no" %}
                             <a href="https://www.ebi.ac.uk/QuickGO/annotations?geneProductId={{ id2_db.go }}"
@@ -116,14 +116,18 @@
                             <img src="{% static 'images/circle.svg' %}">
                         {% endif %}</div>
                     {% if id2_db.expr != "no" %}
-                        <div class="right-flex" style="border-left: 1px solid #343a40; padding-left: 10px;">
+                        {% if id2_db.expr %}
+                            <div class="right-flex" style="border-left: 2px solid #343a40; padding-left: 10px;">
                             <a href="https://www.proteinatlas.org/{{ id2_db.expr }}" target="_blank"
                                rel="noopener noreferrer">HPA (protein expression in neurons)</a>
                         </div>
+                        {% else %}
+                            <div class="right-flex" style="border-left: 2px solid #343a40; padding-left: 10px;">
+                                <p style="margin-bottom: 0">HPA (protein expression in neurons)</p>
+                            </div>
+                        {% endif %}
                     {% endif %}
-
                 </div>
-
             </div>
         </div>
 
