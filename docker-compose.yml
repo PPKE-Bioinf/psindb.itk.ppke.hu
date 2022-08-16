@@ -5,17 +5,17 @@ services:
     image: ppkebioinf/psindb
     ports:
       - 8081:8000
-    depends_on:
-      - psindb-db
-    links:
-      - psindb-db
+    # depends_on:
+    #   - psindb-db
+    # links:
+    #   - psindb-db
     restart: unless-stopped
 
-  psindb-db:
-    image: mariadb:10.3
-    environment:
-    - MARIADB_PASSWORD=password
-    - MARIADB_USER=daniel
-    - MYSQL_ROOT_HOST=psindb-server
-    volumes:
-      - /var/lib/mysql:/var/lib/mysql
+  # psindb-db:
+  #   image: mariadb:10.3
+  #   environment:
+  #   - MARIADB_PASSWORD=password
+  #   - MARIADB_USER=daniel
+  #   - MYSQL_ROOT_HOST=psindb-server
+  #   volumes:
+  #     - /var/lib/mysql:/var/lib/mysql
