@@ -1,0 +1,1 @@
+[{"accession":"CEL_HUMAN","name":"CEL_HUMAN","interactions":[{"accession1":"CEL_HUMAN","accession2":"LIPS_HUMAN","experiments":1}]},{"accession":"LIPS_HUMAN","name":"LIPS_HUMAN","interactions":[{"accession1":"LIPS_HUMAN","accession2":"CEL_HUMAN","experiments":1}]}]

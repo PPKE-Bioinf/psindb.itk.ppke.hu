@@ -1,0 +1,1 @@
+[{"accession":"SAMC_HUMAN","name":"SAMC_HUMAN","interactions":[{"accession1":"SAMC_HUMAN","accession2":"RASK_HUMAN","experiments":1}]},{"accession":"RASK_HUMAN","name":"RASK_HUMAN","interactions":[{"accession1":"RASK_HUMAN","accession2":"SAMC_HUMAN","experiments":1},{"accession1":"RASK_HUMAN","accession2":"RASK_HUMAN","experiments":10}]}]

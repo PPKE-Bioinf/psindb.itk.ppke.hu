@@ -1,0 +1,1 @@
+[{"accession":"ACH10_HUMAN","name":"ACH10_HUMAN","interactions":[{"accession1":"ACH10_HUMAN","accession2":"ANO6_HUMAN","experiments":1}]},{"accession":"ANO6_HUMAN","name":"ANO6_HUMAN","interactions":[{"accession1":"ANO6_HUMAN","accession2":"ACH10_HUMAN","experiments":1},{"accession1":"ANO6_HUMAN","accession2":"ANO6_HUMAN","experiments":10}]}]
