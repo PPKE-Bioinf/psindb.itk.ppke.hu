@@ -5,6 +5,7 @@
 
 {% block content %}
     <h1 class="lonely">Downloads</h1>
+    <h4>Latest version (1.03)</h4>
     <p>
         <a href="{% static 'download/experimental_mitab25.zip' %}" download>experimental_mitab25.zip</a>
         - PSI-MI TAB 2.5 Format (contains experimental interactions)
@@ -25,5 +26,11 @@
         <a href="{% static 'download/merged_binding.txt' %}" download>merged_binding.txt</a>
         - This file  contains the interacting regions, whenever it is available. For interactions with multiple
         experiments and different regions the union of the interacting region is shown
+    </p>
+
+    <h4>Earlier versions</h4>
+    <p>
+        <a href="{% static 'download/1.02.zip' %}" download>1.02.zip</a>
+        - 1.02 release
     </p>
 {% endblock %}
