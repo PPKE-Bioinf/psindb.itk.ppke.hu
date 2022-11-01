@@ -308,7 +308,7 @@ def create_graph_data(
     pfam_row_title = f"""
     RcsbFvLink = {{
         visibleTex: "PFAM",
-        url: "http://pfam.xfam.org/protein/{protein_id}",
+        url: "https://www.ebi.ac.uk/interpro/protein/uniprot/{phasepro}",
         isThirdParty: true
     }}
     """
