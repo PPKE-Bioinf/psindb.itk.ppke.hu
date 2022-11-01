@@ -295,6 +295,7 @@ def create_graph_data(
             """
 
     llps_row_title = '"Phase separation"'
+    pfam_row_title = '"PFAM"'
 
     if phasepro != "-":
         llps_row_title = f"""
@@ -305,13 +306,13 @@ def create_graph_data(
         }}
         """
 
-    pfam_row_title = f"""
-    RcsbFvLink = {{
-        visibleTex: "PFAM",
-        url: "https://www.ebi.ac.uk/interpro/protein/uniprot/{phasepro}",
-        isThirdParty: true
-    }}
-    """
+        pfam_row_title = f"""
+        RcsbFvLink = {{
+            visibleTex: "PFAM",
+            url: "https://www.ebi.ac.uk/interpro/protein/uniprot/{phasepro}",
+            isThirdParty: true
+        }}
+        """    
 
     js = f"""
     $(document).ready(function(){{
