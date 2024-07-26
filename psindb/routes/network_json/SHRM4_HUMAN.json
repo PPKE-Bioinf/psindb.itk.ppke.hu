@@ -1,0 +1,1 @@
+[{"accession":"SHRM4_HUMAN","name":"SHRM4_HUMAN","interactions":[{"accession1":"SHRM4_HUMAN","accession2":"RBX1_HUMAN","experiments":1}]},{"accession":"RBX1_HUMAN","name":"RBX1_HUMAN","interactions":[{"accession1":"RBX1_HUMAN","accession2":"SHRM4_HUMAN","experiments":1},{"accession1":"RBX1_HUMAN","accession2":"RBX1_HUMAN","experiments":10}]}]

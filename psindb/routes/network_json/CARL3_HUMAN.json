@@ -1,0 +1,1 @@
+[{"accession":"CARL3_HUMAN","name":"CARL3_HUMAN","interactions":[{"accession1":"CARL3_HUMAN","accession2":"PX11B_HUMAN","experiments":1}]},{"accession":"PX11B_HUMAN","name":"PX11B_HUMAN","interactions":[{"accession1":"PX11B_HUMAN","accession2":"CARL3_HUMAN","experiments":1},{"accession1":"PX11B_HUMAN","accession2":"PX11B_HUMAN","experiments":4}]}]
