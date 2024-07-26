@@ -289,7 +289,7 @@ def create_graph_data(
         transmembrane_row_title = f"""
             RcsbFvLink = {{
                 visibleTex: "Transmembrane",
-                url: "http://htp.enzim.hu/?_=/viewer/{htp}",
+                url: "https://htp.unitmp.org/entry/{htp}",
                 isThirdParty: true
             }}
             """
