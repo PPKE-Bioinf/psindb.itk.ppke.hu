@@ -1,0 +1,1 @@
+[{"accession":"GD1L1_HUMAN","name":"GD1L1_HUMAN","interactions":[{"accession1":"GD1L1_HUMAN","accession2":"TAU_HUMAN","experiments":1}]},{"accession":"TAU_HUMAN","name":"TAU_HUMAN","interactions":[{"accession1":"TAU_HUMAN","accession2":"GD1L1_HUMAN","experiments":1},{"accession1":"TAU_HUMAN","accession2":"TAU_HUMAN","experiments":10}]}]

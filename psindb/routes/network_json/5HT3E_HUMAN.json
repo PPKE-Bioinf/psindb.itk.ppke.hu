@@ -1,0 +1,1 @@
+[{"accession":"5HT3E_HUMAN","name":"5HT3E_HUMAN","interactions":[{"accession1":"5HT3E_HUMAN","accession2":"5HT3A_HUMAN","experiments":5}]},{"accession":"5HT3A_HUMAN","name":"5HT3A_HUMAN","interactions":[{"accession1":"5HT3A_HUMAN","accession2":"5HT3E_HUMAN","experiments":5},{"accession1":"5HT3A_HUMAN","accession2":"5HT3A_HUMAN","experiments":10}]}]

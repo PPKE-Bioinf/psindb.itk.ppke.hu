@@ -1,0 +1,1 @@
+[{"accession":"INY2B_HUMAN","name":"INY2B_HUMAN","interactions":[{"accession1":"INY2B_HUMAN","accession2":"PSDE_HUMAN","experiments":1}]},{"accession":"PSDE_HUMAN","name":"PSDE_HUMAN","interactions":[{"accession1":"PSDE_HUMAN","accession2":"INY2B_HUMAN","experiments":1},{"accession1":"PSDE_HUMAN","accession2":"PSDE_HUMAN","experiments":6}]}]

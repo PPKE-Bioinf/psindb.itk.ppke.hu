@@ -1,0 +1,1 @@
+[{"accession":"TM240_HUMAN","name":"TM240_HUMAN","interactions":[{"accession1":"TM240_HUMAN","accession2":"CYFP1_HUMAN","experiments":1}]},{"accession":"CYFP1_HUMAN","name":"CYFP1_HUMAN","interactions":[{"accession1":"CYFP1_HUMAN","accession2":"TM240_HUMAN","experiments":1}]}]
