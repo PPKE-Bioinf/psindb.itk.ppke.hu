@@ -1,0 +1,2 @@
+UniProtID	UniProtID	score
+TM240_HUMAN	CYFP1_HUMAN	0.64

@@ -1,0 +1,2 @@
+UniProtID	UniProtID	score
+GBRP_HUMAN	RIGI_HUMAN	0.8
