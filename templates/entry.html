@@ -50,7 +50,7 @@
 
             <div class="right-flex">
             {% if db_data.SynGO != "no" %}
-                <a href="https://syngoportal.org/gene.html?HGNC:{{ db_data.SynGO }}" target="_blank" rel="noopener noreferrer">SynGO</a>
+                <a href="https://syngoportal.org/gene_hgnc{{ db_data.SynGO }}" target="_blank" rel="noopener noreferrer">SynGO</a>
                 <img src="{% static 'images/check-circle.svg' %}">
             {% else %}
                 <span>SynGO</span>

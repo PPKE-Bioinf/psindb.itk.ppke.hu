@@ -53,7 +53,7 @@
                         <img src="{% static 'images/circle.svg' %}">
                     {% endif %}</td>
                     <td>{% if result.evidence_syngo != "no" %}
-                        <a href="https://syngoportal.org/gene.html?HGNC:{{ result.evidence_syngo }}" target="_blank"
+                        <a href="https://syngoportal.org/gene_hgnc{{ result.evidence_syngo }}" target="_blank"
                            rel="noopener noreferrer">SynGO</a>
                         <img src="{% static 'images/check-circle.svg' %}">
                     {% else %}
