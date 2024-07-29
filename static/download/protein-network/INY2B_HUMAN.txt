@@ -1,0 +1,2 @@
+UniProtID	UniProtID	score
+INY2B_HUMAN	PSDE_HUMAN	0.8

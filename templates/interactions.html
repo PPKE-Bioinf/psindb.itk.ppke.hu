@@ -47,7 +47,7 @@
                         {% endif %}</div>
                     <div class="right-flex">
                         {% if id1_db.syngo != "no" %}
-                            <a href="https://syngoportal.org/gene.html?HGNC:{{ id1_db.syngo }}" target="_blank"
+                            <a href="https://syngoportal.org/gene_hgnc{{ id1_db.syngo }}" target="_blank"
                                rel="noopener noreferrer">SynGO</a>
                             <img src="{% static 'images/check-circle.svg' %}">
                         {% else %}
@@ -99,7 +99,7 @@
                         {% endif %}</div>
                     <div class="right-flex">
                         {% if id2_db.syngo != "no" %}
-                            <a href="https://syngoportal.org/gene.html?HGNC:{{ id2_db.syngo }}" target="_blank"
+                            <a href="https://syngoportal.org/gene_hgnc{{ id2_db.syngo }}" target="_blank"
                                rel="noopener noreferrer">SynGO</a>
                             <img src="{% static 'images/check-circle.svg' %}">
                         {% else %}
